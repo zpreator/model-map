@@ -51,7 +51,6 @@ h1 { margin: 0 0 4px; font-size: 1.5rem; }
 .chip:last-child { margin-bottom: 0; }
 .chip[data-tier="unknown"] { border-style: dashed; border-color: var(--line); }
 .chip[aria-pressed="true"] { border-color: var(--fg); box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--fg); }
-.grid[data-has-selection] .chip[aria-pressed="false"] { opacity: .35; }
 .badges { display: flex; gap: 2px; flex-shrink: 0; }
 .badge { font-size: .65rem; font-weight: 700; padding: 1px 4px; border-radius: 4px; background: rgba(0,0,0,.14); }
 @media (prefers-color-scheme: dark) { .badge { background: rgba(255,255,255,.16); } }
@@ -88,3 +87,26 @@ h1 { margin: 0 0 4px; font-size: 1.5rem; }
   .grid thead th[data-col] { display: table-cell !important; }
   .grid tbody th { width: 8rem; } .grid .corner { width: 8rem; }
 }
+
+/* Problem presets */
+.presets-title { margin: 0 0 8px; font-size: .85rem; font-weight: 600; color: var(--muted); }
+.preset-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.preset { min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--fg); font: inherit; font-size: .9rem; cursor: pointer; }
+.preset[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.dot { display: inline-block; width: 8px; height: 8px; margin-left: 6px; border-radius: 50%; background: var(--accent); }
+.dot[hidden] { display: none; }
+.chip[data-dim="true"] { opacity: .35; }
+.chip[data-involved="true"] { border-color: var(--fg); }
+
+/* Problem steps panel */
+#problem { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+#problem h2 { margin: 0 0 8px; font-size: 1.2rem; }
+.steps { margin: 0; padding-left: 1.4rem; display: grid; gap: 14px; }
+.steps h3 { margin: 0 0 6px; font-size: 1rem; }
+.cands { list-style: none; padding: 0; margin: 0 0 4px; display: flex; flex-wrap: wrap; gap: 6px; }
+.cand { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 12px; border: 2px solid transparent; border-radius: 8px; font: inherit; font-size: .9rem; cursor: pointer; background: var(--tb); color: var(--tf); }
+.step-req { margin: 0; font-size: .8rem; color: var(--muted); }
+.lightest { margin-top: 16px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; }
+.lightest h3 { margin: 0 0 4px; font-size: .95rem; }
+.lightest p { margin: 0; }
+.lightest .fine { margin-top: 6px; font-size: .8rem; color: var(--muted); }

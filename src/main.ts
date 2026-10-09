@@ -1,6 +1,7 @@
 import "./style.css";
-import { families, familyById, modelsOfFamily, problems } from "./data";
-import type { Input, Model, Output, Tier } from "./types";
+import { families, familyById, modelsOfFamily, models, problems } from "./data";
+import { lightestSetup, stepReq, type Req } from "./lightest";
+import type { Input, Model, Output, Problem, Tier } from "./types";
 
 const INPUTS: { id: Input; label: string }[] = [
   { id: "image", label: "Image" }, { id: "text", label: "Text" },
@@ -31,8 +32,25 @@ const familyCells = (fid: string, i: Input, o: Output) =>
 
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 
-let selected: string | null = null;
+const modelById = new Map(models.map((m) => [m.id, m]));
+let selected: string | null = null; // family shown in the details panel
+let activeProblem: Problem | null = null;
 let activeCol: Input = "image";
+
+/** Families (and their grid columns) that appear in the active problem. */
+function involved(): { fams: Set<string>; cols: Set<Input> } {
+  const fams = new Set<string>(), cols = new Set<Input>();
+  for (const s of activeProblem?.steps ?? []) for (const id of s.models) {
+    const m = modelById.get(id);
+    if (!m) continue;
+    fams.add(m.family);
+    m.cells.forEach((c) => cols.add(c.input));
+  }
+  return { fams, cols };
+}
+
+/** Column to show first for the active problem: the input of its first step's first model. */
+const startCol = (): Input | null => modelById.get(activeProblem?.steps[0]?.models[0] ?? "")?.cells[0]?.input ?? null;
 
 function chip(fid: string): string {
   const tiers = familyTiers(fid);
@@ -57,8 +75,12 @@ function render() {
 
   app.innerHTML = `
     <header><h1>Model Map</h1><p class="lede">Which model fits my problem? Models sit where their input (columns) meets their output (rows).</p></header>
+    <section class="presets" aria-label="Problem presets">
+      <h2 class="presets-title">Start from a problem</h2>
+      <div class="preset-list">${problems.map((p) => `<button type="button" class="preset" data-problem="${p.id}" aria-pressed="${activeProblem?.id === p.id}">${esc(p.title)}</button>`).join("")}</div>
+    </section>
     <div class="tabs" role="tablist" aria-label="Input modality">
-      ${INPUTS.map((i) => `<button role="tab" type="button" id="tab-${i.id}" data-tab="${i.id}" aria-selected="${activeCol === i.id}" tabindex="${activeCol === i.id ? 0 : -1}">${i.label}</button>`).join("")}
+      ${INPUTS.map((i) => `<button role="tab" type="button" id="tab-${i.id}" data-tab="${i.id}" aria-selected="${activeCol === i.id}" tabindex="${activeCol === i.id ? 0 : -1}">${i.label}<span class="dot" hidden> <span class="sr-only">(has highlighted models)</span></span></button>`).join("")}
     </div>
     <div class="grid-wrap"><table class="grid" data-col="${activeCol}">
       <caption class="sr-only">Models by input modality (columns) and output type (rows)</caption>
@@ -69,8 +91,11 @@ function render() {
       <li><span class="swatch" data-tier="unknown"><span class="badge">?</span></span>Unknown</li>
     </ul>
     <p class="legend-note">Colour is the lightest tier any model in the family needs; badges list every tier it spans. Tiers are coarse and unverified.</p>
+    <section id="problem" aria-live="polite" aria-label="Problem steps"></section>
     <section id="detail" aria-live="polite" aria-label="Details"></section>`;
+  renderProblem();
   renderDetail();
+  applyHighlight();
 }
 
 function renderDetail() {
@@ -93,18 +118,72 @@ function renderDetail() {
     <ul class="members">${members.map(row).join("")}</ul>`;
 }
 
+const reqLabel = (r: Req) => (r.kind === "hw" ? tierMeta.get(r.tier)!.label : r.kind === "api" ? "API only" : "unknown");
+const reqTier = (r: Req) => (r.kind === "hw" ? r.tier : r.kind === "api" ? "api" : "unknown");
+
+function renderProblem() {
+  const el = document.getElementById("problem")!;
+  const p = activeProblem;
+  if (!p) { el.innerHTML = `<p class="hint">Pick a problem above to see its steps and which models fit each one.</p>`; return; }
+  const l = lightestSetup(p, modelById);
+  const parts: string[] = [];
+  if (l.hw) parts.push(`<strong>${tierMeta.get(l.hw)!.label}</strong>`);
+  else if (!l.apiSteps.length) parts.push(`<strong>Unknown</strong>`);
+  if (l.apiSteps.length) parts.push(`${l.hw ? "plus " : ""}<strong>API</strong> for: ${l.apiSteps.map(esc).join("; ")}`);
+  if (l.unknownSteps.length) parts.push(`no tier data yet for: ${l.unknownSteps.map(esc).join("; ")}`);
+  const steps = p.steps.map((s) => {
+    const cands = s.models.map((id) => modelById.get(id)).filter((m): m is Model => !!m);
+    return `<li><h3>${esc(s.label)}</h3>
+      <ul class="cands">${cands.map((m) => { const r = stepReq([m]); return `<li><button type="button" class="cand" data-family="${m.family}" data-tier="${reqTier(r)}">${esc(m.name)} <span class="badge">${r.kind === "hw" ? tierMeta.get(r.tier)!.short : r.kind === "api" ? "API" : "?"}</span></button></li>`; }).join("")}</ul>
+      <p class="step-req">Lightest here: ${reqLabel(stepReq(cands))}</p></li>`;
+  }).join("");
+  el.innerHTML = `<h2>${esc(p.title)}</h2>
+    <ol class="steps">${steps}</ol>
+    <div class="lightest"><h3>Lightest setup</h3><p>${parts.join("; ")}</p>
+      <p class="fine">Per step, the lightest option; overall, the heaviest of those. API-only options are reported separately. Tiers are unverified estimates.</p></div>
+    ${p.note ? `<p class="notes">${esc(p.note)}</p>` : ""}`;
+}
+
+/** Dim/highlight chips and mark tabs, without rebuilding the grid (keeps keyboard focus). */
+function applyHighlight() {
+  const inv = involved();
+  document.querySelectorAll<HTMLElement>(".chip").forEach((c) => {
+    const f = c.dataset.family!;
+    c.dataset.dim = String(activeProblem ? !inv.fams.has(f) : selected ? f !== selected : false);
+    c.dataset.involved = String(!!activeProblem && inv.fams.has(f));
+    c.setAttribute("aria-pressed", String(f === selected));
+  });
+  document.querySelectorAll<HTMLElement>("[data-tab]").forEach((b) => {
+    b.querySelector<HTMLElement>(".dot")!.hidden = !(activeProblem && inv.cols.has(b.dataset.tab as Input));
+  });
+}
+
+function selectFamily(fid: string | null) {
+  selected = fid;
+  renderDetail();
+  applyHighlight();
+}
+
+function selectProblem(id: string | null) {
+  activeProblem = problems.find((p) => p.id === id) ?? null;
+  document.querySelectorAll<HTMLElement>(".preset").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.problem === activeProblem?.id)));
+  if (activeProblem) {
+    const first = startCol();
+    if (first) setTab(first, false);
+  }
+  renderProblem();
+  applyHighlight();
+  history.replaceState(null, "", activeProblem ? `#problem=${activeProblem.id}` : location.pathname + location.search);
+}
+
 document.addEventListener("click", (e) => {
   const t = e.target as HTMLElement;
-  const chipEl = t.closest<HTMLElement>(".chip");
+  const chipEl = t.closest<HTMLElement>(".chip, .cand");
+  const presetEl = t.closest<HTMLElement>(".preset");
   const tabEl = t.closest<HTMLElement>("[data-tab]");
-  if (chipEl) {
-    selected = selected === chipEl.dataset.family ? null : chipEl.dataset.family!;
-    document.querySelectorAll<HTMLElement>(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.family === selected)));
-    document.querySelector(".grid")!.toggleAttribute("data-has-selection", !!selected);
-    renderDetail();
-  } else if (tabEl) {
-    setTab(tabEl.dataset.tab as Input, false);
-  }
+  if (chipEl) selectFamily(chipEl.classList.contains("chip") && selected === chipEl.dataset.family ? null : chipEl.dataset.family!);
+  else if (presetEl) selectProblem(activeProblem?.id === presetEl.dataset.problem ? null : presetEl.dataset.problem!);
+  else if (tabEl) setTab(tabEl.dataset.tab as Input, false);
 });
 
 function setTab(col: Input, focus: boolean) {
@@ -126,4 +205,7 @@ document.addEventListener("keydown", (e) => {
   setTab(INPUTS[n].id, true);
 });
 
+const fromHash = new URLSearchParams(location.hash.slice(1)).get("problem");
+activeProblem = problems.find((p) => p.id === fromHash) ?? null;
+activeCol = startCol() ?? activeCol;
 render();
