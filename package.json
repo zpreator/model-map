@@ -8,14 +8,17 @@
     "dev": "vite",
     "build": "npm run validate && npm test && tsc --noEmit && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "test": "node --experimental-strip-types --no-warnings tests/lightest.test.mjs"
+    "test": "node --experimental-strip-types --no-warnings tests/lightest.test.mjs && node tests/discover.test.mjs",
+    "discover": "node tools/discover.mjs"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
     "@huggingface/tasks": "latest",
     "@types/node": "^26.6.5",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "typescript": "^7.0.2",
-    "vite": "^6.4.4"
+    "vite": "^6.4.4",
+    "zod": "^4.6.5"
   }
 }

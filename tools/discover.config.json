@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    "image-classification", "image-feature-extraction", "object-detection", "zero-shot-object-detection",
+    "image-segmentation", "mask-generation", "image-text-to-text", "video-classification", "video-text-to-text",
+    "text-classification", "feature-extraction", "sentence-similarity", "text-generation",
+    "text-to-image", "text-to-video", "automatic-speech-recognition", "audio-classification",
+    "voice-activity-detection", "text-to-speech"
+  ],
+  "fetch_limit": 100,
+  "per_task_established": 6,
+  "per_task_rising": 4,
+  "established_min_downloads": 50000,
+  "rising_min_downloads": 10000,
+  "rising_max_age_days": 365,
+  "max_llm_candidates": 40,
+  "exclude_orgs": ["trl-internal-testing", "hf-internal-testing", "hf-tiny-model-private", "optimum-internal-testing"],
+  "exclude_name_patterns": ["(^|[-_/])tiny([-_]|$)", "test", "dummy", "random"],
+  "card_excerpt_chars": 1500
+}

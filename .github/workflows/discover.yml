@@ -1,0 +1,43 @@
+name: Weekly model discovery
+
+on:
+  schedule:
+    - cron: "0 9 * * 1" # Mondays 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Find candidates and classify them
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }} # optional; raises Hub rate limits
+        run: node tools/discover.mjs --pr-body="$RUNNER_TEMP/pr-body.md"
+      # A bad proposal must fail here, not in a reviewer's PR.
+      - run: npm run build
+      - name: Open a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain data)" ]; then echo "No data changes."; exit 0; fi
+          branch="discovery/$(date -u +%Y-%m-%d)"
+          git config user.name "model-map-bot"
+          git config user.email "model-map-bot@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data
+          git commit -m "Weekly model discovery $(date -u +%Y-%m-%d)"
+          git push --force-with-lease origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Weekly model discovery $(date -u +%Y-%m-%d)" \
+            --body-file "$RUNNER_TEMP/pr-body.md"
