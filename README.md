@@ -65,4 +65,7 @@ Pushes to `main` build and deploy to GitHub Pages through `.github/workflows/ci.
 - **Flat entries, family as a label.** An early draft inherited properties from a family; that breaks when a newer version changes inputs or outputs (SAM 3 adds video and text prompts). Entries are independent and the family only groups chips.
 - **Tiers are coarse, unverified estimates** until a person marks an entry `verified`. See the [methodology page](https://zpreator.github.io/model-map/methodology/).
 - **No Open Graph image yet.** Pages have title, description and URL tags only.
-- **No license file yet.** Choose one before accepting outside contributions.
+
+## License
+
+[MIT](LICENSE). By contributing you agree your contribution is released under the same license.
