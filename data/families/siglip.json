@@ -1,0 +1,5 @@
+{
+  "id": "siglip",
+  "name": "SigLIP",
+  "summary": "Image and text encoders sharing one embedding space; enables zero-shot labels and text-to-image search."
+}

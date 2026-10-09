@@ -1,0 +1,29 @@
+{
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Tier estimated from vit-huge (641M parameters); smaller sizes exist.",
+  "source": "curated",
+  "metrics": null,
+  "id": "sam",
+  "family": "sam",
+  "name": "SAM",
+  "cells": [
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "mask-generation",
+  "tiers": [
+    "gpu_8gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "facebook/sam-vit-huge",
+  "links": [
+    {
+      "label": "facebook/sam-vit-huge on Hugging Face",
+      "url": "https://huggingface.co/facebook/sam-vit-huge"
+    }
+  ]
+}

@@ -13,7 +13,7 @@
     {
       "label": "Describe or tag hard cases (optional)",
       "models": [
-        "open-vlm",
+        "qwen3-vl",
         "closed-vlm"
       ]
     }

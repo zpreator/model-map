@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "stabilityai/stable-diffusion-xl-base-1.0"
-  ],
   "links": [
     {
       "label": "stabilityai/stable-diffusion-xl-base-1.0 on Hugging Face",
@@ -12,12 +7,12 @@
   ],
   "feeds_into": [],
   "verified": false,
-  "notes": "Category entry; SDXL shown as one example (2.6B parameters). Newer families such as FLUX are larger.",
+  "notes": "Example diffusion model (2.6B parameters). Newer families such as FLUX are larger.",
   "source": "curated",
   "metrics": null,
-  "id": "diffusion",
-  "name": "Diffusion (image generation)",
-  "family": "Stable Diffusion",
+  "id": "sdxl",
+  "name": "SDXL",
+  "family": "diffusion",
   "cells": [
     {
       "input": "text",
@@ -33,5 +28,6 @@
     "gpu_8gb"
   ],
   "license": "openrail++",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "stabilityai/stable-diffusion-xl-base-1.0"
 }

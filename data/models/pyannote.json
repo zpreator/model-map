@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "pyannote/speaker-diarization-3.1"
-  ],
   "links": [
     {
       "label": "pyannote/speaker-diarization-3.1 on Hugging Face",
@@ -29,5 +24,6 @@
   "hf_task": "automatic-speech-recognition",
   "tiers": [],
   "license": "mit",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "pyannote/speaker-diarization-3.1"
 }

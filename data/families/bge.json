@@ -1,0 +1,5 @@
+{
+  "id": "bge",
+  "name": "BGE",
+  "summary": "Text embedding models for retrieval."
+}

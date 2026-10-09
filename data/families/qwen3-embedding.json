@@ -1,0 +1,5 @@
+{
+  "id": "qwen3-embedding",
+  "name": "Qwen3-Embedding",
+  "summary": "Text embedding models in several sizes."
+}

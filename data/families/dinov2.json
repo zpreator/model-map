@@ -1,0 +1,5 @@
+{
+  "id": "dinov2",
+  "name": "DINOv2",
+  "summary": "Self-supervised vision features, good for similarity search and as a backbone."
+}

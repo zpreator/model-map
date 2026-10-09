@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "google/siglip-base-patch16-224"
-  ],
   "links": [
     {
       "label": "google/siglip-base-patch16-224 on Hugging Face",
@@ -17,7 +12,7 @@
   "metrics": null,
   "id": "siglip",
   "name": "SigLIP",
-  "family": "SigLIP",
+  "family": "siglip",
   "cells": [
     {
       "input": "image",
@@ -38,5 +33,6 @@
     "gpu_8gb"
   ],
   "license": "apache-2.0",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "google/siglip-base-patch16-224"
 }

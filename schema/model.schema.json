@@ -1,61 +1,188 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "model.schema.json",
-  "title": "Model family",
-  "description": "One entry per model FAMILY (e.g. SAM), not per checkpoint. Checkpoints live on the Hugging Face Hub.",
+  "title": "Model",
+  "description": "One entry per model (e.g. SAM 3). Entries are grouped for display by `family`, but never inherit from it: each carries its own cells, tiers and license.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "name", "family", "cells", "hf_task", "tiers", "license", "open_weights", "links", "feeds_into", "verified", "notes", "source"],
+  "required": [
+    "id",
+    "name",
+    "family",
+    "cells",
+    "hf_task",
+    "tiers",
+    "license",
+    "open_weights",
+    "hf_repo",
+    "links",
+    "feeds_into",
+    "verified",
+    "notes",
+    "source"
+  ],
   "properties": {
-    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
-    "name": { "type": "string", "minLength": 1 },
-    "family": { "type": "string", "minLength": 1, "description": "Lineage name, e.g. 'SAM'. Often equal to name." },
-    "summary": { "type": ["string", "null"], "description": "One-line educational description. LLM-drafted text stays unverified until a human approves it." },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Specific model or version name, e.g. 'SAM 3'."
+    },
+    "family": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Id of a file in data/families/. Display grouping only."
+    },
     "cells": {
-      "type": "array", "minItems": 1, "uniqueItems": true,
-      "description": "Grid placements: input modality column x output type row.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Grid placements for THIS model: input modality column x output type row.",
       "items": {
-        "type": "object", "additionalProperties": false, "required": ["input", "output"],
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "input",
+          "output"
+        ],
         "properties": {
-          "input": { "enum": ["image", "text", "audio", "video"] },
-          "output": { "enum": ["label", "embedding", "boxes_masks", "text", "media"] }
+          "input": {
+            "enum": [
+              "image",
+              "text",
+              "audio",
+              "video"
+            ]
+          },
+          "output": {
+            "enum": [
+              "label",
+              "embedding",
+              "boxes_masks",
+              "text",
+              "media"
+            ]
+          }
         }
       }
     },
-    "hf_task": { "type": ["string", "null"], "description": "Primary Hub pipeline tag; must exist in data/tasks.json. Null for API-only families." },
+    "hf_task": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Primary Hub pipeline tag; must exist in data/tasks.json. Null for API-only families."
+    },
     "tiers": {
-      "type": "array", "uniqueItems": true,
-      "items": { "enum": ["cpu_edge", "gpu_8gb", "gpu_24gb", "datacenter", "api"] },
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "cpu_edge",
+          "gpu_8gb",
+          "gpu_24gb",
+          "datacenter",
+          "api"
+        ]
+      },
       "description": "Deployment tiers spanned by the family's variants. Empty = unknown."
     },
-    "license": { "type": ["string", "null"] },
-    "open_weights": { "type": ["boolean", "null"] },
-    "versions": {
-      "type": "array", "default": [],
-      "description": "Generations within the family, oldest first.",
-      "items": {
-        "type": "object", "additionalProperties": false, "required": ["name"],
-        "properties": { "name": { "type": "string" }, "hf_repo": { "type": ["string", "null"], "pattern": "^[\\w.-]+/[\\w.-]+$" } }
-      }
+    "license": {
+      "type": [
+        "string",
+        "null"
+      ]
     },
-    "hf_repos": { "type": "array", "default": [], "items": { "type": "string", "pattern": "^[\\w.-]+/[\\w.-]+$" }, "description": "Example Hub repos (checked to exist)." },
+    "open_weights": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
     "links": {
       "type": "array",
-      "items": { "type": "object", "additionalProperties": false, "required": ["label", "url"],
-        "properties": { "label": { "type": "string" }, "url": { "type": "string", "format": "uri" } } }
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label",
+          "url"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
     },
-    "feeds_into": { "type": "array", "uniqueItems": true, "items": { "type": "string" }, "description": "Model ids this commonly pairs with downstream." },
-    "verified": { "type": "boolean", "description": "True only after a human checked tiers/license against sources." },
-    "notes": { "type": ["string", "null"] },
-    "source": { "enum": ["curated", "auto"] },
+    "feeds_into": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      },
+      "description": "Model ids this commonly pairs with downstream."
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "True only after a human checked tiers/license against sources."
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source": {
+      "enum": [
+        "curated",
+        "auto"
+      ]
+    },
     "metrics": {
-      "type": ["object", "null"], "additionalProperties": false, "default": null,
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "default": null,
       "description": "Filled by the weekly job from the Hub API. Never hand-edited.",
       "properties": {
-        "downloads_30d": { "type": ["integer", "null"] },
-        "likes": { "type": ["integer", "null"] },
-        "fetched_at": { "type": ["string", "null"], "format": "date-time" }
+        "downloads_30d": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "likes": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "fetched_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
       }
+    },
+    "hf_repo": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[\\w.-]+/[\\w.-]+$",
+      "description": "Example Hub repo (checked to exist)."
     }
   }
 }

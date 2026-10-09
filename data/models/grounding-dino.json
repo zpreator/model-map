@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "IDEA-Research/grounding-dino-base"
-  ],
   "links": [
     {
       "label": "IDEA-Research/grounding-dino-base on Hugging Face",
@@ -19,7 +14,7 @@
   "metrics": null,
   "id": "grounding-dino",
   "name": "Grounding DINO",
-  "family": "Grounding DINO",
+  "family": "grounding-dino",
   "cells": [
     {
       "input": "image",
@@ -32,5 +27,6 @@
     "gpu_8gb"
   ],
   "license": "apache-2.0",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "IDEA-Research/grounding-dino-base"
 }

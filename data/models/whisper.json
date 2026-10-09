@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "openai/whisper-large-v3"
-  ],
   "links": [
     {
       "label": "openai/whisper-large-v3 on Hugging Face",
@@ -11,7 +6,7 @@
     }
   ],
   "feeds_into": [
-    "open-llm",
+    "qwen3-8b",
     "closed-llm"
   ],
   "verified": false,
@@ -19,8 +14,8 @@
   "source": "curated",
   "metrics": null,
   "id": "whisper",
-  "name": "Whisper",
-  "family": "Whisper",
+  "name": "Whisper large-v3",
+  "family": "whisper",
   "cells": [
     {
       "input": "audio",
@@ -33,5 +28,6 @@
     "gpu_8gb"
   ],
   "license": "apache-2.0",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "openai/whisper-large-v3"
 }

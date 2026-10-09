@@ -4,11 +4,16 @@
   "type": "module",
   "scripts": {
     "gen:tasks": "node scripts/gen-tasks.mjs",
-    "validate": "node scripts/validate.mjs"
+    "validate": "node scripts/validate.mjs",
+    "dev": "vite",
+    "build": "npm run validate && tsc --noEmit && vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@huggingface/tasks": "latest",
     "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1"
+    "ajv-formats": "^3.0.1",
+    "typescript": "^7.0.2",
+    "vite": "^6.4.4"
   }
 }

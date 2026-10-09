@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "facebook/dinov2-base"
-  ],
   "links": [
     {
       "label": "facebook/dinov2-base on Hugging Face",
@@ -17,7 +12,7 @@
   "metrics": null,
   "id": "dinov2",
   "name": "DINOv2",
-  "family": "DINOv2",
+  "family": "dinov2",
   "cells": [
     {
       "input": "image",
@@ -30,5 +25,6 @@
     "gpu_8gb"
   ],
   "license": "apache-2.0",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "facebook/dinov2-base"
 }

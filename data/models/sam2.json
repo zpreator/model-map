@@ -1,0 +1,34 @@
+{
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Video support is from the SAM 2 release; verify against the model card. Tier estimated from 224M parameters.",
+  "source": "curated",
+  "metrics": null,
+  "id": "sam2",
+  "family": "sam",
+  "name": "SAM 2",
+  "cells": [
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    },
+    {
+      "input": "video",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "mask-generation",
+  "tiers": [
+    "cpu_edge",
+    "gpu_8gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "facebook/sam2.1-hiera-large",
+  "links": [
+    {
+      "label": "facebook/sam2.1-hiera-large on Hugging Face",
+      "url": "https://huggingface.co/facebook/sam2.1-hiera-large"
+    }
+  ]
+}

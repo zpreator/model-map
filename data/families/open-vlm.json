@@ -1,0 +1,5 @@
+{
+  "id": "open-vlm",
+  "name": "Open VLMs",
+  "summary": "Open-weights models that read images (and video) and answer in text."
+}

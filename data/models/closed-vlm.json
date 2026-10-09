@@ -1,16 +1,13 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [],
   "links": [],
   "feeds_into": [],
   "verified": false,
-  "notes": "Category entry for hosted vision-language models. No specific vendor chosen yet.",
+  "notes": "Placeholder for hosted vision-language models. No vendor chosen yet.",
   "source": "curated",
   "metrics": null,
   "id": "closed-vlm",
   "name": "Closed VLM",
-  "family": "Closed VLM",
+  "family": "closed-vlm",
   "cells": [
     {
       "input": "image",
@@ -26,5 +23,6 @@
     "api"
   ],
   "license": null,
-  "open_weights": false
+  "open_weights": false,
+  "hf_repo": null
 }

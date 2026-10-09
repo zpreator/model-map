@@ -1,0 +1,33 @@
+{
+  "feeds_into": [
+    "sam3"
+  ],
+  "verified": false,
+  "notes": "License shown is the Ultralytics repo's; other YOLO implementations differ. Tier unknown: the Hub reports no parameter count.",
+  "source": "curated",
+  "metrics": null,
+  "id": "yolo26",
+  "family": "yolo",
+  "name": "YOLO26",
+  "cells": [
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    },
+    {
+      "input": "video",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "object-detection",
+  "tiers": [],
+  "license": "agpl-3.0",
+  "open_weights": true,
+  "hf_repo": "Ultralytics/YOLO26",
+  "links": [
+    {
+      "label": "Ultralytics/YOLO26 on Hugging Face",
+      "url": "https://huggingface.co/Ultralytics/YOLO26"
+    }
+  ]
+}

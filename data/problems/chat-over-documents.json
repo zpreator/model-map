@@ -12,7 +12,7 @@
     {
       "label": "Generate an answer from the retrieved chunks",
       "models": [
-        "open-llm",
+        "qwen3-8b",
         "closed-llm"
       ]
     }

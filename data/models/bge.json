@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "BAAI/bge-m3"
-  ],
   "links": [
     {
       "label": "BAAI/bge-m3 on Hugging Face",
@@ -11,7 +6,7 @@
     }
   ],
   "feeds_into": [
-    "open-llm",
+    "qwen3-8b",
     "closed-llm"
   ],
   "verified": false,
@@ -20,7 +15,7 @@
   "metrics": null,
   "id": "bge",
   "name": "BGE",
-  "family": "BGE",
+  "family": "bge",
   "cells": [
     {
       "input": "text",
@@ -30,5 +25,6 @@
   "hf_task": "sentence-similarity",
   "tiers": [],
   "license": "mit",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "BAAI/bge-m3"
 }

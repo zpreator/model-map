@@ -1,16 +1,13 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [],
   "links": [],
   "feeds_into": [],
   "verified": false,
-  "notes": "Category entry for hosted frontier language models. No specific vendor chosen yet.",
+  "notes": "Placeholder for hosted frontier language models. No vendor chosen yet.",
   "source": "curated",
   "metrics": null,
   "id": "closed-llm",
   "name": "Closed LLM",
-  "family": "Closed LLM",
+  "family": "closed-llm",
   "cells": [
     {
       "input": "text",
@@ -22,5 +19,6 @@
     "api"
   ],
   "license": null,
-  "open_weights": false
+  "open_weights": false,
+  "hf_repo": null
 }

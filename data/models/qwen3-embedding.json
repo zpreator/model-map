@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "Qwen/Qwen3-Embedding-0.6B"
-  ],
   "links": [
     {
       "label": "Qwen/Qwen3-Embedding-0.6B on Hugging Face",
@@ -11,7 +6,7 @@
     }
   ],
   "feeds_into": [
-    "open-llm",
+    "qwen3-8b",
     "closed-llm"
   ],
   "verified": false,
@@ -20,7 +15,7 @@
   "metrics": null,
   "id": "qwen3-embedding",
   "name": "Qwen3-Embedding",
-  "family": "Qwen3",
+  "family": "qwen3-embedding",
   "cells": [
     {
       "input": "text",
@@ -33,5 +28,6 @@
     "gpu_8gb"
   ],
   "license": "apache-2.0",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "Qwen/Qwen3-Embedding-0.6B"
 }

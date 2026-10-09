@@ -1,0 +1,5 @@
+{
+  "id": "bert",
+  "name": "BERT-family encoders",
+  "summary": "Small text encoders for classification and features."
+}

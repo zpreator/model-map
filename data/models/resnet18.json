@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "timm/resnet18.a1_in1k"
-  ],
   "links": [
     {
       "label": "timm/resnet18.a1_in1k on Hugging Face",
@@ -17,7 +12,7 @@
   "metrics": null,
   "id": "resnet18",
   "name": "ResNet18",
-  "family": "ResNet",
+  "family": "resnet",
   "cells": [
     {
       "input": "image",
@@ -33,5 +28,6 @@
     "cpu_edge"
   ],
   "license": "apache-2.0",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "timm/resnet18.a1_in1k"
 }

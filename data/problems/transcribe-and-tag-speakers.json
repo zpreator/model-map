@@ -17,7 +17,7 @@
     {
       "label": "Summarise or tag each speaker's turns (optional)",
       "models": [
-        "open-llm",
+        "qwen3-8b",
         "closed-llm"
       ]
     }

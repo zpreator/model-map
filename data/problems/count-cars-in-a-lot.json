@@ -5,13 +5,15 @@
     {
       "label": "Detect cars",
       "models": [
-        "yolo",
+        "yolo11",
+        "yolo26",
         "grounding-dino"
       ]
     },
     {
       "label": "Separate overlapping cars (optional)",
       "models": [
+        "sam2",
         "sam3"
       ]
     }

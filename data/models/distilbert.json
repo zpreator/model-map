@@ -1,9 +1,4 @@
 {
-  "summary": null,
-  "versions": [],
-  "hf_repos": [
-    "distilbert/distilbert-base-uncased"
-  ],
   "links": [
     {
       "label": "distilbert/distilbert-base-uncased on Hugging Face",
@@ -17,7 +12,7 @@
   "metrics": null,
   "id": "distilbert",
   "name": "DistilBERT",
-  "family": "BERT",
+  "family": "bert",
   "cells": [
     {
       "input": "text",
@@ -33,5 +28,6 @@
     "cpu_edge"
   ],
   "license": "apache-2.0",
-  "open_weights": true
+  "open_weights": true,
+  "hf_repo": "distilbert/distilbert-base-uncased"
 }
