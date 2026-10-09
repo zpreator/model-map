@@ -1,0 +1,36 @@
+{
+  "summary": null,
+  "versions": [],
+  "hf_repos": [
+    "IDEA-Research/grounding-dino-base"
+  ],
+  "links": [
+    {
+      "label": "IDEA-Research/grounding-dino-base on Hugging Face",
+      "url": "https://huggingface.co/IDEA-Research/grounding-dino-base"
+    }
+  ],
+  "feeds_into": [
+    "sam3"
+  ],
+  "verified": false,
+  "notes": "Detects objects from a text prompt. Tier estimated from tiny/base parameter counts (172M-233M).",
+  "source": "curated",
+  "metrics": null,
+  "id": "grounding-dino",
+  "name": "Grounding DINO",
+  "family": "Grounding DINO",
+  "cells": [
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "zero-shot-object-detection",
+  "tiers": [
+    "cpu_edge",
+    "gpu_8gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true
+}

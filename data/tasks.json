@@ -1,0 +1,287 @@
+[
+  {
+    "id": "any-to-any",
+    "name": "Any-to-Any",
+    "hf_modality": "multimodal"
+  },
+  {
+    "id": "audio-classification",
+    "name": "Audio Classification",
+    "hf_modality": "audio"
+  },
+  {
+    "id": "audio-text-to-text",
+    "name": "Audio-Text-to-Text",
+    "hf_modality": "multimodal"
+  },
+  {
+    "id": "audio-to-audio",
+    "name": "Audio-to-Audio",
+    "hf_modality": "audio"
+  },
+  {
+    "id": "automatic-speech-recognition",
+    "name": "Automatic Speech Recognition",
+    "hf_modality": "audio"
+  },
+  {
+    "id": "depth-estimation",
+    "name": "Depth Estimation",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "document-question-answering",
+    "name": "Document Question Answering",
+    "hf_modality": "multimodal"
+  },
+  {
+    "id": "feature-extraction",
+    "name": "Feature Extraction",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "fill-mask",
+    "name": "Fill-Mask",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "graph-ml",
+    "name": "Graph Machine Learning",
+    "hf_modality": "other"
+  },
+  {
+    "id": "image-classification",
+    "name": "Image Classification",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "image-feature-extraction",
+    "name": "Image Feature Extraction",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "image-segmentation",
+    "name": "Image Segmentation",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "image-text-to-image",
+    "name": "Image-Text-to-Image",
+    "hf_modality": "multimodal"
+  },
+  {
+    "id": "image-text-to-text",
+    "name": "Image-Text-to-Text",
+    "hf_modality": "multimodal"
+  },
+  {
+    "id": "image-text-to-video",
+    "name": "Image-Text-to-Video",
+    "hf_modality": "multimodal"
+  },
+  {
+    "id": "image-to-3d",
+    "name": "Image-to-3D",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "image-to-image",
+    "name": "Image-to-Image",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "image-to-text",
+    "name": "Image-to-Text",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "image-to-video",
+    "name": "Image-to-Video",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "keypoint-detection",
+    "name": "Keypoint Detection",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "mask-generation",
+    "name": "Mask Generation",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "multiple-choice",
+    "name": "Multiple Choice",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "object-detection",
+    "name": "Object Detection",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "other",
+    "name": "Other",
+    "hf_modality": "other"
+  },
+  {
+    "id": "question-answering",
+    "name": "Question Answering",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "reinforcement-learning",
+    "name": "Reinforcement Learning",
+    "hf_modality": "rl"
+  },
+  {
+    "id": "robotics",
+    "name": "Robotics",
+    "hf_modality": "rl"
+  },
+  {
+    "id": "sentence-similarity",
+    "name": "Sentence Similarity",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "summarization",
+    "name": "Summarization",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "table-question-answering",
+    "name": "Table Question Answering",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "table-to-text",
+    "name": "Table to Text",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "tabular-classification",
+    "name": "Tabular Classification",
+    "hf_modality": "tabular"
+  },
+  {
+    "id": "tabular-regression",
+    "name": "Tabular Regression",
+    "hf_modality": "tabular"
+  },
+  {
+    "id": "tabular-to-text",
+    "name": "Tabular to Text",
+    "hf_modality": "tabular"
+  },
+  {
+    "id": "text-classification",
+    "name": "Text Classification",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "text-generation",
+    "name": "Text Generation",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "text-ranking",
+    "name": "Text Ranking",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "text-retrieval",
+    "name": "Text Retrieval",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "text-to-3d",
+    "name": "Text-to-3D",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "text-to-audio",
+    "name": "Text-to-Audio",
+    "hf_modality": "audio"
+  },
+  {
+    "id": "text-to-image",
+    "name": "Text-to-Image",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "text-to-speech",
+    "name": "Text-to-Speech",
+    "hf_modality": "audio"
+  },
+  {
+    "id": "text-to-video",
+    "name": "Text-to-Video",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "time-series-forecasting",
+    "name": "Time Series Forecasting",
+    "hf_modality": "tabular"
+  },
+  {
+    "id": "token-classification",
+    "name": "Token Classification",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "translation",
+    "name": "Translation",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "unconditional-image-generation",
+    "name": "Unconditional Image Generation",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "video-classification",
+    "name": "Video Classification",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "video-text-to-text",
+    "name": "Video-Text-to-Text",
+    "hf_modality": "multimodal"
+  },
+  {
+    "id": "video-to-video",
+    "name": "Video-to-Video",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "visual-document-retrieval",
+    "name": "Visual Document Retrieval",
+    "hf_modality": "multimodal"
+  },
+  {
+    "id": "visual-question-answering",
+    "name": "Visual Question Answering",
+    "hf_modality": "multimodal"
+  },
+  {
+    "id": "voice-activity-detection",
+    "name": "Voice Activity Detection",
+    "hf_modality": "audio"
+  },
+  {
+    "id": "zero-shot-classification",
+    "name": "Zero-Shot Classification",
+    "hf_modality": "nlp"
+  },
+  {
+    "id": "zero-shot-image-classification",
+    "name": "Zero-Shot Image Classification",
+    "hf_modality": "cv"
+  },
+  {
+    "id": "zero-shot-object-detection",
+    "name": "Zero-Shot Object Detection",
+    "hf_modality": "cv"
+  }
+]

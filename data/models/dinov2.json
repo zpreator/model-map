@@ -1,0 +1,34 @@
+{
+  "summary": null,
+  "versions": [],
+  "hf_repos": [
+    "facebook/dinov2-base"
+  ],
+  "links": [
+    {
+      "label": "facebook/dinov2-base on Hugging Face",
+      "url": "https://huggingface.co/facebook/dinov2-base"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Tier estimated from small/base/large parameter counts (22M-304M).",
+  "source": "curated",
+  "metrics": null,
+  "id": "dinov2",
+  "name": "DINOv2",
+  "family": "DINOv2",
+  "cells": [
+    {
+      "input": "image",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "image-feature-extraction",
+  "tiers": [
+    "cpu_edge",
+    "gpu_8gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true
+}

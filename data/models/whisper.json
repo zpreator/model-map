@@ -1,0 +1,37 @@
+{
+  "summary": null,
+  "versions": [],
+  "hf_repos": [
+    "openai/whisper-large-v3"
+  ],
+  "links": [
+    {
+      "label": "openai/whisper-large-v3 on Hugging Face",
+      "url": "https://huggingface.co/openai/whisper-large-v3"
+    }
+  ],
+  "feeds_into": [
+    "open-llm",
+    "closed-llm"
+  ],
+  "verified": false,
+  "notes": "Tier estimated; large-v3 is 1.5B parameters, smaller sizes run on CPU.",
+  "source": "curated",
+  "metrics": null,
+  "id": "whisper",
+  "name": "Whisper",
+  "family": "Whisper",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [
+    "cpu_edge",
+    "gpu_8gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true
+}

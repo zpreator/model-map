@@ -1,0 +1,38 @@
+{
+  "summary": null,
+  "versions": [],
+  "hf_repos": [
+    "Qwen/Qwen3-VL-8B-Instruct"
+  ],
+  "links": [
+    {
+      "label": "Qwen/Qwen3-VL-8B-Instruct on Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Category entry for open vision-language models; Qwen3-VL shown as one example. Tier estimated from an 8.8B-parameter example.",
+  "source": "curated",
+  "metrics": null,
+  "id": "open-vlm",
+  "name": "Open VLM",
+  "family": "Qwen-VL",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "video",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "gpu_8gb",
+    "gpu_24gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true
+}

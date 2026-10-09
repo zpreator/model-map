@@ -1,0 +1,34 @@
+{
+  "summary": null,
+  "versions": [],
+  "hf_repos": [
+    "Qwen/Qwen3-8B"
+  ],
+  "links": [
+    {
+      "label": "Qwen/Qwen3-8B on Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3-8B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Category entry; Qwen3-8B shown as one example. Tier estimated from 8.2B parameters (8 GB GPU assumes quantization).",
+  "source": "curated",
+  "metrics": null,
+  "id": "open-llm",
+  "name": "Open LLM (7B-class)",
+  "family": "Qwen3",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "gpu_8gb",
+    "gpu_24gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true
+}

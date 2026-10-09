@@ -1,0 +1,26 @@
+{
+  "id": "transcribe-and-tag-speakers",
+  "title": "Transcribe and tag speakers",
+  "steps": [
+    {
+      "label": "Work out who speaks when",
+      "models": [
+        "pyannote"
+      ]
+    },
+    {
+      "label": "Transcribe the speech",
+      "models": [
+        "whisper"
+      ]
+    },
+    {
+      "label": "Summarise or tag each speaker's turns (optional)",
+      "models": [
+        "open-llm",
+        "closed-llm"
+      ]
+    }
+  ],
+  "note": "Speaker segments and transcript are merged by timestamp in code."
+}

@@ -1,0 +1,21 @@
+{
+  "id": "chat-over-documents",
+  "title": "Chat over my documents",
+  "steps": [
+    {
+      "label": "Embed document chunks and the question",
+      "models": [
+        "bge",
+        "qwen3-embedding"
+      ]
+    },
+    {
+      "label": "Generate an answer from the retrieved chunks",
+      "models": [
+        "open-llm",
+        "closed-llm"
+      ]
+    }
+  ],
+  "note": "Retrieval (a vector index) sits between the two steps and is not a model."
+}

@@ -1,0 +1,22 @@
+{
+  "id": "sort-product-photos",
+  "title": "Sort product photos",
+  "steps": [
+    {
+      "label": "Classify by embedding or zero-shot labels",
+      "models": [
+        "siglip",
+        "dinov2",
+        "resnet18"
+      ]
+    },
+    {
+      "label": "Describe or tag hard cases (optional)",
+      "models": [
+        "open-vlm",
+        "closed-vlm"
+      ]
+    }
+  ],
+  "note": "A small classifier on top of embeddings usually covers most photos; a VLM handles the leftovers."
+}

@@ -1,0 +1,42 @@
+{
+  "summary": null,
+  "versions": [],
+  "hf_repos": [
+    "google/siglip-base-patch16-224"
+  ],
+  "links": [
+    {
+      "label": "google/siglip-base-patch16-224 on Hugging Face",
+      "url": "https://huggingface.co/google/siglip-base-patch16-224"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Image and text towers share one embedding space; zero-shot labels come from text prompts.",
+  "source": "curated",
+  "metrics": null,
+  "id": "siglip",
+  "name": "SigLIP",
+  "family": "SigLIP",
+  "cells": [
+    {
+      "input": "image",
+      "output": "embedding"
+    },
+    {
+      "input": "text",
+      "output": "embedding"
+    },
+    {
+      "input": "image",
+      "output": "label"
+    }
+  ],
+  "hf_task": "zero-shot-image-classification",
+  "tiers": [
+    "cpu_edge",
+    "gpu_8gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true
+}

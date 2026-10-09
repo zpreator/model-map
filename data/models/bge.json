@@ -1,0 +1,34 @@
+{
+  "summary": null,
+  "versions": [],
+  "hf_repos": [
+    "BAAI/bge-m3"
+  ],
+  "links": [
+    {
+      "label": "BAAI/bge-m3 on Hugging Face",
+      "url": "https://huggingface.co/BAAI/bge-m3"
+    }
+  ],
+  "feeds_into": [
+    "open-llm",
+    "closed-llm"
+  ],
+  "verified": false,
+  "notes": "Tier unknown: the Hub reports no parameter count for bge-m3.",
+  "source": "curated",
+  "metrics": null,
+  "id": "bge",
+  "name": "BGE",
+  "family": "BGE",
+  "cells": [
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "sentence-similarity",
+  "tiers": [],
+  "license": "mit",
+  "open_weights": true
+}

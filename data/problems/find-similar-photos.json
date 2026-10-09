@@ -1,0 +1,15 @@
+{
+  "id": "find-similar-photos",
+  "title": "Find similar photos",
+  "steps": [
+    {
+      "label": "Embed every photo",
+      "models": [
+        "dinov2",
+        "siglip",
+        "resnet18"
+      ]
+    }
+  ],
+  "note": "Similarity search over the embeddings is a vector index, not a model. SigLIP also supports searching photos by text."
+}

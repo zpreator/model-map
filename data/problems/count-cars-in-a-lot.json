@@ -1,0 +1,20 @@
+{
+  "id": "count-cars-in-a-lot",
+  "title": "Count cars in a lot",
+  "steps": [
+    {
+      "label": "Detect cars",
+      "models": [
+        "yolo",
+        "grounding-dino"
+      ]
+    },
+    {
+      "label": "Separate overlapping cars (optional)",
+      "models": [
+        "sam3"
+      ]
+    }
+  ],
+  "note": "Counting is done by code over the detections. The segmentation step helps only when cars overlap heavily."
+}

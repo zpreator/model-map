@@ -1,0 +1,14 @@
+{
+  "name": "model-map",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gen:tasks": "node scripts/gen-tasks.mjs",
+    "validate": "node scripts/validate.mjs"
+  },
+  "devDependencies": {
+    "@huggingface/tasks": "latest",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "summary": null,
+  "versions": [
+    {
+      "name": "SAM",
+      "hf_repo": "facebook/sam-vit-huge"
+    },
+    {
+      "name": "SAM 2",
+      "hf_repo": "facebook/sam2.1-hiera-large"
+    },
+    {
+      "name": "SAM 3",
+      "hf_repo": "facebook/sam3"
+    }
+  ],
+  "hf_repos": [
+    "facebook/sam3"
+  ],
+  "links": [
+    {
+      "label": "facebook/sam3 on Hugging Face",
+      "url": "https://huggingface.co/facebook/sam3"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "License is listed as 'other' on the Hub; read the repo's license text before filling this in. SAM 3 is ~860M parameters.",
+  "source": "curated",
+  "metrics": null,
+  "id": "sam3",
+  "name": "SAM",
+  "family": "SAM",
+  "cells": [
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    },
+    {
+      "input": "video",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "mask-generation",
+  "tiers": [
+    "gpu_8gb"
+  ],
+  "license": null,
+  "open_weights": true
+}

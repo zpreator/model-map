@@ -1,0 +1,30 @@
+{
+  "summary": null,
+  "versions": [],
+  "hf_repos": [],
+  "links": [],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Category entry for hosted vision-language models. No specific vendor chosen yet.",
+  "source": "curated",
+  "metrics": null,
+  "id": "closed-vlm",
+  "name": "Closed VLM",
+  "family": "Closed VLM",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "video",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false
+}
