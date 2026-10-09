@@ -9,15 +9,15 @@
 // Facts (license, parameter count, downloads, task) always come from the Hub API. The LLM only classifies:
 // which family, which grid cells, and a drafted family summary that is NOT written into the data files.
 import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
-import Anthropic from "@anthropic-ai/sdk";
-import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
+import OpenAI from "openai";
+import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
 import { cardExcerpt, draftModel, fmtParams, keepCandidate, metricsFrom, normalizeDecision, slugify } from "./lib/discover-core.mjs";
 
 const args = new Set(process.argv.slice(2).filter((a) => !a.includes("=")));
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.includes("=")).map((a) => a.replace(/^--/, "").split("=")));
 const NO_LLM = args.has("--no-llm"), DRY = args.has("--dry-run") || NO_LLM;
-const MODEL = process.env.DISCOVER_MODEL ?? "claude-opus-5-5";
+const MODEL = process.env.DISCOVER_MODEL ?? "gpt-6-luna"; // OpenAI's small, efficient tier; override with DISCOVER_MODEL
 
 const rd = (p) => JSON.parse(readFileSync(p, "utf8"));
 const wr = (p, d) => writeFileSync(p, JSON.stringify(d, null, 2) + "\n");
@@ -105,7 +105,7 @@ Rules:
 - Choose cells from what the model takes as input and produces as output, not from its task label alone.
 - Be conservative: when unsure, choose ignore with low confidence.`;
 
-const client = new Anthropic();
+const client = new OpenAI();
 const familyIds = new Set(families.map((f) => f.id));
 const results = [];
 for (const { hf } of picked) {
@@ -123,14 +123,15 @@ ${excerpt}
 </readme_excerpt>`;
   let decision;
   try {
-    const res = await client.messages.parse({
-      model: MODEL, max_tokens: 8000, system: SYSTEM,
-      messages: [{ role: "user", content: user }],
-      output_config: { format: zodOutputFormat(Decision) },
+    const res = await client.responses.parse({
+      model: MODEL,
+      reasoning: { effort: "low" }, // classification from a short excerpt; no need for deep reasoning
+      input: [{ role: "system", content: SYSTEM }, { role: "user", content: user }],
+      text: { format: zodTextFormat(Decision, "decision") },
     });
-    decision = normalizeDecision(res.parsed_output, familyIds, INPUTS, OUTPUTS);
+    decision = normalizeDecision(res.output_parsed, familyIds, INPUTS, OUTPUTS);
   } catch (e) {
-    if (e instanceof Anthropic.AuthenticationError) throw e; // fail loudly instead of ignoring everything
+    if (e instanceof OpenAI.AuthenticationError || e instanceof OpenAI.NotFoundError || e instanceof OpenAI.PermissionDeniedError) throw e; // bad key or model id: fail loudly // fail loudly instead of ignoring everything
     console.warn(`LLM error for ${hf.id}: ${e.message}`);
     decision = normalizeDecision(null, familyIds, INPUTS, OUTPUTS);
   }

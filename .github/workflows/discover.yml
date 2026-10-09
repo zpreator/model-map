@@ -21,7 +21,7 @@ jobs:
       - run: npm ci
       - name: Find candidates and classify them
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }} # optional; raises Hub rate limits
         run: node tools/discover.mjs --pr-body="$RUNNER_TEMP/pr-body.md"
       # A bad proposal must fail here, not in a reviewer's PR.

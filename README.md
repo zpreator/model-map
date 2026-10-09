@@ -49,12 +49,12 @@ For each step of a problem, take the lightest tier among its candidates; the ove
 
 1. queries the Hugging Face Hub API for the most downloaded and trending models per task,
 2. filters out fine-tunes, quantized copies, test repos and low-download noise,
-3. asks Claude which family and grid cells each remaining candidate belongs in (or whether to ignore it),
+3. asks an OpenAI model which family and grid cells each remaining candidate belongs in (or whether to ignore it),
 4. writes proposed entries (always `verified: false`) and opens a pull request for a person to review.
 
 Licenses, parameter counts and downloads come from the Hub API, never from the model. Drafted family summaries appear in the PR description only; they are not written to the data files.
 
-Setup: add a repository secret `ANTHROPIC_API_KEY` (and optionally `HF_TOKEN`), and enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull requests*. Try it locally without a key: `node tools/discover.mjs --no-llm` lists candidates; `--dry-run` runs the model step and writes nothing. The model defaults to `claude-opus-5-5`; override with `DISCOVER_MODEL`.
+Setup: add a repository secret `OPENAI_API_KEY` (and optionally `HF_TOKEN`), and enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull requests*. Try it locally without a key: `node tools/discover.mjs --no-llm` lists candidates; `--dry-run` runs the model step and writes nothing. The model defaults to `gpt-6-luna` (OpenAI's small, efficient tier); override with `DISCOVER_MODEL`.
 
 ## Deploy
 
