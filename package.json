@@ -6,12 +6,13 @@
     "gen:tasks": "node scripts/gen-tasks.mjs",
     "validate": "node scripts/validate.mjs",
     "dev": "vite",
-    "build": "npm run validate && npm test && tsc --noEmit && vite build",
+    "build": "npm run validate && npm test && tsc --noEmit && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "test": "node --experimental-strip-types --no-warnings tests/lightest.test.mjs"
   },
   "devDependencies": {
     "@huggingface/tasks": "latest",
+    "@types/node": "^26.6.5",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "typescript": "^7.0.2",

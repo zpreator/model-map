@@ -1,4 +1,7 @@
 import { defineConfig } from "vite";
+import site from "./site.json";
 
-// Relative base so the build works at a GitHub Pages sub-path or a custom domain.
-export default defineConfig({ base: "./" });
+// One source of truth for the deployed URL: site.json (override with SITE_URL for a custom domain).
+// The path part becomes Vite's base, so assets resolve on nested pages too.
+const url = process.env.SITE_URL ?? site.url;
+export default defineConfig({ base: new URL(url).pathname });

@@ -1,6 +1,7 @@
 {
   "id": "count-cars-in-a-lot",
   "title": "Count cars in a lot",
+  "description": "Count vehicles in a parking-lot image or video by detecting them, optionally separating overlapping cars with segmentation.",
   "steps": [
     {
       "label": "Detect cars",

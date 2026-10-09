@@ -1,6 +1,7 @@
 {
   "id": "transcribe-and-tag-speakers",
   "title": "Transcribe and tag speakers",
+  "description": "Turn a recording into a transcript labelled by speaker: find who speaks when, transcribe the speech, then optionally summarise each speaker.",
   "steps": [
     {
       "label": "Work out who speaks when",

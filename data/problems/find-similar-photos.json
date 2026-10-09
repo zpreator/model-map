@@ -1,6 +1,7 @@
 {
   "id": "find-similar-photos",
   "title": "Find similar photos",
+  "description": "Search a photo collection by visual similarity: turn every image into an embedding and compare them.",
   "steps": [
     {
       "label": "Embed every photo",

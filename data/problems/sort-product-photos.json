@@ -1,6 +1,7 @@
 {
   "id": "sort-product-photos",
   "title": "Sort product photos",
+  "description": "Sort product photos into categories using image embeddings or zero-shot labels, with a vision-language model for the hard cases.",
   "steps": [
     {
       "label": "Classify by embedding or zero-shot labels",

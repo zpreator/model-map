@@ -1,6 +1,7 @@
 {
   "id": "chat-over-documents",
   "title": "Chat over my documents",
+  "description": "Let people ask questions of their own documents: embed the text, retrieve the relevant passages, and have a language model answer from them.",
   "steps": [
     {
       "label": "Embed document chunks and the question",

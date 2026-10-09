@@ -10,4 +10,5 @@ export interface Model {
   verified: boolean; notes: string | null; source: "curated" | "auto";
 }
 export interface Family { id: string; name: string; summary: string | null }
-export interface Problem { id: string; title: string; steps: { label: string; models: string[] }[]; note: string | null }
+export interface Problem { id: string; title: string; description: string; steps: { label: string; models: string[] }[]; note: string | null }
+export interface Task { id: string; name: string; hf_modality: string; summary: string | null }

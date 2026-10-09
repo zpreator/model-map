@@ -4,20 +4,59 @@
   "title": "Problem preset",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "title", "steps", "note"],
+  "required": [
+    "id",
+    "title",
+    "description",
+    "steps",
+    "note"
+  ],
   "properties": {
-    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
-    "title": { "type": "string", "minLength": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "One or two sentences; used for the page meta description."
+    },
     "steps": {
-      "type": "array", "minItems": 1,
+      "type": "array",
+      "minItems": 1,
       "items": {
-        "type": "object", "additionalProperties": false, "required": ["label", "models"],
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label",
+          "models"
+        ],
         "properties": {
-          "label": { "type": "string", "minLength": 1 },
-          "models": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" }, "description": "Candidate model ids." }
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "models": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            },
+            "description": "Candidate model ids."
+          }
         }
       }
     },
-    "note": { "type": ["string", "null"] }
+    "note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
   }
 }
