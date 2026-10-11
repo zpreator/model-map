@@ -1,0 +1,37 @@
+{
+  "id": "qwen3-8-27b",
+  "name": "Qwen3.8-27B",
+  "family": "open-vlm",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "video",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "Qwen/Qwen3.8-27B",
+  "links": [
+    {
+      "label": "Qwen/Qwen3.8-27B on Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 27.8B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 6768654,
+    "likes": 17443,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

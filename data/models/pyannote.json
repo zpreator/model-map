@@ -11,7 +11,11 @@
   "verified": false,
   "notes": "Outputs speaker labels per time segment. The Hub tags the diarization pipeline as automatic-speech-recognition, which is misleading. Repo may be gated. Tier unknown.",
   "source": "curated",
-  "metrics": null,
+  "metrics": {
+    "downloads_30d": 6957168,
+    "likes": 4268,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  },
   "id": "pyannote",
   "name": "pyannote",
   "family": "pyannote",

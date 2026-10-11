@@ -1,0 +1,35 @@
+{
+  "id": "needle3",
+  "name": "needle3",
+  "family": "open-llm",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "Cactus-Compute/needle3",
+  "links": [
+    {
+      "label": "Cactus-Compute/needle3 on Hugging Face",
+      "url": "https://huggingface.co/Cactus-Compute/needle3"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier unknown: the Hub reports no parameter count.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 133900,
+    "likes": 325,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

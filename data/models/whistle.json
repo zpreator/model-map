@@ -1,0 +1,35 @@
+{
+  "id": "whistle",
+  "name": "whistle",
+  "family": "whistle",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    },
+    {
+      "input": "audio",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "Cactus-Compute/whistle",
+  "links": [
+    {
+      "label": "Cactus-Compute/whistle on Hugging Face",
+      "url": "https://huggingface.co/Cactus-Compute/whistle"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier unknown: the Hub reports no parameter count.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 12816,
+    "likes": 316,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

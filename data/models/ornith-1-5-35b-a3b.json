@@ -1,0 +1,33 @@
+{
+  "id": "ornith-1-5-35b-a3b",
+  "name": "Ornith-1.5-35B-A3B",
+  "family": "open-llm",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "ornith-ai/Ornith-1.5-35B-A3B",
+  "links": [
+    {
+      "label": "ornith-ai/Ornith-1.5-35B-A3B on Hugging Face",
+      "url": "https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 36.0B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 260353,
+    "likes": 716,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}
