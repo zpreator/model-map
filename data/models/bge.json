@@ -14,7 +14,9 @@
   ],
   "feeds_into": [
     "qwen3-8b",
-    "closed-llm"
+    "gpt-6-1-sol",
+    "claude-opus-5-5",
+    "gemini-3-8-flash"
   ],
   "verified": false,
   "notes": "Tier unknown: the Hub reports no parameter count for bge-m3.",

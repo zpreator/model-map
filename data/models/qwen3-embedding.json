@@ -14,7 +14,9 @@
   ],
   "feeds_into": [
     "qwen3-8b",
-    "closed-llm"
+    "gpt-6-1-sol",
+    "claude-opus-5-5",
+    "gemini-3-8-flash"
   ],
   "verified": false,
   "notes": "Tier estimated from the 0.6B example; larger sizes exist.",

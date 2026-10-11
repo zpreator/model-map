@@ -14,7 +14,9 @@
       "label": "Generate an answer from the retrieved chunks",
       "models": [
         "qwen3-8b",
-        "closed-llm"
+        "gpt-6-1-sol",
+        "claude-opus-5-5",
+        "gemini-3-8-flash"
       ]
     }
   ],

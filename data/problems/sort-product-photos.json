@@ -15,7 +15,9 @@
       "label": "Describe or tag hard cases (optional)",
       "models": [
         "qwen3-vl",
-        "closed-vlm"
+        "gpt-6-1-sol",
+        "claude-opus-5-5",
+        "gemini-3-8-flash"
       ]
     }
   ],
