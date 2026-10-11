@@ -40,6 +40,10 @@ Pages: the home map, one page per problem (`/problems/<id>/`), one per Hugging F
 
 Short version: add `data/models/<id>.json`, point `family` at a file in `data/families/`, run `npm run build`, open a PR. Leave unknown fields `null` and `verified: false`. Full field guide in [CONTRIBUTING.md](CONTRIBUTING.md).
 
+### Hardware filter
+
+"Show models that fit on" (Any, CPU / edge, 8 GB, 24 GB, Datacenter) hides every model whose lightest option is heavier than the chosen tier, and hides chips left with no fitting model. API-only and unknown-size models are excluded unless you tick the two boxes that appear. With a problem selected, non-fitting candidates are struck through and a line says whether every step has an option that fits. The choice is kept in the URL (`?fit=gpu_8gb&api=1&unknown=1`), so filtered views can be shared. `fitsWithin` in `src/lightest.ts` holds the rule and is tested.
+
 ### Describe your own problem
 
 The text box turns a sentence into ordered steps and candidate models without any AI or network call. `src/interpret.ts` matches words against `data/lexicon.json`: verbs say what a step does (transcribe, sort, count, find similar, summarize, generate) and nouns say what it works on (photos, documents, recordings, video). It then looks up which models on the map cover that input-to-output pair, ranked by recent downloads with older models discounted. It also shows the words it matched, flags things the map does not cover (spreadsheets, forecasting), suggests a related preset, and lists models whose names mention your words. Links are shareable as `#ask=...`.

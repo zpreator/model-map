@@ -1,6 +1,6 @@
 // Pure HTML rendering shared by the browser (main.ts) and the build-time prerenderer (prerender.ts).
 import { familyById, modelById, modelsOfFamily, models, problemById, problems, taskById, tasks, families } from "./data";
-import { lightestSetup, stepReq, type Req } from "./lightest";
+import { fitsWithin, lightestSetup, modelReq, stepReq, NO_FIT, type Fit, type Req } from "./lightest";
 import { interpret, type Interpretation } from "./interpret";
 import lexiconJson from "../data/lexicon.json";
 import type { Input, Lexicon, Model, Output, Problem, Tier } from "./types";
@@ -33,7 +33,7 @@ export const SITE_URL = site.url;
 const lexicon = lexiconJson as unknown as Lexicon;
 
 export type Focus = { kind: "problem" | "task"; id: string } | { kind: "ask"; query: string } | null;
-export interface State { focus: Focus; family: string | null; col: Input }
+export interface State { focus: Focus; family: string | null; col: Input; fit: Fit }
 
 export const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 
@@ -96,15 +96,18 @@ export function pageMeta(f: Focus): { title: string; description: string; path: 
 }
 
 // ---- pieces --------------------------------------------------------------------------------
-const familyTiers = (fid: string): Tier[] => {
-  const present = new Set(modelsOfFamily(fid).flatMap((m) => m.tiers));
+/** Members of a family that pass the hardware filter. */
+const visibleMembers = (fid: string, fit: Fit) => modelsOfFamily(fid).filter((m) => fitsWithin(m, fit));
+const tierOk = (t: Tier, fit: Fit) => !fit.tier || (t === "api" ? fit.api : TIERS.findIndex((x) => x.id === t) <= TIERS.findIndex((x) => x.id === fit.tier));
+const familyTiers = (fid: string, fit: Fit): Tier[] => {
+  const present = new Set(visibleMembers(fid, fit).flatMap((m) => m.tiers).filter((t) => tierOk(t, fit)));
   return TIERS.filter((t) => present.has(t.id)).map((t) => t.id);
 };
 /** Popularity for ordering chips within a cell: the most-downloaded member's trailing-30-day downloads. */
 const familyScore = (fid: string) => Math.max(0, ...modelsOfFamily(fid).map((m) => m.metrics?.downloads_30d ?? 0));
 const CELL_CAP = 6;
-const familyHasCell = (fid: string, i: Input, o: Output) =>
-  modelsOfFamily(fid).some((m) => m.cells.some((c) => c.input === i && c.output === o));
+const familyHasCell = (fid: string, i: Input, o: Output, fit: Fit) =>
+  visibleMembers(fid, fit).some((m) => m.cells.some((c) => c.input === i && c.output === o));
 
 const reqLabel = (r: Req) => (r.kind === "hw" ? tierMeta.get(r.tier)!.label : r.kind === "api" ? "API only" : "unknown");
 const reqTier = (r: Req) => (r.kind === "hw" ? r.tier : r.kind === "api" ? "api" : "unknown");
@@ -120,7 +123,7 @@ export const footer = () =>
   `<footer class="foot">Tiers and licenses are unverified unless marked. <a href="${BASE}methodology/">How entries are verified</a> · <a href="${esc(site.repo)}/blob/main/CONTRIBUTING.md" rel="noopener">Contribute a model</a></footer>`;
 
 function chip(fid: string, s: State): string {
-  const tiers = familyTiers(fid);
+  const tiers = familyTiers(fid, s.fit);
   const color = tiers[0] ?? "unknown";
   const inv = focusFamilies(s.focus);
   const dim = hasFocus(s.focus) ? !inv.has(fid) : s.family ? fid !== s.family : false;
@@ -135,7 +138,7 @@ function grid(s: State): string {
   const rows = OUTPUTS.map((o) => {
     const cells = INPUTS.map((i) => {
       const inv = focusFamilies(s.focus);
-      const fids = families.filter((f) => familyHasCell(f.id, i.id, o.id)).map((f) => f.id)
+      const fids = families.filter((f) => familyHasCell(f.id, i.id, o.id, s.fit)).map((f) => f.id)
         .sort((a, b) => Number(inv.has(b)) - Number(inv.has(a)) || familyScore(b) - familyScore(a) || a.localeCompare(b));
       const extra = Math.max(0, fids.length - CELL_CAP);
       const chips = fids.map((f, idx) => (idx >= CELL_CAP ? chip(f, s).replace("<button ", '<button data-extra="true" ') : chip(f, s))).join("");
@@ -166,10 +169,10 @@ function presets(f: Focus): string {
     }).join("")}</div></section>`;
 }
 
-const candBtn = (m: Model, r: Req) =>
-  `<li><button type="button" class="cand" data-family="${m.family}" data-tier="${reqTier(r)}">${esc(m.name)} <span class="badge">${reqShort(r)}</span></button></li>`;
+const candBtn = (m: Model, r: Req, fit: Fit = NO_FIT) =>
+  `<li><button type="button" class="cand" data-family="${m.family}" data-tier="${reqTier(r)}"${fitsWithin(m, fit) ? "" : ' data-nofit="true" title="Does not fit the selected hardware"'}>${esc(m.name)} <span class="badge">${reqShort(r)}</span></button></li>`;
 
-function focusPanel(f: Focus): string {
+function focusPanel(f: Focus, fit: Fit): string {
   if (!f) return `<p class="hint">Pick a problem above to see its steps and which models fit each one.</p>`;
   if (f.kind === "task") {
     const t = taskById.get(f.id)!;
@@ -177,15 +180,27 @@ function focusPanel(f: Focus): string {
     const usedBy = problems.filter((p) => p.steps.some((s) => s.models.some((id) => ms.some((m) => m.id === id))));
     return `<h2>${esc(t.name)}</h2>${t.summary ? `<p>${esc(t.summary)}</p>` : ""}
       <p class="fine">Task definition from the <a href="https://huggingface.co/tasks/${esc(t.id)}" rel="noopener">Hugging Face task page</a>.</p>
-      <h3>Models on this map</h3><ul class="cands">${ms.map((m) => candBtn(m, stepReq([m]))).join("")}</ul>
+      <h3>Models on this map</h3><ul class="cands">${ms.map((m) => candBtn(m, stepReq([m]), fit)).join("")}</ul>
       <p class="used"><strong>Used in:</strong> ${usedBy.length ? usedBy.map((p) => `<a href="${focusHref({ kind: "problem", id: p.id })}">${esc(p.title)}</a>`).join(", ") : "no problem presets yet"}</p>`;
   }
-  if (f.kind === "ask") return askPanel(f.query);
-  return stepsBody(problemById.get(f.id)!);
+  if (f.kind === "ask") return askPanel(f.query, fit);
+  return stepsBody(problemById.get(f.id)!, fit);
+}
+
+/** With a hardware filter on: does every step have at least one candidate that fits? */
+function fitVerdict(p: Problem, fit: Fit): string {
+  if (!fit.tier) return "";
+  const label = tierMeta.get(fit.tier)!.label;
+  const cand = (st: Problem["steps"][number]) => st.models.map((id) => modelById.get(id)).filter((m): m is Model => !!m);
+  const lacking = p.steps.filter((st) => !cand(st).some((m) => fitsWithin(m, fit)));
+  // A step whose only options have no known size is "can't confirm", not "doesn't fit".
+  const unknownNames = [...new Set(lacking.flatMap((st) => cand(st).filter((m) => modelReq(m).kind === "unknown" && !fit.unknown).map((m) => m.name)))];
+  if (!lacking.length) return `<p class="verdict ok"><strong>Fits ${esc(label)}:</strong> every step has a candidate that fits.</p>`;
+  return `<p class="verdict bad"><strong>Does not fit ${esc(label)}:</strong> no candidate is known to fit for ${lacking.map((st) => esc(st.label)).join("; ")}.${unknownNames.length ? ` Size unknown for ${unknownNames.map(esc).join(", ")}; tick "Include models with unknown size" to count ${unknownNames.length === 1 ? "it" : "them"}.` : ""}</p>`;
 }
 
 /** Ordered steps with candidate models, plus the lightest-setup summary. Shared by presets and free-text problems. */
-function stepsBody(p: Problem, heading = esc(p.title), evidence: string[][] = []): string {
+function stepsBody(p: Problem, fit: Fit, heading = esc(p.title), evidence: string[][] = []): string {
   const l = lightestSetup(p, modelById);
   const parts: string[] = [];
   if (l.hw) parts.push(`<strong>${tierMeta.get(l.hw)!.label}</strong>`);
@@ -195,41 +210,43 @@ function stepsBody(p: Problem, heading = esc(p.title), evidence: string[][] = []
   const steps = p.steps.map((s, i) => {
     const cands = s.models.map((id) => modelById.get(id)).filter((m): m is Model => !!m);
     const body = cands.length
-      ? `<ul class="cands">${cands.map((m) => candBtn(m, stepReq([m]))).join("")}</ul><p class="step-req">Lightest here: ${reqLabel(stepReq(cands))}</p>`
+      ? `<ul class="cands">${cands.map((m) => candBtn(m, stepReq([m]), fit)).join("")}</ul><p class="step-req">Lightest here: ${reqLabel(stepReq(cands))}</p>`
       : `<p class="step-req">No model on the map covers this step yet.</p>`;
     const why = evidence[i]?.length ? `<p class="step-req">Because of: ${evidence[i].map((w) => `“${esc(w)}”`).join(", ")}</p>` : "";
     return `<li><h3>${esc(s.label)}</h3>${why}${body}</li>`;
   }).join("");
   return `<h2>${heading}</h2><ol class="steps">${steps}</ol>
-    <div class="lightest"><h3>Lightest setup</h3><p>${parts.join("; ")}</p>
+    <div class="lightest"><h3>Lightest setup</h3><p>${parts.join("; ")}</p>${fitVerdict(p, fit)}
       <p class="fine">Per step, the lightest option; overall, the heaviest of those. API-only options are reported separately. Tiers are unverified estimates.</p></div>
     ${p.note ? `<p class="notes">${esc(p.note)}</p>` : ""}`;
 }
 
-function askPanel(query: string): string {
+function askPanel(query: string, fit: Fit): string {
   const r = interpretation(query);
   const asked = `<p class="asked">“${esc(query)}”</p>`;
   const caveat = `<p class="fine">Read by matching your words against a keyword list (see <a href="${esc(site.repo)}/blob/main/data/lexicon.json" rel="noopener">data/lexicon.json</a>). No AI is involved and nothing leaves your browser. If it misread you, rephrase or pick a preset.</p>`;
   const notes = r.notes.map((n) => `<p class="notes">${esc(n)}</p>`).join("");
   const preset = r.closestPreset ? `<p class="used"><strong>Related preset:</strong> <a href="${focusHref({ kind: "problem", id: r.closestPreset.id })}" data-nav>${esc(r.closestPreset.title)}</a></p>` : "";
   const mention = r.mentions.map((id) => modelById.get(id)).filter((m): m is Model => !!m);
-  const mentions = mention.length ? `<h3>Models that mention your words</h3><ul class="cands">${mention.map((m) => candBtn(m, stepReq([m]))).join("")}</ul>` : "";
+  const mentions = mention.length ? `<h3>Models that mention your words</h3><ul class="cands">${mention.map((m) => candBtn(m, stepReq([m]), fit)).join("")}</ul>` : "";
   if (!r.steps.length) {
     const ex = lexicon.examples.map((e) => `<li><a href="${askHref(e)}" data-nav>${esc(e)}</a></li>`).join("");
     return `<h2>Your problem</h2>${asked}<p>I couldn't tell what to do with the input, what it should produce, or both. Try naming what you have (photos, documents, recordings, video) and what you want (transcribe, sort, count, find similar, summarize, generate).</p>
       <ul class="examples">${ex}</ul>${notes}${preset}${mentions}${caveat}`;
   }
   const p: Problem = { id: "ask", title: "Your problem", description: query, steps: r.steps.map((st) => ({ label: st.label, models: st.modelIds })), note: null };
-  return `${asked}${stepsBody(p, "How I read it", r.steps.map((st) => st.evidence))}${notes}${preset}${mentions}${caveat}`;
+  return `${asked}${stepsBody(p, fit, "How I read it", r.steps.map((st) => st.evidence))}${notes}${preset}${mentions}${caveat}`;
 }
 
 const aiTag = (src: "ai" | "curated" | null) =>
   src === "ai" ? `<span class="tag" title="Summarized by an AI model from the model card; not reviewed by a person">AI summary</span>` : "";
 
-export function detailPanel(fid: string | null): string {
+export function detailPanel(fid: string | null, fit: Fit = NO_FIT): string {
   if (!fid) return `<p class="hint">Select a model to see details. Select it again to clear.</p>`;
   const fam = familyById.get(fid)!;
-  const members = modelsOfFamily(fid);
+  const all = modelsOfFamily(fid);
+  const members = all.filter((m) => fitsWithin(m, fit));
+  const hiddenByFit = all.length - members.length;
   const usedBy = problems.filter((p) => p.steps.some((s) => s.models.some((id) => members.some((m) => m.id === id))));
   const row = (m: Model) => `<li class="member">
       <h3>${esc(m.name)} ${m.verified ? `<span class="tag ok">verified</span>` : `<span class="tag">unverified</span>`}</h3>
@@ -244,11 +261,28 @@ export function detailPanel(fid: string | null): string {
       </dl>${m.notes ? `<p class="notes">${esc(m.notes)}</p>` : ""}</li>`;
   return `<h2>${esc(fam.name)}</h2>${fam.summary ? `<p class="summary">${esc(fam.summary)} ${aiTag(fam.summary_source)}</p>` : ""}
     <p class="used"><strong>Used in:</strong> ${usedBy.length ? usedBy.map((p) => `<a href="${focusHref({ kind: "problem", id: p.id })}" data-nav>${esc(p.title)}</a>`).join(", ") : "no problem presets yet"}</p>
-    <ul class="members">${members.map(row).join("")}</ul>`;
+    <ul class="members">${members.map(row).join("")}</ul>
+    ${hiddenByFit ? `<p class="fine">${hiddenByFit} more ${hiddenByFit === 1 ? "model is" : "models are"} hidden because ${hiddenByFit === 1 ? "it does" : "they do"} not fit the selected hardware.</p>` : ""}`;
 }
 
 const browseTasks = () => `<section class="browse" aria-label="Browse by task"><h2 class="presets-title">Browse by Hugging Face task</h2>
   <ul class="task-links">${tasks.map((t) => `<li><a href="${focusHref({ kind: "task", id: t.id })}" data-nav>${esc(t.name)}</a></li>`).join("")}</ul></section>`;
+
+const FIT_OPTIONS: { id: Tier | ""; label: string }[] = [
+  { id: "", label: "Any" }, { id: "cpu_edge", label: "CPU / edge" }, { id: "gpu_8gb", label: "8 GB GPU" },
+  { id: "gpu_24gb", label: "24 GB GPU" }, { id: "datacenter", label: "Datacenter" },
+];
+
+/** "Fits on" hardware filter: radios for the size, two opt-in checkboxes for models that have no hardware size. */
+function fitControl(fit: Fit): string {
+  const shown = models.filter((m) => fitsWithin(m, fit)).length;
+  return `<fieldset class="fit"><legend>Show models that fit on</legend>
+    <div class="fit-options">${FIT_OPTIONS.map((o) => `<label class="fit-opt"><input type="radio" name="fit" value="${o.id}"${(fit.tier ?? "") === o.id ? " checked" : ""} /><span>${o.label}</span></label>`).join("")}</div>
+    ${fit.tier ? `<div class="fit-extra"><label><input type="checkbox" name="fit-api"${fit.api ? " checked" : ""} /> Include API-only models</label>
+      <label><input type="checkbox" name="fit-unknown"${fit.unknown ? " checked" : ""} /> Include models with unknown size</label>
+      <span class="fit-count" role="status">${shown} of ${models.length} models shown</span></div>` : ""}
+  </fieldset>`;
+}
 
 function askForm(f: Focus): string {
   const q = f?.kind === "ask" ? f.query : "";
@@ -263,11 +297,12 @@ export function renderMap(s: State): string {
   const isHome = !s.focus;
   return `${header("home")}
     <header class="page-head"><h1 tabindex="-1" id="page-title">${esc(meta.heading)}</h1><p class="lede">${esc(meta.lede)}</p></header>
+    ${fitControl(s.fit)}
     ${askForm(s.focus)}
     ${presets(s.focus)}
     ${grid(s)}
-    <section id="focus" class="panel" aria-live="polite" aria-label="${isHome ? "Problem steps" : "Selection"}">${focusPanel(s.focus)}</section>
-    <section id="detail" class="panel" aria-live="polite" aria-label="Details">${detailPanel(s.family)}</section>
+    <section id="focus" class="panel" aria-live="polite" aria-label="${isHome ? "Problem steps" : "Selection"}">${focusPanel(s.focus, s.fit)}</section>
+    <section id="detail" class="panel" aria-live="polite" aria-label="Details">${detailPanel(s.family, s.fit)}</section>
     ${browseTasks()}
     ${footer()}`;
 }

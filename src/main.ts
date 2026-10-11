@@ -1,16 +1,33 @@
 import "./style.css";
 import { ASK_MAX, INPUTS, askHref, detailPanel, pageMeta, parseFocus, renderMap, startCol, type State } from "./render";
-import type { Input } from "./types";
+import { NO_FIT, type Fit } from "./lightest";
+import type { Input, Tier } from "./types";
 
 const app = document.getElementById("app")!;
 
 // Old-style ?q= links (and the no-JavaScript form) become a #ask= hash.
 const qParam = new URLSearchParams(location.search).get("q");
 if (qParam && !location.hash) history.replaceState(null, "", askHref(qParam.slice(0, ASK_MAX)));
-const state: State = { focus: parseFocus(location.pathname, location.hash), family: null, col: "image" };
+// The hardware filter lives in the URL (?fit=gpu_8gb&api=1&unknown=1) so a filtered view can be shared.
+const FIT_TIERS = ["cpu_edge", "gpu_8gb", "gpu_24gb", "datacenter"];
+function fitFromSearch(search: string): Fit {
+  const p = new URLSearchParams(search), tier = p.get("fit");
+  return tier && FIT_TIERS.includes(tier) ? { tier: tier as Tier, api: p.get("api") === "1", unknown: p.get("unknown") === "1" } : NO_FIT;
+}
+const withFit = (u: URL) => {
+  for (const k of ["fit", "api", "unknown"]) u.searchParams.delete(k);
+  if (state.fit.tier) {
+    u.searchParams.set("fit", state.fit.tier);
+    if (state.fit.api) u.searchParams.set("api", "1");
+    if (state.fit.unknown) u.searchParams.set("unknown", "1");
+  }
+  return u.pathname + u.search + u.hash;
+};
+
+const state: State = { focus: parseFocus(location.pathname, location.hash), family: null, col: "image", fit: fitFromSearch(location.search) };
 const prerendered = app.querySelector(".grid") !== null;
 const fromAsk = state.focus?.kind === "ask"; // the prerendered home page knows nothing about a #ask= link
-state.col = prerendered && !fromAsk ? ((app.querySelector(".grid")!.getAttribute("data-col") as Input) ?? "image") : startCol(state.focus);
+state.col = prerendered && !fromAsk && !state.fit.tier ? ((app.querySelector(".grid")!.getAttribute("data-col") as Input) ?? "image") : startCol(state.focus);
 
 function render(focusKey?: string) {
   app.innerHTML = renderMap(state);
@@ -27,7 +44,8 @@ function navigate(href: string, push: boolean) {
   state.focus = parseFocus(url.pathname, url.hash);
   state.family = null;
   state.col = startCol(state.focus);
-  if (push) history.pushState(null, "", href);
+  if (push) history.pushState(null, "", withFit(url)); // links carry no filter, so keep the current one
+  else state.fit = fitFromSearch(url.search); // back/forward restore the filter that was in the URL
   const toInput = state.focus?.kind === "ask" || (wasAsk && !state.focus); // clearing a search puts you back in the box
   render(state.focus?.kind === "problem" ? ".preset[aria-current]" : toInput ? "#ask-input" : "title");
   if (!toInput && (!state.focus || state.focus.kind === "task")) document.getElementById("page-title")?.focus();
@@ -61,7 +79,7 @@ function refreshMore(td: HTMLElement) {
 /** Select/deselect a family without rebuilding the grid, so keyboard focus is kept. */
 function selectFamily(fid: string | null) {
   state.family = fid;
-  document.getElementById("detail")!.innerHTML = detailPanel(fid);
+  document.getElementById("detail")!.innerHTML = detailPanel(fid, state.fit);
   const active = document.activeElement as HTMLElement | null;
   app.querySelectorAll<HTMLElement>(".chip").forEach((c) => {
     const f = c.dataset.family!;
@@ -81,6 +99,21 @@ app.addEventListener("submit", (e) => {
   e.preventDefault();
   const q = new FormData(form).get("q")?.toString().trim().slice(0, ASK_MAX) ?? "";
   navigate(q ? askHref(q) : location.pathname, true);
+});
+
+/** Radios pick the size; two checkboxes opt API-only and unknown-size models back in. */
+app.addEventListener("change", (e) => {
+  const el = e.target as HTMLInputElement;
+  if (!el.name?.startsWith("fit")) return;
+  const tier = (app.querySelector<HTMLInputElement>('input[name="fit"]:checked')?.value || null) as Tier | null;
+  state.fit = {
+    tier,
+    api: tier ? (app.querySelector<HTMLInputElement>('input[name="fit-api"]')?.checked ?? false) : false,
+    unknown: tier ? (app.querySelector<HTMLInputElement>('input[name="fit-unknown"]')?.checked ?? false) : false,
+  };
+  history.replaceState(null, "", withFit(new URL(location.href)));
+  state.family = null; // the selected family may no longer be shown
+  render(el.name === "fit" ? 'input[name="fit"]:checked' : `input[name="${el.name}"]`);
 });
 
 app.addEventListener("click", (e) => {
@@ -120,4 +153,4 @@ app.addEventListener("keydown", (e) => {
 
 window.addEventListener("popstate", () => navigate(location.href, false));
 
-if (!prerendered || fromAsk) render();
+if (!prerendered || fromAsk || state.fit.tier) render();

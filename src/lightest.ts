@@ -40,3 +40,15 @@ export function lightestSetup(problem: Problem, byId: Map<string, Model>): Light
   }
   return out;
 }
+
+/** Hardware filter: show only models that run on this tier or lighter. API-only and unknown sizes are opt-in. */
+export interface Fit { tier: Tier | null; api: boolean; unknown: boolean }
+export const NO_FIT: Fit = { tier: null, api: false, unknown: false };
+
+/** Does the model fit? "Fit" means its lightest option is at or below the chosen tier. */
+export function fitsWithin(m: Pick<Model, "tiers">, fit: Fit): boolean {
+  if (!fit.tier) return true;
+  const r = modelReq(m);
+  if (r.kind === "hw") return hwRank(r.tier) <= hwRank(fit.tier);
+  return r.kind === "api" ? fit.api : fit.unknown;
+}
