@@ -22,13 +22,15 @@ function render(focusKey?: string) {
 }
 
 function navigate(href: string, push: boolean) {
+  const wasAsk = state.focus?.kind === "ask";
   const url = new URL(href, location.href);
   state.focus = parseFocus(url.pathname, url.hash);
   state.family = null;
   state.col = startCol(state.focus);
   if (push) history.pushState(null, "", href);
-  render(state.focus?.kind === "problem" ? ".preset[aria-current]" : state.focus?.kind === "ask" ? "#ask-input" : "title");
-  if (!state.focus || state.focus.kind === "task") document.getElementById("page-title")?.focus();
+  const toInput = state.focus?.kind === "ask" || (wasAsk && !state.focus); // clearing a search puts you back in the box
+  render(state.focus?.kind === "problem" ? ".preset[aria-current]" : toInput ? "#ask-input" : "title");
+  if (!toInput && (!state.focus || state.focus.kind === "task")) document.getElementById("page-title")?.focus();
 }
 
 function setTab(col: Input, focus: boolean) {
@@ -103,6 +105,12 @@ app.addEventListener("click", (e) => {
 });
 
 app.addEventListener("keydown", (e) => {
+  // Escape in the problem box cancels the search and returns to the regular map.
+  if (e.key === "Escape" && (e.target as HTMLElement).id === "ask-input" && state.focus?.kind === "ask") {
+    e.preventDefault();
+    navigate(location.pathname, true);
+    return;
+  }
   if (!(e.target as HTMLElement).closest("[data-tab]") || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
   const i = INPUTS.findIndex((x) => x.id === state.col);
   const n = e.key === "Home" ? 0 : e.key === "End" ? INPUTS.length - 1 : (i + (e.key === "ArrowRight" ? 1 : -1) + INPUTS.length) % INPUTS.length;

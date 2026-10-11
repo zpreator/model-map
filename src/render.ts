@@ -254,7 +254,7 @@ function askForm(f: Focus): string {
   const q = f?.kind === "ask" ? f.query : "";
   return `<form class="ask" role="search" aria-label="Describe your own problem" data-ask>
     <label for="ask-input" class="presets-title">Or describe your own problem</label>
-    <div class="ask-row"><input id="ask-input" name="q" type="text" maxlength="${ASK_MAX}" autocomplete="off" placeholder="e.g. ${esc(lexicon.examples[0])}" value="${esc(q)}" /><button type="submit">Find models</button></div></form>`;
+    <div class="ask-row"><input id="ask-input" name="q" type="text" maxlength="${ASK_MAX}" autocomplete="off" placeholder="e.g. ${esc(lexicon.examples[0])}" value="${esc(q)}" /><button type="submit">Find models</button>${q ? `<a class="ask-clear" data-nav href="${BASE}">Clear</a>` : ""}</div></form>`;
 }
 
 /** Everything inside #app for the map pages (home, problem, task). */
