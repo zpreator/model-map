@@ -36,13 +36,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if [ -z "$(git status --porcelain data)" ]; then echo "No data changes."; exit 0; fi
-          branch="discovery/$(date -u +%Y-%m-%d)"
+          branch="discovery/$(date -u +%Y-%m-%d-%H%M)"
           git config user.name "model-map-bot"
           git config user.email "model-map-bot@users.noreply.github.com"
           git checkout -b "$branch"
           git add data
           git commit -m "Weekly model discovery $(date -u +%Y-%m-%d)"
-          git push --force-with-lease origin "$branch"
+          git push origin "$branch"
           gh pr create --base main --head "$branch" \
             --title "Weekly model discovery $(date -u +%Y-%m-%d)" \
             --body-file "$RUNNER_TEMP/pr-body.md"
