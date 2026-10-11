@@ -1,7 +1,9 @@
 // Pure HTML rendering shared by the browser (main.ts) and the build-time prerenderer (prerender.ts).
 import { familyById, modelById, modelsOfFamily, models, problemById, problems, taskById, tasks, families } from "./data";
 import { lightestSetup, stepReq, type Req } from "./lightest";
-import type { Input, Model, Output, Tier } from "./types";
+import { interpret, type Interpretation } from "./interpret";
+import lexiconJson from "../data/lexicon.json";
+import type { Input, Lexicon, Model, Output, Problem, Tier } from "./types";
 import site from "../site.json";
 
 export const INPUTS: { id: Input; label: string }[] = [
@@ -28,18 +30,28 @@ const outLabel = new Map(OUTPUTS.map((o) => [o.id, o.label.replace(" output", ""
 export const BASE = import.meta.env.BASE_URL; // e.g. "/model-map/"
 export const SITE_URL = site.url;
 
-export type Focus = { kind: "problem" | "task"; id: string } | null;
+const lexicon = lexiconJson as unknown as Lexicon;
+
+export type Focus = { kind: "problem" | "task"; id: string } | { kind: "ask"; query: string } | null;
 export interface State { focus: Focus; family: string | null; col: Input }
 
 export const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 
 // ---- routing -------------------------------------------------------------------------------
-export const focusPath = (f: Focus) => (f ? `${f.kind === "problem" ? "problems" : "tasks"}/${f.id}/` : "");
+export const focusPath = (f: Focus) => (f && f.kind !== "ask" ? `${f.kind === "problem" ? "problems" : "tasks"}/${f.id}/` : "");
 export const focusHref = (f: Focus) => BASE + focusPath(f);
 
-/** Parse a location pathname into a focus (home → null). Unknown ids → null. */
-export function parseFocus(pathname: string): Focus {
+export const ASK_MAX = 200;
+export const askHref = (q: string) => `${BASE}#ask=${encodeURIComponent(q)}`;
+
+/** Parse a location into a focus (home → null). A "#ask=..." hash on the home page is a free-text problem. */
+export function parseFocus(pathname: string, hash = ""): Focus {
   const rest = pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname.replace(/^\//, "");
+  if (rest === "" || rest === "index.html") {
+    const m = /^#ask=(.*)$/.exec(hash);
+    if (m) { try { const q = decodeURIComponent(m[1]).trim().slice(0, ASK_MAX); return q ? { kind: "ask", query: q } : null; } catch { return null; } }
+    return null;
+  }
   const m = rest.match(/^(problems|tasks)\/([^/]+)\/?$/);
   if (!m) return null;
   if (m[1] === "problems") return problemById.has(m[2]) ? { kind: "problem", id: m[2] } : null;
@@ -47,12 +59,22 @@ export function parseFocus(pathname: string): Focus {
 }
 
 // ---- focus helpers -------------------------------------------------------------------------
+const interpCache = new Map<string, Interpretation>();
+export function interpretation(query: string): Interpretation {
+  let r = interpCache.get(query);
+  if (!r) { r = interpret(query, { lexicon, models, problems }); interpCache.set(query, r); }
+  return r;
+}
+
 export function focusModels(f: Focus): Model[] {
   if (!f) return [];
+  if (f.kind === "ask") return interpretation(f.query).steps.flatMap((st) => st.modelIds).map((id) => modelById.get(id)).filter((m): m is Model => !!m);
   if (f.kind === "task") return models.filter((m) => m.hf_task === f.id);
   const p = problemById.get(f.id);
   return (p?.steps ?? []).flatMap((s) => s.models).map((id) => modelById.get(id)).filter((m): m is Model => !!m);
 }
+/** True when the focus should dim everything else (an unreadable free-text problem highlights nothing, so it dims nothing). */
+export const hasFocus = (f: Focus) => !!f && (f.kind !== "ask" || focusModels(f).length > 0);
 export const focusFamilies = (f: Focus) => new Set(focusModels(f).map((m) => m.family));
 export const focusCols = (f: Focus) => new Set(focusModels(f).flatMap((m) => m.cells.map((c) => c.input)));
 
@@ -101,9 +123,9 @@ function chip(fid: string, s: State): string {
   const tiers = familyTiers(fid);
   const color = tiers[0] ?? "unknown";
   const inv = focusFamilies(s.focus);
-  const dim = s.focus ? !inv.has(fid) : s.family ? fid !== s.family : false;
+  const dim = hasFocus(s.focus) ? !inv.has(fid) : s.family ? fid !== s.family : false;
   const badges = tiers.length ? tiers.map((t) => `<span class="badge">${tierMeta.get(t)!.short}</span>`).join("") : `<span class="badge">?</span>`;
-  return `<button type="button" class="chip" data-family="${fid}" data-tier="${color}" data-dim="${dim}" data-involved="${!!s.focus && inv.has(fid)}" aria-pressed="${s.family === fid}">
+  return `<button type="button" class="chip" data-family="${fid}" data-tier="${color}" data-dim="${dim}" data-involved="${hasFocus(s.focus) && inv.has(fid)}" aria-pressed="${s.family === fid}">
     <span class="chip-name">${esc(familyById.get(fid)!.name)}</span><span class="badges" aria-hidden="true">${badges}</span></button>`;
 }
 
@@ -123,7 +145,7 @@ function grid(s: State): string {
     return `<tr><th scope="row">${o.label}</th>${cells}</tr>`;
   }).join("");
   return `<div class="tabs" role="tablist" aria-label="Input modality">
-      ${INPUTS.map((i) => `<button role="tab" type="button" id="tab-${i.id}" data-tab="${i.id}" aria-selected="${s.col === i.id}" tabindex="${s.col === i.id ? 0 : -1}">${i.label}<span class="dot"${s.focus && cols.has(i.id) ? "" : " hidden"}> <span class="sr-only">(has highlighted models)</span></span></button>`).join("")}
+      ${INPUTS.map((i) => `<button role="tab" type="button" id="tab-${i.id}" data-tab="${i.id}" aria-selected="${s.col === i.id}" tabindex="${s.col === i.id ? 0 : -1}">${i.label}<span class="dot"${hasFocus(s.focus) && cols.has(i.id) ? "" : " hidden"}> <span class="sr-only">(has highlighted models)</span></span></button>`).join("")}
     </div>
     <div class="grid-wrap"><table class="grid" data-col="${s.col}">
       <caption class="sr-only">Models by input modality (columns) and output type (rows)</caption>
@@ -158,22 +180,47 @@ function focusPanel(f: Focus): string {
       <h3>Models on this map</h3><ul class="cands">${ms.map((m) => candBtn(m, stepReq([m]))).join("")}</ul>
       <p class="used"><strong>Used in:</strong> ${usedBy.length ? usedBy.map((p) => `<a href="${focusHref({ kind: "problem", id: p.id })}">${esc(p.title)}</a>`).join(", ") : "no problem presets yet"}</p>`;
   }
-  const p = problemById.get(f.id)!;
+  if (f.kind === "ask") return askPanel(f.query);
+  return stepsBody(problemById.get(f.id)!);
+}
+
+/** Ordered steps with candidate models, plus the lightest-setup summary. Shared by presets and free-text problems. */
+function stepsBody(p: Problem, heading = esc(p.title), evidence: string[][] = []): string {
   const l = lightestSetup(p, modelById);
   const parts: string[] = [];
   if (l.hw) parts.push(`<strong>${tierMeta.get(l.hw)!.label}</strong>`);
   else if (!l.apiSteps.length) parts.push(`<strong>Unknown</strong>`);
   if (l.apiSteps.length) parts.push(`${l.hw ? "plus " : ""}<strong>API</strong> for: ${l.apiSteps.map(esc).join("; ")}`);
   if (l.unknownSteps.length) parts.push(`no tier data yet for: ${l.unknownSteps.map(esc).join("; ")}`);
-  const steps = p.steps.map((s) => {
+  const steps = p.steps.map((s, i) => {
     const cands = s.models.map((id) => modelById.get(id)).filter((m): m is Model => !!m);
-    return `<li><h3>${esc(s.label)}</h3><ul class="cands">${cands.map((m) => candBtn(m, stepReq([m]))).join("")}</ul>
-      <p class="step-req">Lightest here: ${reqLabel(stepReq(cands))}</p></li>`;
+    const body = cands.length
+      ? `<ul class="cands">${cands.map((m) => candBtn(m, stepReq([m]))).join("")}</ul><p class="step-req">Lightest here: ${reqLabel(stepReq(cands))}</p>`
+      : `<p class="step-req">No model on the map covers this step yet.</p>`;
+    const why = evidence[i]?.length ? `<p class="step-req">Because of: ${evidence[i].map((w) => `“${esc(w)}”`).join(", ")}</p>` : "";
+    return `<li><h3>${esc(s.label)}</h3>${why}${body}</li>`;
   }).join("");
-  return `<h2>${esc(p.title)}</h2><ol class="steps">${steps}</ol>
+  return `<h2>${heading}</h2><ol class="steps">${steps}</ol>
     <div class="lightest"><h3>Lightest setup</h3><p>${parts.join("; ")}</p>
       <p class="fine">Per step, the lightest option; overall, the heaviest of those. API-only options are reported separately. Tiers are unverified estimates.</p></div>
     ${p.note ? `<p class="notes">${esc(p.note)}</p>` : ""}`;
+}
+
+function askPanel(query: string): string {
+  const r = interpretation(query);
+  const asked = `<p class="asked">“${esc(query)}”</p>`;
+  const caveat = `<p class="fine">Read by matching your words against a keyword list (see <a href="${esc(site.repo)}/blob/main/data/lexicon.json" rel="noopener">data/lexicon.json</a>). No AI is involved and nothing leaves your browser. If it misread you, rephrase or pick a preset.</p>`;
+  const notes = r.notes.map((n) => `<p class="notes">${esc(n)}</p>`).join("");
+  const preset = r.closestPreset ? `<p class="used"><strong>Related preset:</strong> <a href="${focusHref({ kind: "problem", id: r.closestPreset.id })}" data-nav>${esc(r.closestPreset.title)}</a></p>` : "";
+  const mention = r.mentions.map((id) => modelById.get(id)).filter((m): m is Model => !!m);
+  const mentions = mention.length ? `<h3>Models that mention your words</h3><ul class="cands">${mention.map((m) => candBtn(m, stepReq([m]))).join("")}</ul>` : "";
+  if (!r.steps.length) {
+    const ex = lexicon.examples.map((e) => `<li><a href="${askHref(e)}" data-nav>${esc(e)}</a></li>`).join("");
+    return `<h2>Your problem</h2>${asked}<p>I couldn't tell what to do with the input, what it should produce, or both. Try naming what you have (photos, documents, recordings, video) and what you want (transcribe, sort, count, find similar, summarize, generate).</p>
+      <ul class="examples">${ex}</ul>${notes}${preset}${mentions}${caveat}`;
+  }
+  const p: Problem = { id: "ask", title: "Your problem", description: query, steps: r.steps.map((st) => ({ label: st.label, models: st.modelIds })), note: null };
+  return `${asked}${stepsBody(p, "How I read it", r.steps.map((st) => st.evidence))}${notes}${preset}${mentions}${caveat}`;
 }
 
 const aiTag = (src: "ai" | "curated" | null) =>
@@ -203,12 +250,20 @@ export function detailPanel(fid: string | null): string {
 const browseTasks = () => `<section class="browse" aria-label="Browse by task"><h2 class="presets-title">Browse by Hugging Face task</h2>
   <ul class="task-links">${tasks.map((t) => `<li><a href="${focusHref({ kind: "task", id: t.id })}" data-nav>${esc(t.name)}</a></li>`).join("")}</ul></section>`;
 
+function askForm(f: Focus): string {
+  const q = f?.kind === "ask" ? f.query : "";
+  return `<form class="ask" role="search" aria-label="Describe your own problem" data-ask>
+    <label for="ask-input" class="presets-title">Or describe your own problem</label>
+    <div class="ask-row"><input id="ask-input" name="q" type="text" maxlength="${ASK_MAX}" autocomplete="off" placeholder="e.g. ${esc(lexicon.examples[0])}" value="${esc(q)}" /><button type="submit">Find models</button></div></form>`;
+}
+
 /** Everything inside #app for the map pages (home, problem, task). */
 export function renderMap(s: State): string {
   const meta = pageMeta(s.focus);
   const isHome = !s.focus;
   return `${header("home")}
     <header class="page-head"><h1 tabindex="-1" id="page-title">${esc(meta.heading)}</h1><p class="lede">${esc(meta.lede)}</p></header>
+    ${askForm(s.focus)}
     ${presets(s.focus)}
     ${grid(s)}
     <section id="focus" class="panel" aria-live="polite" aria-label="${isHome ? "Problem steps" : "Selection"}">${focusPanel(s.focus)}</section>
@@ -243,6 +298,8 @@ export function renderMethodology(): string {
       <h2>How models are chosen</h2>
       <p>The list is curated, with weekly help from a script. It looks for open models on the Hugging Face Hub (most downloaded and trending per task) and for hosted models on OpenRouter (ranked by how much they are used), and filters out fine-tunes, quantized copies, test repositories and low-traffic noise. For open models an AI model suggests which family each belongs to. The results arrive as a pull request, and a person decides what is added. Download and usage numbers are used only to surface candidates, never displayed as a ranking.</p>
       <p>Facts such as the developer, license, parameter count and supported modalities come from those services, never from an AI model. All general-purpose language models are grouped under two chips, Open LLMs and Closed LLMs, and the models inside are the ones currently most downloaded or most used.</p>
+      <h2>The problem box</h2>
+      <p>The "describe your own problem" box does not use AI. It matches the words you type against a keyword list that lives in the project (<code>data/lexicon.json</code>): verbs such as transcribe, sort, count or generate decide what each step does, and nouns such as photos, documents or recordings decide what it works on. It shows the words it matched so a wrong reading is visible, and says so when a problem is outside what the map covers. Nothing you type leaves your browser.</p>
       <h2>AI-written summaries</h2>
       <p>The one-to-two sentence descriptions are written by a small AI model from the model's own card or catalogue entry. Before the model sees it, the text is stripped of HTML, links and code, truncated, and treated as untrusted data; the output must be short plain text with no links. Every such summary is labelled "AI summary" until a person reviews and edits it. If a card says too little, the summary says only what the metadata supports.</p>
       <p>Anyone can propose a correction or a new model with a pull request; see the <a href="${esc(site.repo)}/blob/main/CONTRIBUTING.md" rel="noopener">contributing guide</a>.</p>

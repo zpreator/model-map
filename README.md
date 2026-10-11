@@ -29,6 +29,7 @@ Requires Node 22+.
 | `data/tasks.json` | Hugging Face task taxonomy, generated from `@huggingface/tasks` (`npm run gen:tasks`) |
 | `schema/*.json` | JSON Schemas; `scripts/validate.mjs` also checks references between files |
 | `src/render.ts` | All page HTML, shared by the browser and the prerenderer |
+| `src/interpret.ts`, `data/lexicon.json` | The "describe your own problem" box: keyword matching, no AI (see below) |
 | `src/lightest.ts` | The "lightest setup" calculation (tested in `tests/`) |
 | `scripts/prerender.mjs` | Writes a real HTML file per page, plus `sitemap.xml`, `robots.txt`, `404.html` |
 | `tools/discover.mjs` | Weekly job that proposes new models (see below) |
@@ -38,6 +39,12 @@ Pages: the home map, one page per problem (`/problems/<id>/`), one per Hugging F
 ### Add a model
 
 Short version: add `data/models/<id>.json`, point `family` at a file in `data/families/`, run `npm run build`, open a PR. Leave unknown fields `null` and `verified: false`. Full field guide in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+### Describe your own problem
+
+The text box turns a sentence into ordered steps and candidate models without any AI or network call. `src/interpret.ts` matches words against `data/lexicon.json`: verbs say what a step does (transcribe, sort, count, find similar, summarize, generate) and nouns say what it works on (photos, documents, recordings, video). It then looks up which models on the map cover that input-to-output pair, ranked by recent downloads with older models discounted. It also shows the words it matched, flags things the map does not cover (spreadsheets, forecasting), suggests a related preset, and lists models whose names mention your words. Links are shareable as `#ask=...`.
+
+It is plain keyword matching, so unusual phrasing can miss; the fix is to add words to the lexicon, not code. `npm run validate` checks the lexicon's shape and `tests/interpret.test.mjs` pins the behaviour.
 
 ### Lightest setup
 

@@ -138,6 +138,7 @@ export function draftModel({ hf, familyId, cells, taskIds, weight, now = new Dat
 export const metricsFrom = (hf, now = new Date()) => ({
   downloads_30d: hf.downloads ?? null, // the Hub's `downloads` is a trailing 30-day count
   likes: hf.likes ?? null,
+  created_at: hf.createdAt ?? null,
   fetched_at: now.toISOString(),
 });
 

@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lexicon.schema.json",
+  "title": "Interpretation lexicon",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "stop_words",
+    "modalities",
+    "actions",
+    "examples"
+  ],
+  "properties": {
+    "_comment": {
+      "type": "string"
+    },
+    "stop_words": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "modalities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "image",
+        "text",
+        "audio",
+        "video"
+      ],
+      "properties": {
+        "image": {
+          "$ref": "#/$defs/words"
+        },
+        "text": {
+          "$ref": "#/$defs/words"
+        },
+        "audio": {
+          "$ref": "#/$defs/words"
+        },
+        "video": {
+          "$ref": "#/$defs/words"
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "priority",
+          "stems"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9,
+            "description": "When two matches overlap, the higher priority wins."
+          },
+          "stems": {
+            "$ref": "#/$defs/words"
+          },
+          "with": {
+            "$ref": "#/$defs/words",
+            "description": "Words that must also appear somewhere in the sentence for this action to apply."
+          },
+          "in": {
+            "$ref": "#/$defs/input",
+            "description": "Fixed input modality."
+          },
+          "allowed_in": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/input"
+            },
+            "minItems": 1
+          },
+          "default_in": {
+            "$ref": "#/$defs/input"
+          },
+          "out": {
+            "$ref": "#/$defs/output"
+          },
+          "label": {
+            "type": "string",
+            "description": "Step label; {in} becomes the input noun."
+          },
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "in",
+                "out",
+                "label"
+              ],
+              "properties": {
+                "in": {
+                  "$ref": "#/$defs/input"
+                },
+                "out": {
+                  "$ref": "#/$defs/output"
+                },
+                "label": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "suppress": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Action ids to drop when this action is present (for example 'read aloud' should not also count as 'read')."
+          },
+          "via": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "image": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "in",
+                    "out",
+                    "label"
+                  ],
+                  "properties": {
+                    "in": {
+                      "$ref": "#/$defs/input"
+                    },
+                    "out": {
+                      "$ref": "#/$defs/output"
+                    },
+                    "label": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "text": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "in",
+                    "out",
+                    "label"
+                  ],
+                  "properties": {
+                    "in": {
+                      "$ref": "#/$defs/input"
+                    },
+                    "out": {
+                      "$ref": "#/$defs/output"
+                    },
+                    "label": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "audio": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "in",
+                    "out",
+                    "label"
+                  ],
+                  "properties": {
+                    "in": {
+                      "$ref": "#/$defs/input"
+                    },
+                    "out": {
+                      "$ref": "#/$defs/output"
+                    },
+                    "label": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "video": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "in",
+                    "out",
+                    "label"
+                  ],
+                  "properties": {
+                    "in": {
+                      "$ref": "#/$defs/input"
+                    },
+                    "out": {
+                      "$ref": "#/$defs/output"
+                    },
+                    "label": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Steps to run first when the action's input is this modality (for example transcribe audio before answering about it); the action then takes text."
+          }
+        }
+      }
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "scope_notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "stems",
+          "message"
+        ],
+        "properties": {
+          "stems": {
+            "$ref": "#/$defs/words"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "words": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "input": {
+      "enum": [
+        "image",
+        "text",
+        "audio",
+        "video"
+      ]
+    },
+    "output": {
+      "enum": [
+        "label",
+        "embedding",
+        "boxes_masks",
+        "text",
+        "image",
+        "audio",
+        "video"
+      ]
+    }
+  }
+}

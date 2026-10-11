@@ -47,6 +47,10 @@ CI runs `npm run build` on every pull request. A PR that fails validation can't 
 
 Create `data/problems/<id>.json` with a `title`, a one-or-two-sentence `description` (used for search results), ordered `steps` (each a `label` and candidate model ids), and an optional `note`. Every id must exist in `data/models/`. The validator checks this.
 
+## Teach the problem box new words
+
+The "describe your own problem" box is keyword matching driven by `data/lexicon.json` (schema in `schema/lexicon.schema.json`). If a phrasing it misses should work, add the word to the right place: an `actions[].stems` list for what the user wants to do, or `modalities` for what they have. A plain stem matches the whole word plus simple endings; a trailing `~` matches any word starting with it; spaces match phrases. Add a case to `tests/interpret.test.mjs` for anything you fix.
+
 ## The weekly discovery PR
 
 A scheduled job (`.github/workflows/discover.yml`) opens a PR proposing new models found on the Hugging Face Hub. An AI model picked the family and grid cells for Hub models and wrote short summaries from the model cards; developers, licenses, parameter counts and downloads come from the Hub API, and hosted models come from OpenRouter's catalogue. Review it like any other PR: delete the files for proposals you reject (their repos are remembered in `data/decisions.json`), fix cells, families or summaries where the AI got it wrong (set `summary_source` to `curated` once you've edited a summary, and the job will never overwrite it), and leave `verified: false`.

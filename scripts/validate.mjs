@@ -10,6 +10,7 @@ addFormats(ajv);
 const vModel = ajv.compile(read("schema/model.schema.json"));
 const vFamily = ajv.compile(read("schema/family.schema.json"));
 const vProblem = ajv.compile(read("schema/problem.schema.json"));
+const vLexicon = ajv.compile(read("schema/lexicon.schema.json"));
 
 const errors = [];
 const badSummary = (s) => (/https?:\/\/|www\.|<[^>]+>|\]\(|[`*_]{2}/.test(s) ? "contains a URL or markup" : null);
@@ -54,6 +55,19 @@ for (const { file, data } of problems) {
   if (pids.has(data.id)) err(file, `duplicate id "${data.id}"`);
   pids.add(data.id);
   for (const s of data.steps ?? []) for (const m of s.models ?? []) if (!ids.has(m)) err(file, `step "${s.label}" references unknown model "${m}"`);
+}
+
+// Lexicon: shape, unique action ids, and every action must resolve to a usable input/output.
+const lexicon = read("data/lexicon.json");
+if (!vLexicon(lexicon)) for (const e of vLexicon.errors) err("data/lexicon.json", `${e.instancePath || "/"} ${e.message}`);
+else {
+  const aids = new Set();
+  for (const a of lexicon.actions) {
+    if (aids.has(a.id)) err("data/lexicon.json", `duplicate action id "${a.id}"`);
+    aids.add(a.id);
+    if (!a.steps && !a.out) err("data/lexicon.json", `action "${a.id}" needs "out" or "steps"`);
+    if (!a.steps && !a.in && !a.default_in) err("data/lexicon.json", `action "${a.id}" needs "in" or "default_in"`);
+  }
 }
 
 if (errors.length) { console.error(errors.join("\n")); process.exit(1); }

@@ -1,12 +1,16 @@
 import "./style.css";
-import { INPUTS, detailPanel, pageMeta, parseFocus, renderMap, startCol, type State } from "./render";
+import { ASK_MAX, INPUTS, askHref, detailPanel, pageMeta, parseFocus, renderMap, startCol, type State } from "./render";
 import type { Input } from "./types";
 
 const app = document.getElementById("app")!;
 
-const state: State = { focus: parseFocus(location.pathname), family: null, col: "image" };
+// Old-style ?q= links (and the no-JavaScript form) become a #ask= hash.
+const qParam = new URLSearchParams(location.search).get("q");
+if (qParam && !location.hash) history.replaceState(null, "", askHref(qParam.slice(0, ASK_MAX)));
+const state: State = { focus: parseFocus(location.pathname, location.hash), family: null, col: "image" };
 const prerendered = app.querySelector(".grid") !== null;
-state.col = prerendered ? ((app.querySelector(".grid")!.getAttribute("data-col") as Input) ?? "image") : startCol(state.focus);
+const fromAsk = state.focus?.kind === "ask"; // the prerendered home page knows nothing about a #ask= link
+state.col = prerendered && !fromAsk ? ((app.querySelector(".grid")!.getAttribute("data-col") as Input) ?? "image") : startCol(state.focus);
 
 function render(focusKey?: string) {
   app.innerHTML = renderMap(state);
@@ -18,11 +22,12 @@ function render(focusKey?: string) {
 }
 
 function navigate(href: string, push: boolean) {
-  state.focus = parseFocus(new URL(href, location.href).pathname);
+  const url = new URL(href, location.href);
+  state.focus = parseFocus(url.pathname, url.hash);
   state.family = null;
   state.col = startCol(state.focus);
   if (push) history.pushState(null, "", href);
-  render(state.focus ? ".preset[aria-current]" : "title");
+  render(state.focus?.kind === "problem" ? ".preset[aria-current]" : state.focus?.kind === "ask" ? "#ask-input" : "title");
   if (!state.focus || state.focus.kind === "task") document.getElementById("page-title")?.focus();
 }
 
@@ -68,6 +73,14 @@ function selectFamily(fid: string | null) {
   }
 }
 
+app.addEventListener("submit", (e) => {
+  const form = (e.target as HTMLElement).closest<HTMLFormElement>("form[data-ask]");
+  if (!form) return;
+  e.preventDefault();
+  const q = new FormData(form).get("q")?.toString().trim().slice(0, ASK_MAX) ?? "";
+  navigate(q ? askHref(q) : location.pathname, true);
+});
+
 app.addEventListener("click", (e) => {
   const t = e.target as HTMLElement;
   const nav = t.closest<HTMLAnchorElement>("a[data-nav]");
@@ -99,4 +112,4 @@ app.addEventListener("keydown", (e) => {
 
 window.addEventListener("popstate", () => navigate(location.href, false));
 
-if (!prerendered) render();
+if (!prerendered || fromAsk) render();

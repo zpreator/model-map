@@ -135,3 +135,12 @@ td:not([data-expanded]) .chip[data-extra]:not([aria-pressed="true"]) { display: 
 .axis { font-size: .65rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
 .summary { margin: 4px 0 8px; }
 .summary .tag { margin-left: 4px; }
+
+/* Describe-your-problem box */
+.ask { margin: 0 0 16px; }
+.ask label { display: block; }
+.ask-row { display: flex; gap: 8px; }
+.ask input { flex: 1; min-width: 0; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--fg); font: inherit; }
+.ask button { min-height: 44px; padding: 8px 16px; border: 1px solid var(--fg); border-radius: 8px; background: var(--fg); color: var(--bg); font: inherit; cursor: pointer; }
+.asked { margin: 0 0 8px; padding: 8px 12px; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; overflow-wrap: anywhere; }
+.examples { padding-left: 1.2rem; } .examples a { color: var(--accent); }

@@ -264,7 +264,7 @@ for (const f of families.filter((x) => !x.summary)) {
 let refreshed = 0;
 for (const m of models.filter((x) => x.hf_repo)) {
   try {
-    const hf = await (await hub(`/api/models/${m.hf_repo}?expand[]=downloads&expand[]=likes&expand[]=safetensors`)).json();
+    const hf = await (await hub(`/api/models/${m.hf_repo}?expand[]=downloads&expand[]=likes&expand[]=safetensors&expand[]=createdAt`)).json();
     const patch = { ...(patches.get(m.id) ?? {}), metrics: metricsFrom(hf, now) };
     // Keep machine-made tier estimates current. Hand-curated and verified entries are never touched.
     if (m.source === "auto" && !m.verified) Object.assign(patch, (await computeTier(m, async (p) => (await hub(p)).json(), hf.safetensors?.total)).patch);

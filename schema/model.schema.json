@@ -178,6 +178,14 @@
             "null"
           ],
           "format": "date-time"
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "When the Hub repo was created; used only to favour newer models when suggesting candidates."
         }
       }
     },
