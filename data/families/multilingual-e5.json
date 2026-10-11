@@ -1,6 +1,6 @@
 {
   "id": "multilingual-e5",
   "name": "Multilingual E5",
-  "summary": null,
-  "summary_source": null
+  "summary": "intfloat built multilingual-e5-large, which turns text in 100 languages into numerical representations for retrieval, similarity, and clustering tasks.",
+  "summary_source": "ai"
 }

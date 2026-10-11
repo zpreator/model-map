@@ -1,0 +1,37 @@
+{
+  "id": "moonshine-streaming-small",
+  "name": "moonshine-streaming-small",
+  "family": "moonshine",
+  "developer": "moonshine-ai",
+  "summary": "Moonshine Streaming was built and released by Useful Sensors. It transcribes speech as it arrives, using a lightweight model designed for low-latency use on edge-class hardware.",
+  "summary_source": "ai",
+  "card_hash": "e8874aa1f2de",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "moonshine-ai/moonshine-streaming-small",
+  "links": [
+    {
+      "label": "moonshine-ai/moonshine-streaming-small on Hugging Face",
+      "url": "https://huggingface.co/moonshine-ai/moonshine-streaming-small"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 140M parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 34585,
+    "likes": 15,
+    "fetched_at": "2026-10-11T05:48:06.034Z"
+  }
+}

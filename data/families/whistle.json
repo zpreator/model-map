@@ -1,6 +1,6 @@
 {
   "id": "whistle",
   "name": "Whistle",
-  "summary": null,
-  "summary_source": null
+  "summary": "Built by Cactus-Compute, Whistle transcribes speech on-device and provides word timestamps and speech embeddings. It lets phones and other devices process speech without a GPU or extra runtime.",
+  "summary_source": "ai"
 }

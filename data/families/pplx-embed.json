@@ -1,0 +1,6 @@
+{
+  "id": "pplx-embed",
+  "name": "PPLX Embed",
+  "summary": "Built by Perplexity AI, PPLX Embed turns text into embeddings for search and retrieval. It was created for real-world, web-scale retrieval, including semantic search and finding relevant document chunks for RAG systems.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "gpt-6-luna",
+  "name": "GPT-6 Luna",
+  "family": "closed-llm",
+  "developer": "OpenAI",
+  "summary": "Built by OpenAI, GPT-6 Luna is a hosted language model for chat, classification, and lightweight agent tasks. It is designed for high-volume work where fast responses and lower costs matter.",
+  "summary_source": "ai",
+  "card_hash": "48812ba68f4e",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/openai/gpt-6-luna"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+  "source": "auto",
+  "metrics": null
+}

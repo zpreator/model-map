@@ -1,6 +1,6 @@
 {
   "id": "sentence-transformers",
   "name": "Sentence Transformers",
-  "summary": null,
-  "summary_source": null
+  "summary": "Sentence Transformers is a model family. The supplied text describes one model in the family, built by sentence-transformers, that turns sentences and paragraphs into vectors for comparing meaning, such as in semantic search and clustering.",
+  "summary_source": "ai"
 }

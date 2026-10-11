@@ -3,9 +3,9 @@
   "name": "SAM 2",
   "family": "sam",
   "developer": "facebook",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Built by FAIR at Facebook, SAM 2 segments objects in images and tracks them across video frames using prompts such as clicks or boxes. It was developed to support promptable visual segmentation in images and videos.",
+  "summary_source": "ai",
+  "card_hash": "ea4dbb7b82ca",
   "feeds_into": [],
   "verified": false,
   "notes": "Video support is from the SAM 2 release; verify against the model card. Tier estimated from 224M parameters.",
@@ -13,7 +13,7 @@
   "metrics": {
     "downloads_30d": 265067,
     "likes": 147,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   },
   "cells": [
     {

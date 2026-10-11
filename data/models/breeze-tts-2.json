@@ -3,9 +3,9 @@
   "name": "Breeze-TTS-2",
   "family": "breeze-tts",
   "developer": "BreezeBlue",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "BreezeBlue built Breeze-TTS-2, a text-to-speech model that turns text into spoken audio for real-time interaction. It supports designing or directing voices with natural-language instructions, including without reference audio.",
+  "summary_source": "ai",
+  "card_hash": "9b72825d7606",
   "cells": [
     {
       "input": "text",
@@ -32,6 +32,6 @@
   "metrics": {
     "downloads_30d": 11838,
     "likes": 684,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   }
 }

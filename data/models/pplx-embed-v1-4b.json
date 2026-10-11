@@ -1,0 +1,37 @@
+{
+  "id": "pplx-embed-v1-4b",
+  "name": "pplx-embed-v1-4b",
+  "family": "pplx-embed",
+  "developer": "perplexity-ai",
+  "summary": "Built by Perplexity AI, pplx-embed-v1-4b turns text into embeddings for tasks such as semantic search and web-scale retrieval. It avoids requiring instruction prefixes, reducing the need to choose and maintain them in indexing pipelines.",
+  "summary_source": "ai",
+  "card_hash": "9b650460bb71",
+  "cells": [
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "feature-extraction",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "perplexity-ai/pplx-embed-v1-4b",
+  "links": [
+    {
+      "label": "perplexity-ai/pplx-embed-v1-4b on Hugging Face",
+      "url": "https://huggingface.co/perplexity-ai/pplx-embed-v1-4b"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 4.0B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 30142,
+    "likes": 66,
+    "fetched_at": "2026-10-11T05:48:06.034Z"
+  }
+}

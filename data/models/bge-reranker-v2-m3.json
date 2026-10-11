@@ -3,9 +3,9 @@
   "name": "bge-reranker-v2-m3",
   "family": "bge",
   "developer": "BAAI",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Built by BAAI, bge-reranker-v2-m3 scores how relevant a passage is to a query. It helps rank documents by how well they match a question or search query.",
+  "summary_source": "ai",
+  "card_hash": "ef97dae28429",
   "cells": [
     {
       "input": "text",
@@ -32,6 +32,6 @@
   "metrics": {
     "downloads_30d": 16384212,
     "likes": 1229,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   }
 }

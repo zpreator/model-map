@@ -1,0 +1,6 @@
+{
+  "id": "granite-embedding",
+  "name": "Granite Embedding",
+  "summary": "Built by IBM’s ibm-granite team, Granite Embedding generates vectors representing text so queries and documents can be compared. It is designed to support information retrieval, such as finding relevant passages or documents.",
+  "summary_source": "ai"
+}

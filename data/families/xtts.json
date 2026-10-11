@@ -1,6 +1,6 @@
 {
   "id": "xtts",
   "name": "XTTS",
-  "summary": null,
-  "summary_source": null
+  "summary": "XTTS-v2 was built by Coqui. It converts text into speech and can clone a voice across languages from a short audio clip, reducing the need for hours of training audio to create a voice.",
+  "summary_source": "ai"
 }

@@ -3,9 +3,9 @@
   "name": "Qwen3-8B",
   "family": "open-llm",
   "developer": "Qwen",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Qwen built Qwen3-8B, a text-generation model that can handle dialogue, reasoning, coding, and multilingual tasks. It exists to support both complex thinking and efficient general-purpose responses in one model.",
+  "summary_source": "ai",
+  "card_hash": "a1630ab0f0a0",
   "links": [
     {
       "label": "Qwen/Qwen3-8B on Hugging Face",
@@ -19,7 +19,7 @@
   "metrics": {
     "downloads_30d": 9821408,
     "likes": 2083,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   },
   "cells": [
     {

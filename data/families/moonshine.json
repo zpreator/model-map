@@ -1,0 +1,6 @@
+{
+  "id": "moonshine",
+  "name": "Moonshine",
+  "summary": "Moonshine Streaming was trained and released by Useful Sensors. It converts speech to text as audio arrives, aiming to provide low-latency transcription on edge-class hardware.",
+  "summary_source": "ai"
+}

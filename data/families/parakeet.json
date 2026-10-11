@@ -1,6 +1,6 @@
 {
   "id": "parakeet",
   "name": "Parakeet",
-  "summary": null,
-  "summary_source": null
+  "summary": "Parakeet is a model family built by Moondream for turning audio into text. Its variants aim to make speech recognition more efficient and improve results on noisy or long audio.",
+  "summary_source": "ai"
 }

@@ -1,0 +1,41 @@
+{
+  "id": "muse-spark-1-3-contributor",
+  "name": "Muse Spark 1.3 Contributor",
+  "family": "closed-llm",
+  "developer": "Meta",
+  "summary": "Meta built Muse Spark 1.3 Contributor, a hosted language model designed for experimentation, learning, and early-stage work with agents, multi-agent systems, and coding.",
+  "summary_source": "ai",
+  "card_hash": "c6fba14d5259",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "video",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/meta/muse-spark-1.3-contributor"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+  "source": "auto",
+  "metrics": null
+}

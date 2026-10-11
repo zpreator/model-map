@@ -1,0 +1,6 @@
+{
+  "id": "lev-jepa",
+  "name": "LeV-JEPA",
+  "summary": "LeV-JEPA, developed by galilai-group, is a self-supervised video encoder that extracts image or video features without using labels. It exists to learn useful visual representations from video clips.",
+  "summary_source": "ai"
+}

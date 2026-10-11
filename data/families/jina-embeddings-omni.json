@@ -1,0 +1,6 @@
+{
+  "id": "jina-embeddings-omni",
+  "name": "Jina Embeddings Omni",
+  "summary": "Built by jinaai, Jina Embeddings Omni turns text, images, video, and audio into embeddings in a shared space. It lets users search across different media types without reindexing.",
+  "summary_source": "ai"
+}

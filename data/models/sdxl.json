@@ -3,9 +3,9 @@
   "name": "SDXL",
   "family": "diffusion",
   "developer": "stabilityai",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Built by Stability AI, SDXL generates and modifies images from text prompts. It exists to turn written descriptions into images.",
+  "summary_source": "ai",
+  "card_hash": "8a9ae767cba0",
   "links": [
     {
       "label": "stabilityai/stable-diffusion-xl-base-1.0 on Hugging Face",
@@ -19,7 +19,7 @@
   "metrics": {
     "downloads_30d": 4301092,
     "likes": 8292,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   },
   "cells": [
     {

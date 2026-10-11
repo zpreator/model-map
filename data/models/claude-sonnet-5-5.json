@@ -1,0 +1,37 @@
+{
+  "id": "claude-sonnet-5-5",
+  "name": "Claude Sonnet 5.5",
+  "family": "closed-llm",
+  "developer": "Anthropic",
+  "summary": "Anthropic built Claude Sonnet 5.5, a hosted language model for everyday work, including building features and fixing bugs.",
+  "summary_source": "ai",
+  "card_hash": "c87a649b1a26",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/anthropic/claude-sonnet-5.5"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+  "source": "auto",
+  "metrics": null
+}

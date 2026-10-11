@@ -3,9 +3,9 @@
   "name": "BGE",
   "family": "bge",
   "developer": "BAAI",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "BGE was developed by BAAI. It compares sentence similarity; the supplied text does not explain what problem it was created to solve.",
+  "summary_source": "ai",
+  "card_hash": "835ec0fd6024",
   "links": [
     {
       "label": "BAAI/bge-m3 on Hugging Face",
@@ -21,8 +21,8 @@
   "source": "curated",
   "metrics": {
     "downloads_30d": 33016456,
-    "likes": 3842,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "likes": 3843,
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   },
   "cells": [
     {

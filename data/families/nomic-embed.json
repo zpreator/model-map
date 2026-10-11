@@ -1,6 +1,6 @@
 {
   "id": "nomic-embed",
   "name": "Nomic Embed",
-  "summary": null,
-  "summary_source": null
+  "summary": "Built by nomic-ai, Nomic Embed turns sentences into embeddings to compare their meaning and supports text similarity, organization, and search.",
+  "summary_source": "ai"
 }
