@@ -311,5 +311,341 @@
     "confidence": "high",
     "decided": "2026-10-11",
     "status": "proposed"
+  },
+  "zai-org/GLM-5.3-Flash": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "This is a notable public-weights general-purpose language model, so it belongs in the existing Open LLMs family. The image-text-to-text task and excerpt identify it as multimodal, supporting image and text inputs that produce text.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "moonshotai/Kimi-K3": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "Kimi K3 is presented as a notable open-weight general-purpose model with native image and video understanding, so it belongs to the shared Open LLMs family. Its reported capabilities produce text responses from text, image, and video inputs.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "facebook/opt-125m": {
+    "action": "ignore",
+    "reason": "OPT-125M is a small checkpoint in the OPT language-model series, not a distinct generation or notable current top model for the map. General-purpose open-weight language models are represented by the existing open-llm family.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "TaichuAI/ZDTaichu5.0-9B": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "ZDTaichu5.0 is a general-purpose multimodal model with public weights, accepting text, images, and video and producing responses. Its broad visual and reasoning capabilities make it a member of the open-llm family rather than a separate lineage.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openai/gpt-oss-20b": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "gpt-oss-20b is a notable open-weight, general-purpose language model, so it belongs in the shared Open LLMs family. This checkpoint is a smaller size in the gpt-oss series, not a separate family or generation entry.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openbmb/MiniCPM5-2B": {
+    "action": "ignore",
+    "reason": "MiniCPM5-2B is a general-purpose open-weight text-generation model, but the excerpt describes it as a new size/model in the MiniCPM5 series rather than establishing a distinct generation that merits another map entry. The open-llm family already covers this kind of model, so conservatively treat it as another member within that family rather than a notable addition.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "RadixArk/Kimi-K3-DSpark": {
+    "action": "ignore",
+    "reason": "This is a speculative-decoding draft component for the Kimi K3 target model, intended to accelerate inference rather than serve as a distinct general-purpose language model generation. It is a specialized inference artifact, not a new family or generation for the map.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "deepseek-ai/DeepSeek-V4-Pro": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "DeepSeek-V4-Pro is a notable general-purpose open-weights language model, so it belongs in the shared Open LLMs family rather than a separate DeepSeek family. Its described input and output are text.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "pyannote/speaker-diarization-community-1": {
+    "action": "ignore",
+    "reason": "This is another pyannote speaker-diarization checkpoint in an existing family, not evidence of a new generation or materially different capability. The supplied metadata does not establish a reason to treat it as a distinct lineage.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "Qwen/Qwen3.8-2.4T-A95B": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "This is a newly released, notable Qwen open-weights language model generation, so it belongs in the shared Open LLMs family rather than a separate Qwen family. The supplied description indicates text generation and does not establish image or other modality inputs for this checkpoint.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "Qwen/Qwen2.5-VL-7B-Instruct": {
+    "action": "ignore",
+    "reason": "Qwen2.5-VL is an earlier Qwen multimodal chat model, and the map already includes the newer Qwen3-VL generation in the shared open-llm family. It does not add a distinct input/output capability that warrants another family entry.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "deepseek-ai/DeepSeek-V4-Flash": {
+    "action": "ignore",
+    "reason": "DeepSeek-V4-Flash is another size/variant in the DeepSeek-V4 generation, and DeepSeek-V4.1-Flash is already represented in the open-llm family. The map groups general-purpose open-weight language models at the family level rather than adding closely related checkpoints.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "pyannote/segmentation-3.0": {
+    "action": "ignore",
+    "reason": "This is a pyannote segmentation checkpoint for voice activity detection, a capability already represented by the pyannote family. The supplied metadata does not establish a distinct generation or materially new capability for the map.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "bosonai/higgs-tts-3-4b": {
+    "action": "propose_family",
+    "family": "higgs-tts",
+    "reason": "Higgs TTS is a distinct conversational speech-generation lineage with expressive controls and zero-shot voice cloning. It generates audio from text and can use a voice reference as audio input.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "jonatasgrosman/wav2vec2-large-xlsr-53-portuguese": {
+    "action": "ignore",
+    "reason": "This is a Portuguese fine-tune of the existing wav2vec2-XLSR-53 model, rather than a distinct model generation or lineage. It is a language-specific checkpoint, so learners can select it directly on Hugging Face if needed.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "fishaudio/s2-pro": {
+    "action": "propose_family",
+    "family": "fish-audio-s2",
+    "reason": "Fish Audio S2 Pro is a distinct, notable text-to-speech lineage with inline prosody and emotion controls, rather than a size or packaging variant of an existing listed family. Its stated input and output are text and generated speech audio.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "ibm-granite/granite-embedding-small-english-r2": {
+    "action": "propose_family",
+    "family": "granite-embedding",
+    "reason": "Granite Embedding is a distinct retrieval-embedding lineage, and this R2 model is a text-to-embedding bi-encoder. The small checkpoint is a size variant, so the family should represent the lineage rather than this individual size.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "ai-sage/GigaAM-v3": {
+    "action": "propose_family",
+    "family": "gigaam",
+    "reason": "GigaAM-v3 is a distinct Russian speech-recognition lineage with multiple ASR variants, rather than a generation of Whisper or Qwen3-ASR. Its end-to-end variants produce text from audio.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "deepseek-ai/DeepSeek-V4-Flash-0731": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "This is a notable public-weights general-purpose language model release, so it belongs in the existing Open LLMs family. Its text-generation input and output are text; the README describes enhanced agentic capabilities but no distinct modality.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "ideogram-ai/ideogram-4-fp8": {
+    "action": "ignore",
+    "reason": "This appears to be an FP8-precision packaging of the Ideogram 4 text-to-image model, rather than a distinct generation or capability. The map already represents image generators at the family level, and the supplied metadata gives no evidence of a new lineage.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "ProsusAI/finbert": {
+    "action": "ignore",
+    "reason": "FinBERT is a finance-domain BERT fine-tune for sentiment classification, not a new model generation or materially different family. It is a narrow-domain variant of the existing BERT family.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "m-a-p/MERT-v2-FullSong": {
+    "action": "propose_family",
+    "family": "mert",
+    "reason": "MERT-v2-FullSong is a general-purpose music representation encoder that produces audio features, and no MERT family is on the map. Its full-song context is a distinct model lineage rather than a size or packaging variant of an existing family.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "BAAI/bge-small-zh-v1.5": {
+    "action": "ignore",
+    "reason": "This is the small Chinese-language v1.5 checkpoint of the existing BGE embedding family, a size/language variant rather than a new generation. The family is already represented on the map.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "CohereLabs/cohere-transcribe-03-2026": {
+    "action": "propose_family",
+    "family": "cohere-transcribe",
+    "reason": "This is a distinct speech-recognition model lineage from Cohere, with substantial recent downloads; the metadata provides no basis to treat it as a version of an existing ASR family.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "Systran/faster-whisper-small": {
+    "action": "ignore",
+    "reason": "This repository is a CTranslate2 conversion of OpenAI Whisper small, a packaging/format variant of the existing Whisper family rather than a new generation.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "Qwen/Qwen3-ASR-1.7B-hf": {
+    "action": "ignore",
+    "reason": "This is the Transformers-packaged Qwen3-ASR-1.7B checkpoint, another packaging of the Qwen3-ASR generation already represented by Qwen3-ASR-1.7B. It does not add a new family or capability for the map.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "jonatasgrosman/wav2vec2-large-xlsr-53-russian": {
+    "action": "ignore",
+    "reason": "This is a Russian-language fine-tune of wav2vec2 XLSR-53, so it is a language-specific checkpoint rather than a distinct model generation. The map already has a general-purpose speech recognition family, and this does not establish a materially different capability.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "ibm-granite/granite-embedding-311m-multilingual-r2": {
+    "action": "propose_family",
+    "family": "granite-embedding",
+    "reason": "This is a notable multilingual text-embedding lineage with a new generation and substantial capability changes, including longer context and an architecture upgrade. It is not merely another size or packaging of an existing listed embedding family.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "BAAI/bge-reranker-base": {
+    "action": "ignore",
+    "reason": "This is an earlier BGE reranker, while the BGE family already includes a newer reranker; it does not represent a new generation for the map.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "perplexity-ai/pplx-embed-v1-4b": {
+    "action": "propose_family",
+    "family": "pplx-embed",
+    "reason": "PPLX Embed is a distinct text-embedding lineage for retrieval, with dense and contextual embedding variants. This repo is a checkpoint of that lineage, not merely a size or packaging of an existing mapped family.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openai/gpt-oss-120b": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "GPT-OSS-120B is a prominent open-weight, general-purpose reasoning and agentic language model, so it belongs in the Open LLMs family. It takes text prompts and produces text responses.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "jinaai/jina-embeddings-v5-omni-small": {
+    "action": "propose_family",
+    "family": "jina-embeddings-omni",
+    "reason": "This is a multimodal embedding model that maps text, images, video, and audio into a shared embedding space. It represents a distinct lineage from the existing text-focused embedding families and SigLIP, so it merits a family entry rather than a size-specific checkpoint entry.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "SamLowe/roberta-base-go_emotions": {
+    "action": "ignore",
+    "reason": "This is a RoBERTa-based, narrow-domain fine-tune for emotion classification on the GoEmotions dataset, rather than a distinct model generation. The existing BERT family covers the general encoder lineage, and this task-specific checkpoint is not a separate family entry.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "alibaba-pai/Qwen-Image-2.1-Fun-Controlnet-Union": {
+    "action": "ignore",
+    "reason": "This is a ControlNet/inpainting branch that requires the existing Qwen-Image-2.1 base model, rather than a standalone model generation or distinct family. It is a specialized control variant of the diffusion family already represented on the map.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "google/embeddinggemma-300m": {
+    "action": "ignore",
+    "reason": "This is another size/checkpoint of the existing EmbeddingGemma family, which is already represented by embeddinggemma-2. Learners can choose this checkpoint on Hugging Face.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "QuantFunc/Minimax-H3-Quantfunc-4bit": {
+    "action": "ignore",
+    "reason": "This is a 4-bit quantized packaging of MiniMax-H3, with the underlying video-and-audio generation capabilities unchanged. Quantization alone is not a new family member for the map.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "Qwen/Qwen3-4B-Instruct-2507": {
+    "action": "ignore",
+    "reason": "This is an updated 4B instruction-tuned checkpoint within the Qwen3 generation, which is already represented by Qwen3-8B; the map groups generations rather than individual sizes or checkpoints.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "moonshine-ai/moonshine-streaming-small": {
+    "action": "propose_family",
+    "family": "moonshine",
+    "reason": "Moonshine Streaming is a distinct, notable streaming ASR model lineage, with an architecture and low-latency streaming focus beyond a size or packaging variant of the listed families. Its audio input and recognized text output place it in audio-to-text.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "Qwen/Qwen3.6-35B-A3B": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "Qwen3.6-35B-A3B is a prominent new open-weight multimodal language-model generation, with a vision encoder as well as language-model capabilities. It belongs in the existing Open LLMs family rather than a separate Qwen lineage.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "galilai-group/LeVJEPA-VideoMix-Large": {
+    "action": "propose_family",
+    "family": "lev-jepa",
+    "reason": "This is a self-supervised video encoder that produces clip features, representing a distinct LeV-JEPA lineage rather than a size or fine-tune of an existing mapped family. The excerpt describes video as its intended input; single-image repetition is only a workaround.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openrouter:openai/gpt-6-luna": {
+    "action": "assign",
+    "family": "closed-llm",
+    "reason": "Top closed model by usage.",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openrouter:stepfun/step-5-preview": {
+    "action": "assign",
+    "family": "closed-llm",
+    "reason": "Top closed model by usage.",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openrouter:anthropic/claude-opus-5.5": {
+    "action": "assign",
+    "family": "closed-llm",
+    "reason": "Top closed model by usage.",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openrouter:google/gemini-3.8-flash": {
+    "action": "assign",
+    "family": "closed-llm",
+    "reason": "Top closed model by usage.",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openrouter:meta/muse-spark-1.3-contributor": {
+    "action": "assign",
+    "family": "closed-llm",
+    "reason": "Top closed model by usage.",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openrouter:anthropic/claude-sonnet-5.5": {
+    "action": "assign",
+    "family": "closed-llm",
+    "reason": "Top closed model by usage.",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openrouter:openai/gpt-6.1-sol": {
+    "action": "assign",
+    "family": "closed-llm",
+    "reason": "Top closed model by usage.",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openrouter:openai/gpt-5.6-luna": {
+    "action": "assign",
+    "family": "closed-llm",
+    "reason": "Top closed model by usage.",
+    "decided": "2026-10-11",
+    "status": "proposed"
   }
 }

@@ -1,0 +1,37 @@
+{
+  "id": "qwen3-8-2-4t-a95b",
+  "name": "Qwen3.8-2.4T-A95B",
+  "family": "open-llm",
+  "developer": "Qwen",
+  "summary": "Built by Qwen, Qwen3.8-2.4T-A95B generates text and is designed to handle complex tasks in areas such as coding, research, and professional work.",
+  "summary_source": "ai",
+  "card_hash": "54a88f1cfe14",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "Qwen/Qwen3.8-2.4T-A95B",
+  "links": [
+    {
+      "label": "Qwen/Qwen3.8-2.4T-A95B on Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 2446.2B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 32082,
+    "likes": 1302,
+    "fetched_at": "2026-10-11T05:48:06.034Z"
+  }
+}

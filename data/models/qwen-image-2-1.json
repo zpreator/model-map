@@ -3,9 +3,9 @@
   "name": "Qwen-Image-2.1",
   "family": "diffusion",
   "developer": "Qwen",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Built by Qwen, Qwen-Image-2.1 generates images from text and can also edit images. It exists to support image creation and editing, including transparent images and localized changes.",
+  "summary_source": "ai",
+  "card_hash": "f66eb4114b72",
   "cells": [
     {
       "input": "text",
@@ -36,6 +36,6 @@
   "metrics": {
     "downloads_30d": 128839,
     "likes": 3202,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   }
 }

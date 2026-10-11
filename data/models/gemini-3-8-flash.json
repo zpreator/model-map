@@ -1,0 +1,45 @@
+{
+  "id": "gemini-3-8-flash",
+  "name": "Gemini 3.8 Flash",
+  "family": "closed-llm",
+  "developer": "Google",
+  "summary": "Google built Gemini 3.8 Flash, a hosted language model with a 1,048,576-token context that supports software engineering, agentic tasks, and multi-step reasoning.",
+  "summary_source": "ai",
+  "card_hash": "8f2f84d7cb2f",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "video",
+      "output": "text"
+    },
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/google/gemini-3.8-flash"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+  "source": "auto",
+  "metrics": null
+}

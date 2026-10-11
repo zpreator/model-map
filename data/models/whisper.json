@@ -3,9 +3,9 @@
   "name": "Whisper large-v3",
   "family": "whisper",
   "developer": "openai",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "OpenAI built Whisper large-v3 to recognize speech and translate speech. It exists to handle audio across many languages and domains.",
+  "summary_source": "ai",
+  "card_hash": "06b15ae21eed",
   "links": [
     {
       "label": "openai/whisper-large-v3 on Hugging Face",
@@ -22,7 +22,7 @@
   "metrics": {
     "downloads_30d": 3791795,
     "likes": 6589,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   },
   "cells": [
     {

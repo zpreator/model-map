@@ -1,6 +1,6 @@
 {
   "id": "embeddinggemma",
   "name": "EmbeddingGemma",
-  "summary": null,
-  "summary_source": null
+  "summary": "Google DeepMind built EmbeddingGemma, a model family that turns text, images, video, and audio into vectors representing their meaning. It is designed to support on-device search, retrieval, classification, and clustering.",
+  "summary_source": "ai"
 }

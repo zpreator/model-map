@@ -1,6 +1,6 @@
 {
   "id": "clap",
   "name": "CLAP",
-  "summary": null,
-  "summary_source": null
+  "summary": "LAION built CLAP, a model family that classifies audio and connects audio with text descriptions. It learns useful audio representations from paired audio and text.",
+  "summary_source": "ai"
 }

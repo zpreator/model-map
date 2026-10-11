@@ -1,6 +1,6 @@
 {
   "id": "voxcpm",
   "name": "VoxCPM",
-  "summary": null,
-  "summary_source": null
+  "summary": "OpenBMB built VoxCPM2, a model that converts text into speech in multiple languages and can create or imitate voices.",
+  "summary_source": "ai"
 }

@@ -1,6 +1,6 @@
 {
   "id": "breeze-tts",
   "name": "Breeze TTS",
-  "summary": null,
-  "summary_source": null
+  "summary": "BreezeBlue built Breeze-TTS-2, a text-to-speech model that turns text into spoken audio for real-time interaction. The supplied text does not explain what problem it solves or why it exists.",
+  "summary_source": "ai"
 }

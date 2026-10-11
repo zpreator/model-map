@@ -1,6 +1,6 @@
 {
   "id": "vision-transformer-vit",
   "name": "Vision Transformer (ViT)",
-  "summary": null,
-  "summary_source": null
+  "summary": "ViT is a model family for image classification. Its developer is unknown; the supplied text says base-sized ViT models process images as small patches to provide image representations for classification tasks.",
+  "summary_source": "ai"
 }

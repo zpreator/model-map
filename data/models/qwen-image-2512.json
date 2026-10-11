@@ -3,9 +3,9 @@
   "name": "Qwen-Image-2512",
   "family": "diffusion",
   "developer": "Qwen",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Qwen built Qwen-Image-2512, a text-to-image model that generates images from text prompts. It is an update intended to improve realism, natural detail, and the accuracy of text within images.",
+  "summary_source": "ai",
+  "card_hash": "4b0ccc595078",
   "cells": [
     {
       "input": "text",
@@ -32,6 +32,6 @@
   "metrics": {
     "downloads_30d": 44748,
     "likes": 974,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   }
 }

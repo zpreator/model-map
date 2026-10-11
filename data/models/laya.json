@@ -3,9 +3,9 @@
   "name": "laya",
   "family": "laya",
   "developer": "convaiinnovations",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Built by convaiinnovations, Laya classifies text and answers typed questions with probabilities across more than 100 languages. It is designed to provide decisions without generating text.",
+  "summary_source": "ai",
+  "card_hash": "fc48912ce656",
   "cells": [
     {
       "input": "text",
@@ -31,7 +31,7 @@
   "source": "auto",
   "metrics": {
     "downloads_30d": 42936,
-    "likes": 5472,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "likes": 5473,
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   }
 }

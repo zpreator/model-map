@@ -1,0 +1,37 @@
+{
+  "id": "granite-embedding-small-english-r2",
+  "name": "granite-embedding-small-english-r2",
+  "family": "granite-embedding",
+  "developer": "ibm-granite",
+  "summary": "Built by IBM Granite, this 48M-parameter model turns English text into vectors that can be compared to find relevant passages and documents. It is designed for information retrieval and search.",
+  "summary_source": "ai",
+  "card_hash": "4820d4b06faa",
+  "cells": [
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "feature-extraction",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "ibm-granite/granite-embedding-small-english-r2",
+  "links": [
+    {
+      "label": "ibm-granite/granite-embedding-small-english-r2 on Hugging Face",
+      "url": "https://huggingface.co/ibm-granite/granite-embedding-small-english-r2"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 48M parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 5141679,
+    "likes": 86,
+    "fetched_at": "2026-10-11T05:48:06.034Z"
+  }
+}

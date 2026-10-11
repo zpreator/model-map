@@ -1,6 +1,6 @@
 {
   "id": "laya",
   "name": "Laya",
-  "summary": null,
-  "summary_source": null
+  "summary": "Laya was built by convaiinnovations. It classifies text and answers typed questions with probabilities in more than 100 languages, providing decisions without generating text.",
+  "summary_source": "ai"
 }

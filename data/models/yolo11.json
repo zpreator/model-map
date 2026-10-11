@@ -3,9 +3,9 @@
   "name": "YOLO11",
   "family": "yolo",
   "developer": "Ultralytics",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Built by Ultralytics, YOLO11 detects objects in images. The supplied text does not say what problem it was created to solve.",
+  "summary_source": "ai",
+  "card_hash": "44a3da19926f",
   "feeds_into": [
     "sam3"
   ],
@@ -15,7 +15,7 @@
   "metrics": {
     "downloads_30d": 23916,
     "likes": 207,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   },
   "cells": [
     {

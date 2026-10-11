@@ -3,9 +3,9 @@
   "name": "Ornith-1.5-35B-A3B",
   "family": "open-llm",
   "developer": "ornith-ai",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Built by ornith-ai, Ornith-1.5-35B-A3B is a text-generation model designed to generate training tasks, discover ways to solve them, and improve through reinforcement learning. It aims to reduce reliance on fixed human-curated tasks and manually designed harnesses.",
+  "summary_source": "ai",
+  "card_hash": "cf6fc51b77c2",
   "cells": [
     {
       "input": "text",
@@ -32,6 +32,6 @@
   "metrics": {
     "downloads_30d": 260353,
     "likes": 716,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   }
 }

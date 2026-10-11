@@ -1,0 +1,6 @@
+{
+  "id": "fish-audio-s2",
+  "name": "Fish Audio S2",
+  "summary": "Built by fishaudio, Fish Audio S2 is a text-to-speech model that generates speech with fine-grained control over prosody and emotion. It exists to make it possible to guide how specific words or phrases are spoken using inline instructions.",
+  "summary_source": "ai"
+}

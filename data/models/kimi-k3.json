@@ -1,0 +1,45 @@
+{
+  "id": "kimi-k3",
+  "name": "Kimi-K3",
+  "family": "open-llm",
+  "developer": "moonshotai",
+  "summary": "Built by moonshotai, Kimi-K3 is a 2.8-trillion-parameter multimodal model that works with text, images, and video. It is designed for tasks such as coding, reasoning, and knowledge work, including long projects with minimal human oversight.",
+  "summary_source": "ai",
+  "card_hash": "70aca36db4f8",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "video",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "moonshotai/Kimi-K3",
+  "links": [
+    {
+      "label": "moonshotai/Kimi-K3 on Hugging Face",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 2779.9B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 1160630,
+    "likes": 11656,
+    "fetched_at": "2026-10-11T05:48:06.034Z"
+  }
+}

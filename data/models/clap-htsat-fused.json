@@ -3,9 +3,9 @@
   "name": "clap-htsat-fused",
   "family": "clap",
   "developer": "laion",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "LAION built CLAP, a model that classifies audio and connects audio with text descriptions. It was developed to learn useful audio representations from paired audio and text.",
+  "summary_source": "ai",
+  "card_hash": "32f8409edfb2",
   "cells": [
     {
       "input": "audio",
@@ -36,6 +36,6 @@
   "metrics": {
     "downloads_30d": 8185193,
     "likes": 151,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   }
 }

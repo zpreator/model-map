@@ -1,6 +1,6 @@
 {
   "id": "qwen3-asr",
   "name": "Qwen3-ASR",
-  "summary": null,
-  "summary_source": null
+  "summary": "Built by Qwen, Qwen3-ASR is a model family for identifying languages and transcribing speech in 52 languages and dialects. It converts speech to text, including in challenging acoustic environments.",
+  "summary_source": "ai"
 }

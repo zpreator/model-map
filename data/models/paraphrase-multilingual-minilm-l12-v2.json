@@ -3,9 +3,9 @@
   "name": "paraphrase-multilingual-MiniLM-L12-v2",
   "family": "sentence-transformers",
   "developer": "sentence-transformers",
-  "summary": null,
-  "summary_source": null,
-  "card_hash": null,
+  "summary": "Built by sentence-transformers, this model maps sentences and paragraphs into 384-dimensional vectors for comparing their meaning, with uses such as clustering and semantic search.",
+  "summary_source": "ai",
+  "card_hash": "33b6c6b73008",
   "cells": [
     {
       "input": "text",
@@ -32,6 +32,6 @@
   "metrics": {
     "downloads_30d": 48797791,
     "likes": 1426,
-    "fetched_at": "2026-10-11T05:07:36.156Z"
+    "fetched_at": "2026-10-11T05:48:06.034Z"
   }
 }
