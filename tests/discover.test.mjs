@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { draftClosedModel, orBaseId, orCells, orSplitName, parseRankings, pickClosed, sanitizeCard, validSummary, cardHash, draftModel, estimateTier, isDerived, keepCandidate, normalizeDecision, slugify, cardExcerpt } from "../tools/lib/discover-core.mjs";
+import { autoNote, draftClosedModel, stemKey, weightBytes, orBaseId, orCells, orSplitName, parseRankings, pickClosed, sanitizeCard, validSummary, cardHash, draftModel, estimateTier, isDerived, keepCandidate, normalizeDecision, slugify, cardExcerpt } from "../tools/lib/discover-core.mjs";
 import { readFileSync } from "node:fs";
 
 const cfg = JSON.parse(readFileSync(new URL("../tools/discover.config.json", import.meta.url)));
@@ -19,9 +19,23 @@ assert.equal(keepCandidate(m({ downloads: 20000 }), "rising", cfg, seen, now), t
 assert.equal(keepCandidate(m({ downloads: 0 }), "rising", cfg, seen, now), false); // spam guard
 
 assert.equal(estimateTier(null), null);
-assert.equal(estimateTier(1.2e8), "cpu_edge");
-assert.equal(estimateTier(8.2e9), "gpu_24gb");
-assert.equal(estimateTier(7.5e11), "datacenter");
+assert.equal(estimateTier(2.4e8), "cpu_edge");
+assert.equal(estimateTier(2.3e9), "cpu_edge"); // a 570M-parameter fp32 reranker still runs fine on CPU
+assert.equal(estimateTier(6e9), "gpu_8gb");
+assert.equal(estimateTier(13.8e9), "gpu_24gb"); // gpt-oss-20b: 21B params but ~14 GB on disk
+assert.equal(estimateTier(16.4e9), "gpu_24gb"); // an 8B model in bf16
+assert.equal(estimateTier(1.19e11), "datacenter");
+const files = [{ type: "file", path: "a.safetensors", size: 5 }, { type: "file", path: "b.safetensors", lfs: { size: 7 }, size: 1 }, { type: "file", path: "c.bin", size: 99 }, { type: "directory", path: "d" }];
+assert.deepEqual(weightBytes(files, 1000), { bytes: 12, basis: "files" });
+assert.deepEqual(weightBytes([], 1000), { bytes: 2000, basis: "params" }); // diffusers-style repos fall back to 16-bit params
+assert.deepEqual(weightBytes([], null), { bytes: null, basis: null });
+assert.match(autoNote({ bytes: 13.8e9, basis: "files" }), /13\.8 GB of weight files/);
+assert.equal(stemKey("openai/gpt-oss-20b"), stemKey("openai/gpt-oss-120b"));
+assert.equal(stemKey("deepseek-ai/DeepSeek-V4-Flash"), stemKey("deepseek-ai/DeepSeek-V4-Flash-0731"));
+assert.equal(stemKey("Qwen/Qwen3-VL-8B-Instruct"), stemKey("Qwen/Qwen3-VL-4B-Instruct"));
+assert.notEqual(stemKey("deepseek-ai/DeepSeek-V4-Pro"), stemKey("deepseek-ai/DeepSeek-V4-Flash"));
+assert.notEqual(stemKey("Qwen/Qwen3.6-35B-A3B"), stemKey("Qwen/Qwen3.8-27B"));
+assert.notEqual(stemKey("openai/gpt-oss-20b"), stemKey("other/gpt-oss-20b")); // different org
 assert.equal(slugify("Qwen3-VL_8B Instruct"), "qwen3-vl-8b-instruct");
 assert.equal(cardExcerpt("---\nlicense: mit\n---\nHello world", 5), "Hello");
 
@@ -37,7 +51,7 @@ assert.equal(np.family_id, "moonshine-asr");
 assert.equal(normalizeDecision({ action: "propose_family", new_family_name: "Whisper", cells: cell }, fams, IN, OUT).action, "assign"); // collides with existing
 
 const d = draftModel({ hf: { id: "openai/whisper-x", pipeline_tag: "automatic-speech-recognition", tags: ["license:apache-2.0"], safetensors: { total: 8e8 }, downloads: 5, likes: 2 },
-  familyId: "whisper", cells: cell, taskIds: new Set(["automatic-speech-recognition"]), now });
+  weight: { bytes: 1.6e9, basis: "files" }, familyId: "whisper", cells: cell, taskIds: new Set(["automatic-speech-recognition"]), now });
 assert.deepEqual([d.id, d.verified, d.source, d.license, d.tiers, d.hf_task], ["whisper-x", false, "auto", "apache-2.0", ["cpu_edge"], "automatic-speech-recognition"]);
 assert.equal(draftModel({ hf: { id: "a/b", tags: ["license:other"] }, familyId: "sam", cells: cell, taskIds: new Set(), now }).license, null);
 

@@ -19,13 +19,48 @@ export function keepCandidate(m, kind, cfg, seen, now = new Date()) {
   return dl >= cfg.rising_min_downloads && ageDays(m.createdAt, now) <= cfg.rising_max_age_days;
 }
 
-/** Rough tier from parameter count at ~2 bytes/param (16-bit weights). Mirrors the methodology page. */
-export function estimateTier(params) {
-  if (!params) return null;
-  if (params <= 1e9) return "cpu_edge";
-  if (params <= 4e9) return "gpu_8gb";
-  if (params <= 12e9) return "gpu_24gb";
+/**
+ * Rough tier from the size of the weight files on disk. Using real file sizes (not parameter count x 2) keeps
+ * quantized releases honest: gpt-oss-20b has 21B parameters but ships as ~14 GB. All weights must be resident, so
+ * mixture-of-experts models are judged by total size, not active parameters. Thresholds leave headroom for activations.
+ */
+export function estimateTier(bytes) {
+  if (!bytes) return null;
+  if (bytes <= 3e9) return "cpu_edge";
+  if (bytes <= 6.5e9) return "gpu_8gb";
+  if (bytes <= 20e9) return "gpu_24gb";
   return "datacenter";
+}
+
+export const fmtBytes = (b) => (!b ? "unknown" : b >= 1e9 ? `${(b / 1e9).toFixed(1)} GB` : `${Math.round(b / 1e6)} MB`);
+
+/**
+ * Weight size in bytes from a Hub file listing (top-level .safetensors files); falls back to 16-bit parameters
+ * when the repo keeps its weights in subfolders (diffusers layouts) or has none.
+ */
+export function weightBytes(treeFiles, params) {
+  const sum = (treeFiles ?? []).filter((x) => x.type === "file" && x.path.endsWith(".safetensors")).reduce((a, x) => a + (x.lfs?.size ?? x.size ?? 0), 0);
+  if (sum > 0) return { bytes: sum, basis: "files" };
+  return params ? { bytes: params * 2, basis: "params" } : { bytes: null, basis: null };
+}
+
+export const autoNote = ({ bytes, basis }) =>
+  `Auto-proposed by the weekly discovery job; unreviewed. ${bytes
+    ? `Tier estimated from ${fmtBytes(bytes)} of ${basis === "files" ? "weight files" : "weights (parameters x 2 bytes)"}.`
+    : "Tier unknown: no weight size available."}`;
+
+/**
+ * Key for "same model, different size or release date": org plus the name with sizes, dates and packaging words
+ * removed (gpt-oss-20b and gpt-oss-120b collapse; DeepSeek-V4-Pro and DeepSeek-V4-Flash do not).
+ */
+export function stemKey(repo) {
+  const [org, ...rest] = repo.split("/");
+  const name = rest.join("/").toLowerCase();
+  const SIZEISH = /(^|[-_.])(\d+(\.\d+)?[kmbt]|a\d+(\.\d+)?[kmbt]|tiny|mini|nano|small|base|medium|large|xl|xxl|\d{4}|\d{6}|instruct|chat|it|fp\d+|bf16|int\d+|awq|gptq|gguf)(?=$|[-_.])/g;
+  let stem = name;
+  for (let prev; prev !== stem; ) { prev = stem; stem = stem.replace(SIZEISH, "$1"); }
+  stem = stem.replace(/[-_.]{2,}/g, "-").replace(/^[-_.]+|[-_.]+$/g, "");
+  return `${org.toLowerCase()}/${stem || name}`;
 }
 
 export const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -48,14 +83,11 @@ export function cardExcerpt(readme, max) {
  * (family, cells); every fact (license, params, tier estimate, task) comes from the Hub API, and the entry
  * is always unverified.
  */
-export function draftModel({ hf, familyId, cells, taskIds, now = new Date() }) {
+export function draftModel({ hf, familyId, cells, taskIds, weight, now = new Date() }) {
   const repo = hf.id;
-  const params = hf.safetensors?.total ?? null;
-  const tier = estimateTier(params);
-  const notes = [
-    "Auto-proposed by the weekly discovery job; unreviewed.",
-    tier ? `Tier estimated from ${fmtParams(params)} parameters.` : "Tier unknown: the Hub reports no parameter count.",
-  ].join(" ");
+  const w = weight ?? weightBytes([], hf.safetensors?.total ?? null);
+  const tier = estimateTier(w.bytes);
+  const notes = autoNote(w);
   return {
     id: slugify(repo.split("/")[1]),
     name: repo.split("/")[1],

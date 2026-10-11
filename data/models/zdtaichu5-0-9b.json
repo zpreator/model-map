@@ -35,7 +35,7 @@
   ],
   "feeds_into": [],
   "verified": false,
-  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 9.8B parameters.",
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 19.6 GB of weight files.",
   "source": "auto",
   "metrics": {
     "downloads_30d": 13248,

@@ -16,8 +16,8 @@ import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
 import {
-  cardHash, developerFromRepo, draftClosedModel, draftModel, fmtParams, keepCandidate, metricsFrom, normalizeDecision,
-  orBaseId, parseRankings, pickClosed, sanitizeCard, slugify, validSummary,
+  autoNote, cardHash, developerFromRepo, draftClosedModel, draftModel, estimateTier, fmtParams, keepCandidate, metricsFrom, normalizeDecision,
+  orBaseId, parseRankings, pickClosed, sanitizeCard, slugify, stemKey, validSummary, weightBytes,
 } from "./lib/discover-core.mjs";
 
 const args = new Set(process.argv.slice(2).filter((a) => !a.includes("=")));
@@ -49,6 +49,11 @@ async function listTask(task, sort) {
   FIELDS.forEach((f) => q.append("expand[]", f));
   return (await hub(`/api/models?${q}`)).json();
 }
+const weightOf = async (repo, params) => {
+  let files = [];
+  try { files = await (await hub(`/api/models/${repo}/tree/main`)).json(); } catch { /* fall back to parameters */ }
+  return weightBytes(files, params ?? null);
+};
 const readCard = async (repo) => {
   try { return sanitizeCard(await (await hub(`/${repo}/raw/main/README.md`)).text(), cfg.summary_input_chars); } catch { return ""; }
 };
@@ -67,6 +72,15 @@ for (const task of cfg.tasks) {
       if (!prev || score > prev.score) candidates.set(m.id, { hf: m, kind, score });
     }
   }
+}
+// Collapse sizes/dates of one release: skip anything that shares a stem with a model already decided on, and keep
+// only the most downloaded of the remaining candidates that share a stem with each other.
+const knownStems = new Set([...models.map((m) => m.hf_repo).filter(Boolean), ...Object.keys(decisions).filter((k) => !k.startsWith("openrouter:"))].map(stemKey));
+const bestByStem = new Map();
+for (const c of [...candidates.values()].sort((a, b) => b.score - a.score)) {
+  const key = stemKey(c.hf.id);
+  if (knownStems.has(key) || bestByStem.has(key)) { candidates.delete(c.hf.id); continue; }
+  bestByStem.set(key, c.hf.id);
 }
 // Interleave so "rising" models are not crowded out by high-download incumbents.
 const byKind = (k) => [...candidates.values()].filter((c) => c.kind === k).sort((a, b) => b.score - a.score);
@@ -145,7 +159,7 @@ const CLASSIFY = `You help maintain "Model Map", an educational map of the ML mo
 For each Hugging Face repo you are given, decide:
 - assign: it is a NEW GENERATION or materially different member of an existing family (e.g. a successor version with new capabilities, or a new input/output type).
 - propose_family: it is a distinct, notable model lineage with no existing family. Name the lineage, not the checkpoint (e.g. "Moonshine", not "moonshine-tiny-v2").
-- ignore: it is merely another size, precision, language or packaging of something already on the map; a narrow-domain fine-tune; a test or demo artifact; a near-duplicate; or too obscure to help a learner. The map shows one entry per generation, not one per size: learners pick a size later on Hugging Face.
+- ignore: it is merely another size, precision, language or packaging of something already on the map; a narrow-domain fine-tune; a test or demo artifact; a near-duplicate; or too obscure to help a learner. The map shows ONE entry per generation, not one per size or release date: learners pick a size later on Hugging Face. Example: if gpt-oss-120b is on the map, gpt-oss-20b is a size variant and must be ignored; if DeepSeek-V4-Flash is on the map, DeepSeek-V4-Flash-0731 is a re-release and must be ignored. A different tier of the same generation (Pro vs Flash) or a new generation (V4 -> V4.1) is a different entry.
 
 Special case: all general-purpose language models with public weights, including multimodal chat models that also read images or video, belong to the single family "open-llm" (Open LLMs). Assign them there when they are a notable current top model; do not create one family per lab.
 
@@ -200,7 +214,7 @@ for (const { hf, decision: d } of results) {
     newFamilies.push({ id: familyId, name: d.new_family_name, summary });
     newFiles.set(`data/families/${familyId}.json`, { id: familyId, name: d.new_family_name, summary, summary_source: summary ? "ai" : null });
   }
-  const entry = draftModel({ hf, familyId, cells: d.cells, taskIds, now });
+  const entry = draftModel({ hf, familyId, cells: d.cells, taskIds, weight: await weightOf(hf.id, hf.safetensors?.total), now });
   entry.id = uniqueId(entry.id, hf.id.split("/")[0]);
   const summary = await summarize({ name: entry.name, developer: entry.developer, task: hf.pipeline_tag, size: fmtParams(hf.safetensors?.total) }, card);
   if (summary) Object.assign(entry, { summary, summary_source: "ai", card_hash: cardHash(card) });
@@ -248,8 +262,16 @@ for (const f of families.filter((x) => !x.summary)) {
 let refreshed = 0;
 for (const m of models.filter((x) => x.hf_repo)) {
   try {
-    const hf = await (await hub(`/api/models/${m.hf_repo}?expand[]=downloads&expand[]=likes`)).json();
-    patches.set(m.id, { ...(patches.get(m.id) ?? {}), metrics: metricsFrom(hf, now) });
+    const hf = await (await hub(`/api/models/${m.hf_repo}?expand[]=downloads&expand[]=likes&expand[]=safetensors`)).json();
+    const patch = { ...(patches.get(m.id) ?? {}), metrics: metricsFrom(hf, now) };
+    // Keep machine-made tier estimates current. Hand-curated and verified entries are never touched.
+    if (m.source === "auto" && !m.verified) {
+      const w = await weightOf(m.hf_repo, hf.safetensors?.total);
+      const tier = estimateTier(w.bytes);
+      patch.tiers = tier ? [tier] : m.tiers;
+      if (m.notes?.startsWith("Auto-proposed")) patch.notes = autoNote(w);
+    }
+    patches.set(m.id, patch);
     refreshed++;
   } catch (e) { console.warn(`metrics skipped for ${m.hf_repo}: ${e.message}`); }
 }

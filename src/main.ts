@@ -37,15 +37,35 @@ function setTab(col: Input, focus: boolean) {
   });
 }
 
+/**
+ * Keep each cell's "Show N more" control in step with what is visible: overflow chips stay hidden unless the cell is
+ * expanded or the chip is the selected family, and the count only includes chips that are still hidden.
+ */
+function refreshMore(td: HTMLElement) {
+  const btn = td.querySelector<HTMLButtonElement>("[data-more]");
+  if (!btn) return;
+  const expanded = td.hasAttribute("data-expanded");
+  const hidden = [...td.querySelectorAll<HTMLElement>("[data-extra]")].filter((c) => c.getAttribute("aria-pressed") !== "true").length;
+  btn.setAttribute("aria-expanded", String(expanded));
+  btn.textContent = expanded ? "Show fewer" : `Show ${hidden} more`;
+  btn.hidden = !expanded && hidden === 0;
+}
+
 /** Select/deselect a family without rebuilding the grid, so keyboard focus is kept. */
 function selectFamily(fid: string | null) {
   state.family = fid;
   document.getElementById("detail")!.innerHTML = detailPanel(fid);
+  const active = document.activeElement as HTMLElement | null;
   app.querySelectorAll<HTMLElement>(".chip").forEach((c) => {
     const f = c.dataset.family!;
     c.setAttribute("aria-pressed", String(f === fid));
     if (!state.focus) c.dataset.dim = String(fid ? f !== fid : false);
   });
+  app.querySelectorAll<HTMLElement>("td").forEach(refreshMore);
+  // A chip that was revealed by selection and just re-hid must not take keyboard focus with it.
+  if (active && active.classList.contains("chip") && active.dataset.extra && active.offsetParent === null) {
+    active.closest("td")?.querySelector<HTMLElement>("[data-more]")?.focus();
+  }
 }
 
 app.addEventListener("click", (e) => {
@@ -58,10 +78,9 @@ app.addEventListener("click", (e) => {
   }
   const more = t.closest<HTMLElement>("[data-more]");
   if (more) {
-    const td = more.closest("td")!;
-    const open = td.toggleAttribute("data-expanded");
-    more.setAttribute("aria-expanded", String(open));
-    more.textContent = open ? "Show fewer" : `Show ${td.querySelectorAll("[data-extra]").length} more`;
+    const td = more.closest<HTMLElement>("td")!;
+    td.toggleAttribute("data-expanded");
+    refreshMore(td);
     return;
   }
   const chip = t.closest<HTMLElement>(".chip, .cand");
