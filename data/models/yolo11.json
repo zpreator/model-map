@@ -10,7 +10,7 @@
     "sam3"
   ],
   "verified": false,
-  "notes": "License shown is the Ultralytics repo's; other YOLO implementations differ. Tier unknown: the Hub reports no parameter count.",
+  "notes": "License shown is the Ultralytics repo's; other YOLO implementations differ. Tier estimated from the largest checkpoint in the repo (about 120 MB); the repo holds several sizes, n through x.",
   "source": "curated",
   "metrics": {
     "downloads_30d": 23916,
@@ -28,7 +28,9 @@
     }
   ],
   "hf_task": "object-detection",
-  "tiers": [],
+  "tiers": [
+    "cpu_edge"
+  ],
   "license": "agpl-3.0",
   "open_weights": true,
   "hf_repo": "Ultralytics/YOLO11",

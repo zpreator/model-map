@@ -19,7 +19,7 @@
     "gemini-3-8-flash"
   ],
   "verified": false,
-  "notes": "Tier unknown: the Hub reports no parameter count for bge-m3.",
+  "notes": "Tier estimated from the 2.3 GB PyTorch checkpoint in the BAAI/bge-m3 repo (not safetensors).",
   "source": "curated",
   "metrics": {
     "downloads_30d": 33016456,
@@ -33,7 +33,9 @@
     }
   ],
   "hf_task": "sentence-similarity",
-  "tiers": [],
+  "tiers": [
+    "cpu_edge"
+  ],
   "license": "mit",
   "open_weights": true,
   "hf_repo": "BAAI/bge-m3"

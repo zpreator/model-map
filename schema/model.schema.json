@@ -222,6 +222,13 @@
         "null"
       ],
       "description": "Hash of the sanitized card text the summary was made from; the job regenerates the summary only when it changes."
+    },
+    "tier_note": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Why the tier is unknown, when it is. Null otherwise."
     }
   }
 }

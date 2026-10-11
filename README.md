@@ -53,7 +53,7 @@ For each step of a problem, take the lightest tier among its candidates; the ove
 4. writes a 1-2 sentence summary for each new entry (and for older entries that lack one) from sanitized card text, marked `summary_source: "ai"`,
 5. opens a pull request for a person to review. Everything proposed is `verified: false`.
 
-Developers, licenses, parameter counts, downloads and modalities come from the APIs, never from the model.
+Developers, licenses, parameter counts, downloads and modalities come from the APIs, never from the model. Tier estimates come from the size of the weight files (safetensors; otherwise .bin/.pt/.onnx, taking the largest checkpoint), and an unknown tier records why in `tier_note`. `node tools/retier.mjs` recomputes them for machine-added, unverified entries (add `--ids=a,b` to include hand-curated ones).
 
 Setup: add a repository secret `OPENAI_API_KEY` (and optionally `HF_TOKEN`), and enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull requests*. Run it by hand from the Actions tab; tick **backfill** to summarize every existing entry in one go (otherwise at most 40 per run). Try it locally without a key: `node tools/discover.mjs --no-llm` lists candidates, and `DISCOVER_FAKE_LLM=1 node tools/discover.mjs --dry-run` exercises the pipeline with canned answers. `--dry-run` with a key runs the real model steps and writes nothing. The model defaults to `gpt-6-luna`; override with `DISCOVER_MODEL`.
 

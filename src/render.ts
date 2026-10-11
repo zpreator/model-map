@@ -190,7 +190,7 @@ export function detailPanel(fid: string | null): string {
       <dl>
         ${m.developer ? `<dt>Developer</dt><dd>${esc(m.developer)}</dd>` : ""}
         <dt>Takes → gives</dt><dd>${m.cells.map((c) => `${inLabel.get(c.input)} → ${outLabel.get(c.output)}`).join("; ")}</dd>
-        <dt>Tier</dt><dd>${m.tiers.length ? m.tiers.map((t) => tierMeta.get(t)!.label).join(", ") : "unknown"}</dd>
+        <dt>Tier</dt><dd>${m.tiers.length ? m.tiers.map((t) => tierMeta.get(t)!.label).join(", ") : `unknown${m.tier_note ? `. ${esc(m.tier_note)}` : ""}`}</dd>
         <dt>License</dt><dd>${m.license ? esc(m.license) : "unknown"}${m.open_weights === false ? " (closed)" : m.open_weights ? " (open weights)" : ""}</dd>
         ${m.hf_task ? `<dt>Hub task</dt><dd>${taskById.has(m.hf_task) ? `<a href="${focusHref({ kind: "task", id: m.hf_task })}" data-nav>${esc(m.hf_task)}</a>` : esc(m.hf_task)}</dd>` : ""}
         ${m.links.length ? `<dt>Links</dt><dd>${m.links.map((l) => `<a href="${esc(l.url)}" rel="noopener">${esc(l.label)}</a>`).join(", ")}</dd>` : ""}

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { autoNote, draftClosedModel, stemKey, weightBytes, orBaseId, orCells, orSplitName, parseRankings, pickClosed, sanitizeCard, validSummary, cardHash, draftModel, estimateTier, isDerived, keepCandidate, normalizeDecision, slugify, cardExcerpt } from "../tools/lib/discover-core.mjs";
+import { unknownReason, autoNote, draftClosedModel, stemKey, weightBytes, orBaseId, orCells, orSplitName, parseRankings, pickClosed, sanitizeCard, validSummary, cardHash, draftModel, estimateTier, isDerived, keepCandidate, normalizeDecision, slugify, cardExcerpt } from "../tools/lib/discover-core.mjs";
 import { readFileSync } from "node:fs";
 
 const cfg = JSON.parse(readFileSync(new URL("../tools/discover.config.json", import.meta.url)));
@@ -29,6 +29,16 @@ const files = [{ type: "file", path: "a.safetensors", size: 5 }, { type: "file",
 assert.deepEqual(weightBytes(files, 1000), { bytes: 12, basis: "files" });
 assert.deepEqual(weightBytes([], 1000), { bytes: 2000, basis: "params" }); // diffusers-style repos fall back to 16-bit params
 assert.deepEqual(weightBytes([], null), { bytes: null, basis: null });
+// non-safetensors weights
+const F = (path, size) => ({ type: "file", path, size });
+assert.deepEqual(weightBytes([F("yolo11n.pt", 5.6e6), F("yolo11x.pt", 114.6e6), F("yolo11m.pt", 40e6)], null), { bytes: 114.6e6, basis: "files" }); // alternatives: largest
+assert.deepEqual(weightBytes([F("pytorch_model-00001-of-00002.bin", 5e9), F("pytorch_model-00002-of-00002.bin", 3e9)], null), { bytes: 8e9, basis: "files" }); // shards: sum
+assert.deepEqual(weightBytes([F("model.bin", 2.27e9), F("training_args.bin", 3e3), F("optimizer.pt", 9e9)], null), { bytes: 2.27e9, basis: "files" }); // training leftovers ignored
+assert.deepEqual(weightBytes([F("a.safetensors", 3e9), F("a.bin", 3e9)], null), { bytes: 3e9, basis: "files" }); // safetensors wins, no double count
+assert.deepEqual(weightBytes([F("tiny.pt", 5e5)], 100), { bytes: 200, basis: "params" }); // too small to trust: fall back
+assert.match(unknownReason([F("m.cact", 4e7), F("README.md", 10)]), /\.cact format/);
+assert.match(unknownReason([]), /not available/);
+assert.match(unknownReason([F("README.md", 10)]), /No weight files/);
 assert.match(autoNote({ bytes: 13.8e9, basis: "files" }), /13\.8 GB of weight files/);
 assert.equal(stemKey("openai/gpt-oss-20b"), stemKey("openai/gpt-oss-120b"));
 assert.equal(stemKey("deepseek-ai/DeepSeek-V4-Flash"), stemKey("deepseek-ai/DeepSeek-V4-Flash-0731"));

@@ -35,5 +35,6 @@
     "downloads_30d": 12816,
     "likes": 318,
     "fetched_at": "2026-10-11T05:48:06.034Z"
-  }
+  },
+  "tier_note": "Weights are in .cact format, which can't be sized reliably."
 }

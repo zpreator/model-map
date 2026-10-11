@@ -33,5 +33,6 @@
   "tiers": [],
   "license": "mit",
   "open_weights": true,
-  "hf_repo": "pyannote/speaker-diarization-3.1"
+  "hf_repo": "pyannote/speaker-diarization-3.1",
+  "tier_note": "The repo holds pipeline configuration, not weights, so there is nothing to size."
 }

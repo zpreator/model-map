@@ -34,19 +34,43 @@ export function estimateTier(bytes) {
 
 export const fmtBytes = (b) => (!b ? "unknown" : b >= 1e9 ? `${(b / 1e9).toFixed(1)} GB` : `${Math.round(b / 1e6)} MB`);
 
+const NOT_WEIGHTS = /(training_args|optimizer|scheduler|rng_state|tokenizer|vocab|merges|trainer_state)/i;
+const SHARD = /-\d{3,5}-of-\d{3,5}/;
+const ALT_FORMATS = [".bin", ".pt", ".pth", ".ckpt", ".onnx"]; // measurable, but several files may be alternatives
+const UNSIZEABLE = [".cact", ".gguf", ".tflite", ".mlmodel", ".mlpackage", ".h5", ".msgpack", ".pkl", ".npz"];
+const sizeOf = (x) => x.lfs?.size ?? x.size ?? 0;
+const topFiles = (t) => (t ?? []).filter((x) => x.type === "file");
+
 /**
- * Weight size in bytes from a Hub file listing (top-level .safetensors files); falls back to 16-bit parameters
- * when the repo keeps its weights in subfolders (diffusers layouts) or has none.
+ * Weight size in bytes from a Hub file listing.
+ *  1. top-level .safetensors files, summed (they are shards of one checkpoint);
+ *  2. otherwise .bin/.pt/.pth/.ckpt/.onnx: shards ("-00001-of-00004") are summed, but unsharded files are usually
+ *     alternative checkpoints (YOLO n/s/m/l/x), so the largest single file stands for the biggest variant;
+ *  3. otherwise 16-bit parameters (diffusers-style repos keep weights in subfolders).
  */
 export function weightBytes(treeFiles, params) {
-  const sum = (treeFiles ?? []).filter((x) => x.type === "file" && x.path.endsWith(".safetensors")).reduce((a, x) => a + (x.lfs?.size ?? x.size ?? 0), 0);
-  if (sum > 0) return { bytes: sum, basis: "files" };
+  const files = topFiles(treeFiles);
+  const st = files.filter((x) => x.path.endsWith(".safetensors")).reduce((a, x) => a + sizeOf(x), 0);
+  if (st > 0) return { bytes: st, basis: "files" };
+  const cands = files.filter((x) => ALT_FORMATS.some((e) => x.path.toLowerCase().endsWith(e)) && !NOT_WEIGHTS.test(x.path));
+  const sharded = cands.filter((x) => SHARD.test(x.path)).reduce((a, x) => a + sizeOf(x), 0);
+  const largest = Math.max(0, ...cands.filter((x) => !SHARD.test(x.path)).map(sizeOf));
+  const other = Math.max(sharded, largest);
+  if (other >= 1e6) return { bytes: other, basis: "files" };
   return params ? { bytes: params * 2, basis: "params" } : { bytes: null, basis: null };
+}
+
+/** Why a model has no tier, in words a reader can use. */
+export function unknownReason(treeFiles) {
+  if (!Array.isArray(treeFiles) || treeFiles.length === 0) return "The repo's file list is not available (it may be gated or hosted elsewhere).";
+  const exts = [...new Set(topFiles(treeFiles).filter((x) => sizeOf(x) >= 1e6).map((x) => (/\.[a-z0-9]+$/i.exec(x.path) ?? [""])[0].toLowerCase()).filter((e) => UNSIZEABLE.includes(e)))];
+  if (exts.length) return `Weights are in ${exts.join(", ")} format, which can't be sized reliably.`;
+  return "No weight files found at the top level of the repo.";
 }
 
 export const autoNote = ({ bytes, basis }) =>
   `Auto-proposed by the weekly discovery job; unreviewed. ${bytes
-    ? `Tier estimated from ${fmtBytes(bytes)} of ${basis === "files" ? "weight files" : "weights (parameters x 2 bytes)"}.`
+    ? `Tier estimated from ${fmtBytes(bytes)} of ${basis === "files" ? "weight files (largest checkpoint if several)" : "weights (parameters x 2 bytes)"}.`
     : "Tier unknown: no weight size available."}`;
 
 /**

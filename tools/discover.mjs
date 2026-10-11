@@ -19,6 +19,7 @@ import {
   autoNote, cardHash, developerFromRepo, draftClosedModel, draftModel, estimateTier, fmtParams, keepCandidate, metricsFrom, normalizeDecision,
   orBaseId, parseRankings, pickClosed, sanitizeCard, slugify, stemKey, validSummary, weightBytes,
 } from "./lib/discover-core.mjs";
+import { applyPatch, computeTier } from "./lib/retier.mjs";
 
 const args = new Set(process.argv.slice(2).filter((a) => !a.includes("=")));
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.includes("=")).map((a) => a.replace(/^--/, "").split("=")));
@@ -215,6 +216,7 @@ for (const { hf, decision: d } of results) {
     newFiles.set(`data/families/${familyId}.json`, { id: familyId, name: d.new_family_name, summary, summary_source: summary ? "ai" : null });
   }
   const entry = draftModel({ hf, familyId, cells: d.cells, taskIds, weight: await weightOf(hf.id, hf.safetensors?.total), now });
+  if (!entry.tiers.length) Object.assign(entry, applyPatch(entry, { tier_note: (await computeTier({ hf_repo: hf.id }, async (p) => (await hub(p)).json(), hf.safetensors?.total)).patch.tier_note }));
   entry.id = uniqueId(entry.id, hf.id.split("/")[0]);
   const summary = await summarize({ name: entry.name, developer: entry.developer, task: hf.pipeline_tag, size: fmtParams(hf.safetensors?.total) }, card);
   if (summary) Object.assign(entry, { summary, summary_source: "ai", card_hash: cardHash(card) });
@@ -265,12 +267,7 @@ for (const m of models.filter((x) => x.hf_repo)) {
     const hf = await (await hub(`/api/models/${m.hf_repo}?expand[]=downloads&expand[]=likes&expand[]=safetensors`)).json();
     const patch = { ...(patches.get(m.id) ?? {}), metrics: metricsFrom(hf, now) };
     // Keep machine-made tier estimates current. Hand-curated and verified entries are never touched.
-    if (m.source === "auto" && !m.verified) {
-      const w = await weightOf(m.hf_repo, hf.safetensors?.total);
-      const tier = estimateTier(w.bytes);
-      patch.tiers = tier ? [tier] : m.tiers;
-      if (m.notes?.startsWith("Auto-proposed")) patch.notes = autoNote(w);
-    }
+    if (m.source === "auto" && !m.verified) Object.assign(patch, (await computeTier(m, async (p) => (await hub(p)).json(), hf.safetensors?.total)).patch);
     patches.set(m.id, patch);
     refreshed++;
   } catch (e) { console.warn(`metrics skipped for ${m.hf_repo}: ${e.message}`); }
@@ -278,7 +275,7 @@ for (const m of models.filter((x) => x.hf_repo)) {
 
 if (!DRY) {
   for (const [p, d] of newFiles) wr(p, d);
-  for (const m of models) if (patches.has(m.id)) wr(`data/models/${m.id}.json`, { ...m, ...patches.get(m.id) });
+  for (const m of models) if (patches.has(m.id)) wr(`data/models/${m.id}.json`, applyPatch(m, patches.get(m.id)));
   wr("data/decisions.json", decisions);
 }
 
