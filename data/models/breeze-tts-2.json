@@ -1,0 +1,33 @@
+{
+  "id": "breeze-tts-2",
+  "name": "Breeze-TTS-2",
+  "family": "breeze-tts",
+  "cells": [
+    {
+      "input": "text",
+      "output": "media"
+    }
+  ],
+  "hf_task": "text-to-speech",
+  "tiers": [
+    "gpu_8gb"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "BreezeBlue/Breeze-TTS-2",
+  "links": [
+    {
+      "label": "BreezeBlue/Breeze-TTS-2 on Hugging Face",
+      "url": "https://huggingface.co/BreezeBlue/Breeze-TTS-2"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 3.5B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 11838,
+    "likes": 684,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "deepseek-v4-1-flash",
+  "name": "DeepSeek-V4.1-Flash",
+  "family": "open-vlm",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+  "links": [
+    {
+      "label": "deepseek-ai/DeepSeek-V4.1-Flash on Hugging Face",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 763.2B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 1355278,
+    "likes": 4335,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

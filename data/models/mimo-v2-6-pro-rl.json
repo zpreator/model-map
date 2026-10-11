@@ -1,0 +1,33 @@
+{
+  "id": "mimo-v2-6-pro-rl",
+  "name": "MiMo-V2.6-Pro-RL",
+  "family": "open-llm",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "XiaomiMiMo/MiMo-V2.6-Pro-RL",
+  "links": [
+    {
+      "label": "XiaomiMiMo/MiMo-V2.6-Pro-RL on Hugging Face",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 1024.2B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 95178,
+    "likes": 693,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

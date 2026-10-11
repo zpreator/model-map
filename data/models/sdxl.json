@@ -9,7 +9,11 @@
   "verified": false,
   "notes": "Example diffusion model (2.6B parameters). Newer families such as FLUX are larger.",
   "source": "curated",
-  "metrics": null,
+  "metrics": {
+    "downloads_30d": 4301092,
+    "likes": 8292,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  },
   "id": "sdxl",
   "name": "SDXL",
   "family": "diffusion",

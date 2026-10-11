@@ -1,0 +1,33 @@
+{
+  "id": "laya",
+  "name": "laya",
+  "family": "laya",
+  "cells": [
+    {
+      "input": "text",
+      "output": "label"
+    }
+  ],
+  "hf_task": "text-classification",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "convaiinnovations/laya",
+  "links": [
+    {
+      "label": "convaiinnovations/laya on Hugging Face",
+      "url": "https://huggingface.co/convaiinnovations/laya"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 421M parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 42936,
+    "likes": 5472,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

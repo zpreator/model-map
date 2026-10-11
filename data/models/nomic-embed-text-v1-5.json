@@ -1,0 +1,33 @@
+{
+  "id": "nomic-embed-text-v1-5",
+  "name": "nomic-embed-text-v1.5",
+  "family": "nomic-embed",
+  "cells": [
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "sentence-similarity",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "nomic-ai/nomic-embed-text-v1.5",
+  "links": [
+    {
+      "label": "nomic-ai/nomic-embed-text-v1.5 on Hugging Face",
+      "url": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 137M parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 12877830,
+    "likes": 950,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

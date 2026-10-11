@@ -9,7 +9,11 @@
   "verified": false,
   "notes": "Base checkpoint is a masked-language model; classification needs fine-tuning. Tier estimated from ~67M parameters.",
   "source": "curated",
-  "metrics": null,
+  "metrics": {
+    "downloads_30d": 7837070,
+    "likes": 1474,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  },
   "id": "distilbert",
   "name": "DistilBERT",
   "family": "bert",

@@ -1,0 +1,45 @@
+{
+  "id": "embeddinggemma-2",
+  "name": "embeddinggemma-2",
+  "family": "embeddinggemma",
+  "cells": [
+    {
+      "input": "text",
+      "output": "embedding"
+    },
+    {
+      "input": "image",
+      "output": "embedding"
+    },
+    {
+      "input": "audio",
+      "output": "embedding"
+    },
+    {
+      "input": "video",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "feature-extraction",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "google/embeddinggemma-2",
+  "links": [
+    {
+      "label": "google/embeddinggemma-2 on Hugging Face",
+      "url": "https://huggingface.co/google/embeddinggemma-2"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 744M parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 45605,
+    "likes": 1536,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

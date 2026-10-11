@@ -1,0 +1,37 @@
+{
+  "id": "qwen3-8-flash-next",
+  "name": "Qwen3.8-Flash-Next",
+  "family": "open-vlm",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "Qwen/Qwen3.8-Flash-Next",
+  "links": [
+    {
+      "label": "Qwen/Qwen3.8-Flash-Next on Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 180.0B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 1798393,
+    "likes": 6091,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

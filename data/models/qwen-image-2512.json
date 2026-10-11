@@ -1,0 +1,33 @@
+{
+  "id": "qwen-image-2512",
+  "name": "Qwen-Image-2512",
+  "family": "diffusion",
+  "cells": [
+    {
+      "input": "text",
+      "output": "media"
+    }
+  ],
+  "hf_task": "text-to-image",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "Qwen/Qwen-Image-2512",
+  "links": [
+    {
+      "label": "Qwen/Qwen-Image-2512 on Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen-Image-2512"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 20.4B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 44748,
+    "likes": 974,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}

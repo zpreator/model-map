@@ -12,7 +12,11 @@
   "verified": false,
   "notes": "Tier estimated; large-v3 is 1.5B parameters, smaller sizes run on CPU.",
   "source": "curated",
-  "metrics": null,
+  "metrics": {
+    "downloads_30d": 3791795,
+    "likes": 6589,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  },
   "id": "whisper",
   "name": "Whisper large-v3",
   "family": "whisper",

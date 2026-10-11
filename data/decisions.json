@@ -1,0 +1,315 @@
+{
+  "BAAI/bge-small-en-v1.5": {
+    "action": "ignore",
+    "reason": "This is a small English BGE embedding checkpoint, a size/language variant of the existing BGE family rather than a new generation. The map already represents that family with BAAI/bge-m3.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "google/embeddinggemma-2": {
+    "action": "propose_family",
+    "family": "embeddinggemma",
+    "reason": "This is a distinct multimodal embedding lineage, mapping several input modalities into one shared vector space, rather than another size or version of an existing text-embedding family.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "EmbeddingGemma maps text, images, video, and audio into a shared embedding space."
+  },
+  "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": {
+    "action": "propose_family",
+    "family": "sentence-transformers",
+    "reason": "This is a sentence-embedding model with a distinct lineage not represented among the existing families. The supplied excerpt describes sentence and paragraph vectors, so text-to-embedding is the appropriate cell.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "Sentence Transformers maps sentences and paragraphs to dense vectors for uses such as clustering and semantic search."
+  },
+  "canberkkkkkk/ema-lightning": {
+    "action": "propose_family",
+    "family": "ema-lightning",
+    "reason": "This is presented as a compact text-to-speech model lineage with an acoustic model and vocoder that produce audio. It is distinct from the listed families and is not merely a size or packaging variant of an existing family.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "EMA Lightning generates Turkish speech audio from text using an acoustic model and vocoder."
+  },
+  "timm/mobilenetv3_small_100.lamb_in1k": {
+    "action": "ignore",
+    "reason": "MobileNetV3 is a classic image-classification architecture, but this checkpoint is another specific model in an already crowded family of standard image classifiers and does not establish a new generation or materially different capability for the map.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "convaiinnovations/laya": {
+    "action": "propose_family",
+    "family": "laya",
+    "reason": "The supplied description presents Laya as a distinct decision-model approach that returns typed answers rather than generated text, which does not fit the listed encoder or LLM families. Its stated text input and typed decision outputs fit text-to-label.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "Laya is a multilingual, non-autoregressive model that answers typed questions about text with calibrated probabilities."
+  },
+  "sentence-transformers/all-mpnet-base-v2": {
+    "action": "ignore",
+    "reason": "This is a sentence embedding model, but the map already represents text-embedding lineages with BGE and Qwen3-Embedding. The supplied description indicates a conventional sentence-transformer checkpoint, not a distinct generation or materially different lineage to add.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "Cactus-Compute/whistle": {
+    "action": "propose_family",
+    "family": "whistle",
+    "reason": "Whistle is a distinct speech-model lineage with on-device transcription and an encoder output for speech embeddings, rather than another Whisper checkpoint. The excerpt supports both audio-to-text and audio-to-embedding cells.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "Whistle is an on-device speech model that transcribes audio, provides word timestamps, and can produce speech embeddings."
+  },
+  "BAAI/bge-reranker-v2-m3": {
+    "action": "assign",
+    "family": "bge",
+    "reason": "This is a BGE reranker: it takes a query and passage and outputs a relevance score rather than an embedding, adding a distinct output type to the BGE family. The score maps to text→label.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "Qwen/Qwen-Image-2.1": {
+    "action": "assign",
+    "family": "diffusion",
+    "reason": "Qwen-Image-2.1 is a text-to-image generator and also edits images, fitting the existing diffusion family’s image-generation scope. Its inputs and generated-image outputs map to text→media and image→media.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "jonatasgrosman/wav2vec2-large-xlsr-53-japanese": {
+    "action": "ignore",
+    "reason": "This is a Japanese fine-tune of the existing wav2vec2 XLSR-53 model, differing by language rather than introducing a new generation or capability. It takes audio and produces transcription text, but is a narrow-language fine-tune rather than a distinct family entry.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "Qwen/Qwen3.8-Flash-Next": {
+    "action": "assign",
+    "family": "open-vlm",
+    "reason": "The Hub task indicates image-and-text input with text output, making this an open vision-language model. The excerpt describes it as an experimental architecture preview, so it belongs with the existing open-VLM family rather than as a separate lineage.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "openai-community/gpt2": {
+    "action": "propose_family",
+    "family": "gpt-2",
+    "reason": "GPT-2 is a distinct, notable language-model lineage rather than a new generation of the Qwen3 lineage already represented. It takes text as input and generates text.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "GPT-2 is a pretrained language model that generates text by predicting the next token."
+  },
+  "deepseek-ai/DeepSeek-V4.1-Flash": {
+    "action": "assign",
+    "family": "open-vlm",
+    "reason": "The Hub task indicates an image-and-text input model that produces text, matching the open-VLM family. The supplied information does not establish a distinct lineage or additional capability warranting a new family.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "nomic-ai/nomic-embed-text-v1.5": {
+    "action": "propose_family",
+    "family": "nomic-embed",
+    "reason": "This is a distinct, widely used text-embedding lineage not represented by an existing family. The excerpt describes text embeddings; the aligned vision model is a separate repo, so this card belongs in text → embedding.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "Nomic Embed produces text embeddings for tasks such as retrieval and similarity search."
+  },
+  "moondream/parakeet-redux": {
+    "action": "propose_family",
+    "family": "parakeet",
+    "reason": "This is a compressed member of the Parakeet lineage, which is distinct from the existing Whisper family. It takes audio as input and produces recognized text.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "Parakeet is a speech-recognition model lineage that turns audio into text."
+  },
+  "google/vit-base-patch16-224": {
+    "action": "propose_family",
+    "family": "vision-transformer-vit",
+    "reason": "This is the foundational Vision Transformer lineage, distinct from the existing ResNet and DINOv2 families. The excerpt describes both image classification and a pretrained transformer encoder representation.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "ViT classifies images by encoding them as sequences of patches with a transformer encoder."
+  },
+  "zai-org/GLM-5.3": {
+    "action": "ignore",
+    "reason": "The excerpt describes GLM-5.3 as the same base model as GLM-5.2, with gains from post-training, so this is a variant of an existing open-LLM lineage rather than a distinct generation for the map. The supplied information does not establish a materially new capability or input/output type.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "argmaxinc/whisperkit-coreml": {
+    "action": "ignore",
+    "reason": "WhisperKit is an on-device SDK for running speech AI, not a distinct model lineage or generation. It appears to be an implementation or packaging of existing Whisper models, which learners can select separately.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "XiaomiMiMo/MiMo-V2.6-Pro-RL": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "This is a text-generation model, so it belongs in the open-weights language-model family. The excerpt provides no evidence of a different modality or output type.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "intfloat/multilingual-e5-small": {
+    "action": "ignore",
+    "reason": "This is a multilingual E5 text-embedding model, but it is another size/language variant of the existing BGE-style retrieval embedding landscape rather than a new generation of an existing mapped family. The map already represents text retrieval embeddings, so this checkpoint does not warrant a separate family entry.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "krea/Krea-2-Raw": {
+    "action": "ignore",
+    "reason": "The metadata identifies this as a text-to-image model, but with the README unavailable there is not enough information to determine whether it represents a distinct lineage or belongs to the existing diffusion family. Per the conservative rule, ignore it.",
+    "confidence": "low",
+    "decided": "2026-10-11"
+  },
+  "BAAI/bge-large-en-v1.5": {
+    "action": "ignore",
+    "reason": "This is another English BGE embedding checkpoint, while the BGE family is already represented by BAAI/bge-m3. It does not establish a new generation or materially different capability for the map.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "Cactus-Compute/needle3": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "Needle 3 is a locally run text model that produces structured text/tool calls and text embeddings, fitting the open-LLM family while adding an embedding output capability. Its README also describes speech transcription, but that is handled by the separate Whistle model, so I have not mapped an audio cell.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "sentence-transformers/paraphrase-multilingual-mpnet-base-v2": {
+    "action": "ignore",
+    "reason": "This is a sentence-embedding model, but it is a multilingual variant of an existing embedding lineage rather than a new generation or distinct family. The map already represents text embedding families, and the learner can choose this checkpoint on Hugging Face.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "ornith-ai/Ornith-1.5-35B-A3B": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "Ornith-1.5 is an open text-generation model, so it fits the existing Open LLMs family. The excerpt describes a new self-improvement approach, but not a distinct input or output modality that calls for another family.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "BAAI/bge-base-en-v1.5": {
+    "action": "assign",
+    "family": "bge",
+    "reason": "This is a BGE dense-retrieval text embedding model, and the excerpt distinguishes it from BGE-M3, which supports more languages, longer texts, and other retrieval methods. It belongs in the existing BGE family as a distinct generation.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "BreezeBlue/Breeze-TTS-2": {
+    "action": "propose_family",
+    "family": "breeze-tts",
+    "reason": "This is a distinct text-to-speech lineage, and no existing family covers text-to-audio generation. The excerpt identifies Breeze TTS 2 as a model with released weights and PyTorch inference code.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "Breeze TTS 2 is a text-to-speech model with released weights and PyTorch inference code."
+  },
+  "laion/clap-htsat-fused": {
+    "action": "propose_family",
+    "family": "clap",
+    "reason": "This is a distinct contrastive audio-language representation lineage, with audio and text encoders used for retrieval and zero-shot classification. The excerpt supports embedding outputs for both modalities.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "CLAP learns shared audio and text representations for audio-text retrieval and zero-shot audio classification."
+  },
+  "moondream/parakeet-ultra": {
+    "action": "propose_family",
+    "family": "parakeet",
+    "reason": "The excerpt describes Parakeet Ultra as a post-trained Parakeet model, a distinct speech-recognition lineage not represented among the existing families. It takes audio and returns transcription text.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "Parakeet is an automatic speech recognition model family that transcribes audio into text."
+  },
+  "meta-llama/Llama-3.2-1B-Instruct": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "Llama 3.2 is an open-weights language model that generates text, so it belongs in the existing Open LLM family.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "pixai-labs/pixai-tagger-v1.0": {
+    "action": "ignore",
+    "reason": "PixAI Tagger is an anime-focused image tagger, a narrow-domain model rather than a distinct general-purpose model lineage for the map.",
+    "confidence": "high",
+    "decided": "2026-10-11"
+  },
+  "intfloat/multilingual-e5-base": {
+    "action": "ignore",
+    "reason": "Multilingual-E5-base is a text embedding model, but it is another multilingual E5 checkpoint rather than a new generation or capability in the existing BGE or Qwen3-Embedding families. The map groups checkpoints by family, so this size/language variant does not warrant a separate entry.",
+    "confidence": "medium",
+    "decided": "2026-10-11"
+  },
+  "Qwen/Qwen3-ASR-1.7B": {
+    "action": "propose_family",
+    "family": "qwen3-asr",
+    "reason": "This is a distinct speech-recognition lineage, not a member of the Whisper family; the excerpt describes speech input and recognized text output. The family includes multiple sizes, so one family entry is appropriate.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "Qwen3-ASR recognizes speech and identifies languages across many languages and dialects."
+  },
+  "intfloat/multilingual-e5-large": {
+    "action": "propose_family",
+    "family": "multilingual-e5",
+    "reason": "This is a notable multilingual text-embedding lineage, distinct from the listed BGE and Qwen3-Embedding families; the excerpt describes query and passage embeddings for retrieval.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "Multilingual E5 encodes text into embeddings for retrieval across languages."
+  },
+  "openbmb/VoxCPM2": {
+    "action": "propose_family",
+    "family": "voxcpm",
+    "reason": "This is a distinct, notable multilingual text-to-speech lineage with voice-design capabilities, and no existing family covers speech generation. The supplied metadata and excerpt support text input and audio-media output.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "VoxCPM is a multilingual text-to-speech lineage that generates speech audio and can design voices from natural-language descriptions."
+  },
+  "Qwen/Qwen3.8-27B": {
+    "action": "assign",
+    "family": "open-vlm",
+    "reason": "Qwen3.8 is described as a new generation in the open Qwen model family and as a native vision-language model that understands images and videos. It fits the existing open-vlm family, with image and video inputs producing text.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  },
+  "Lightricks/LTX-2.5-Diffusers": {
+    "action": "propose_family",
+    "family": "ltx",
+    "reason": "The repo metadata identifies a text-to-video model, a distinct video-generation lineage not represented by the existing image-focused diffusion family description. The supplied task and repo name support an LTX family, but the unavailable README limits certainty.",
+    "confidence": "medium",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "LTX is a model lineage for generating video from text."
+  },
+  "coqui/XTTS-v2": {
+    "action": "propose_family",
+    "family": "xtts",
+    "reason": "XTTS is a distinct voice-generation lineage, with multilingual speech generation and short-reference voice cloning. The excerpt describes both text and audio as inputs and generated speech as the output.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed",
+    "family_summary_draft": "XTTS generates multilingual speech from text and can clone a voice using a short audio reference."
+  },
+  "Qwen/Qwen-Image-2512": {
+    "action": "assign",
+    "family": "diffusion",
+    "reason": "Qwen-Image-2512 is described as an updated text-to-image foundational model, fitting the existing diffusion family rather than warranting a separate lineage. Its input is text and its output is generated imagery.",
+    "confidence": "high",
+    "decided": "2026-10-11",
+    "status": "proposed"
+  }
+}

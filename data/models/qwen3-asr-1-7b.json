@@ -1,0 +1,33 @@
+{
+  "id": "qwen3-asr-1-7b",
+  "name": "Qwen3-ASR-1.7B",
+  "family": "qwen3-asr",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [
+    "gpu_8gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "Qwen/Qwen3-ASR-1.7B",
+  "links": [
+    {
+      "label": "Qwen/Qwen3-ASR-1.7B on Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3-ASR-1.7B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 2.3B parameters.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 1119005,
+    "likes": 1164,
+    "fetched_at": "2026-10-11T05:07:36.156Z"
+  }
+}
