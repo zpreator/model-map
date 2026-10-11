@@ -1,5 +1,6 @@
 {
   "id": "sam",
   "name": "SAM",
-  "summary": "Segment Anything: prompt-driven masks, extended to video and text prompts in later generations."
+  "summary": "Segment Anything: prompt-driven masks, extended to video and text prompts in later generations.",
+  "summary_source": "ai"
 }

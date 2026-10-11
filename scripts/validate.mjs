@@ -12,6 +12,7 @@ const vFamily = ajv.compile(read("schema/family.schema.json"));
 const vProblem = ajv.compile(read("schema/problem.schema.json"));
 
 const errors = [];
+const badSummary = (s) => (/https?:\/\/|www\.|<[^>]+>|\]\(|[`*_]{2}/.test(s) ? "contains a URL or markup" : null);
 const err = (file, msg) => errors.push(`${file}: ${msg}`);
 const load = (dir) =>
   readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => ({ file: `${dir}/${f}`, data: read(`${dir}/${f}`) }));
@@ -27,6 +28,7 @@ for (const { file, data } of models) {
   if (data.id !== basename(file, ".json")) err(file, `id "${data.id}" must match filename`);
   if (ids.has(data.id)) err(file, `duplicate id "${data.id}"`);
   ids.add(data.id);
+  if (data.summary) { const bad = badSummary(data.summary); if (bad) err(file, `summary ${bad}`); if (!data.summary_source) err(file, "summary needs summary_source"); }
   if (data.hf_task && !tasks.has(data.hf_task)) err(file, `unknown hf_task "${data.hf_task}"`);
   if (data.tiers?.includes("api") && data.open_weights === true) err(file, `tier "api" conflicts with open_weights: true`);
 }
@@ -34,6 +36,7 @@ const fids = new Set();
 for (const { file, data } of families) {
   if (!vFamily(data)) for (const e of vFamily.errors) err(file, `${e.instancePath || "/"} ${e.message}`);
   if (data.id !== basename(file, ".json")) err(file, `id "${data.id}" must match filename`);
+  if (data.summary) { const bad = badSummary(data.summary); if (bad) err(file, `summary ${bad}`); if (!data.summary_source) err(file, "summary needs summary_source"); }
   fids.add(data.id);
 }
 const used = new Set();

@@ -1,5 +1,6 @@
 {
   "id": "pyannote",
   "name": "pyannote",
-  "summary": "Speaker diarization and voice activity detection."
+  "summary": "Speaker diarization and voice activity detection.",
+  "summary_source": "ai"
 }

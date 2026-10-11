@@ -1,5 +1,6 @@
 {
   "id": "resnet",
   "name": "ResNet",
-  "summary": "Classic convolutional image classifiers; the standard small backbone."
+  "summary": "Classic convolutional image classifiers; the standard small backbone.",
+  "summary_source": "ai"
 }

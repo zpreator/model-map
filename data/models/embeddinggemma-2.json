@@ -2,6 +2,10 @@
   "id": "embeddinggemma-2",
   "name": "embeddinggemma-2",
   "family": "embeddinggemma",
+  "developer": "google",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",

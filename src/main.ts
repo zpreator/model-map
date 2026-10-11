@@ -56,6 +56,14 @@ app.addEventListener("click", (e) => {
     navigate(nav.href, true);
     return;
   }
+  const more = t.closest<HTMLElement>("[data-more]");
+  if (more) {
+    const td = more.closest("td")!;
+    const open = td.toggleAttribute("data-expanded");
+    more.setAttribute("aria-expanded", String(open));
+    more.textContent = open ? "Show fewer" : `Show ${td.querySelectorAll("[data-extra]").length} more`;
+    return;
+  }
   const chip = t.closest<HTMLElement>(".chip, .cand");
   if (chip) { selectFamily(chip.classList.contains("chip") && state.family === chip.dataset.family ? null : chip.dataset.family!); return; }
   const tab = t.closest<HTMLElement>("[data-tab]");

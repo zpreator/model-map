@@ -8,7 +8,8 @@
   "required": [
     "id",
     "name",
-    "summary"
+    "summary",
+    "summary_source"
   ],
   "properties": {
     "id": {
@@ -24,7 +25,19 @@
         "string",
         "null"
       ],
-      "description": "One-line educational description. LLM-drafted text must be human-approved."
+      "description": "One-line educational description. LLM-drafted text must be human-approved.",
+      "maxLength": 300
+    },
+    "summary_source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "ai",
+        "curated",
+        null
+      ]
     }
   }
 }

@@ -1,4 +1,11 @@
 {
+  "id": "distilbert",
+  "name": "DistilBERT",
+  "family": "bert",
+  "developer": "distilbert",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "links": [
     {
       "label": "distilbert/distilbert-base-uncased on Hugging Face",
@@ -14,9 +21,6 @@
     "likes": 1474,
     "fetched_at": "2026-10-11T05:07:36.156Z"
   },
-  "id": "distilbert",
-  "name": "DistilBERT",
-  "family": "bert",
   "cells": [
     {
       "input": "text",

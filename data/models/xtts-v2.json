@@ -2,14 +2,18 @@
   "id": "xtts-v2",
   "name": "XTTS-v2",
   "family": "xtts",
+  "developer": "coqui",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",
-      "output": "media"
+      "output": "audio"
     },
     {
       "input": "audio",
-      "output": "media"
+      "output": "audio"
     }
   ],
   "hf_task": "text-to-speech",

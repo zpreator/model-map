@@ -128,3 +128,10 @@ a.preset[aria-current="page"] { background: var(--fg); color: var(--bg); border-
 .tier-defs { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 0 0 12px; }
 .tier-defs dt { font-weight: 600; } .tier-defs dd { margin: 0; }
 @media (max-width: 480px) { .tier-defs { grid-template-columns: 1fr; } .tier-defs dd { margin-bottom: 8px; } }
+
+/* Chip cap per cell, summaries */
+td:not([data-expanded]) .chip[data-extra] { display: none; }
+.more { width: 100%; min-height: 36px; margin-top: 2px; border: 1px dashed var(--line); border-radius: 8px; background: transparent; color: var(--muted); font: inherit; font-size: .8rem; cursor: pointer; }
+.axis { font-size: .65rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.summary { margin: 4px 0 8px; }
+.summary .tag { margin-left: 4px; }

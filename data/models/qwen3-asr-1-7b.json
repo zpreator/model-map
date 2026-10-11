@@ -2,6 +2,10 @@
   "id": "qwen3-asr-1-7b",
   "name": "Qwen3-ASR-1.7B",
   "family": "qwen3-asr",
+  "developer": "Qwen",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "audio",

@@ -2,6 +2,10 @@
   "id": "needle3",
   "name": "needle3",
   "family": "open-llm",
+  "developer": "Cactus-Compute",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",

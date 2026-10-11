@@ -1,5 +1,6 @@
 {
   "id": "vision-transformer-vit",
   "name": "Vision Transformer (ViT)",
-  "summary": null
+  "summary": null,
+  "summary_source": null
 }

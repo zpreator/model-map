@@ -1,7 +1,11 @@
 {
   "id": "qwen3-8-27b",
   "name": "Qwen3.8-27B",
-  "family": "open-vlm",
+  "family": "open-llm",
+  "developer": "Qwen",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "image",

@@ -1,5 +1,6 @@
 {
   "id": "closed-llm",
   "name": "Closed LLMs",
-  "summary": "Hosted frontier language models, API only."
+  "summary": "Hosted frontier language models reached only through an API, including multimodal ones.",
+  "summary_source": "ai"
 }

@@ -2,10 +2,14 @@
   "id": "voxcpm2",
   "name": "VoxCPM2",
   "family": "voxcpm",
+  "developer": "openbmb",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",
-      "output": "media"
+      "output": "audio"
     }
   ],
   "hf_task": "text-to-speech",

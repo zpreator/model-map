@@ -1,7 +1,11 @@
 {
   "id": "deepseek-v4-1-flash",
   "name": "DeepSeek-V4.1-Flash",
-  "family": "open-vlm",
+  "family": "open-llm",
+  "developer": "deepseek-ai",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "image",

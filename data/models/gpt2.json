@@ -1,7 +1,11 @@
 {
   "id": "gpt2",
   "name": "gpt2",
-  "family": "gpt-2",
+  "family": "open-llm",
+  "developer": "openai-community",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",

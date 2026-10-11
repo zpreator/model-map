@@ -2,10 +2,14 @@
   "id": "ema-lightning",
   "name": "ema-lightning",
   "family": "ema-lightning",
+  "developer": "canberkkkkkk",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",
-      "output": "media"
+      "output": "audio"
     }
   ],
   "hf_task": "text-to-speech",

@@ -1,4 +1,11 @@
 {
+  "id": "dinov2",
+  "name": "DINOv2",
+  "family": "dinov2",
+  "developer": "facebook",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "links": [
     {
       "label": "facebook/dinov2-base on Hugging Face",
@@ -14,9 +21,6 @@
     "likes": 204,
     "fetched_at": "2026-10-11T05:07:36.156Z"
   },
-  "id": "dinov2",
-  "name": "DINOv2",
-  "family": "dinov2",
   "cells": [
     {
       "input": "image",

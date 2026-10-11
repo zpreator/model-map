@@ -2,10 +2,14 @@
   "id": "qwen-image-2512",
   "name": "Qwen-Image-2512",
   "family": "diffusion",
+  "developer": "Qwen",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",
-      "output": "media"
+      "output": "image"
     }
   ],
   "hf_task": "text-to-image",

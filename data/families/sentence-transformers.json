@@ -1,5 +1,6 @@
 {
   "id": "sentence-transformers",
   "name": "Sentence Transformers",
-  "summary": null
+  "summary": null,
+  "summary_source": null
 }

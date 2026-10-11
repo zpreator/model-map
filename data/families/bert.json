@@ -1,5 +1,6 @@
 {
   "id": "bert",
   "name": "BERT-family encoders",
-  "summary": "Small text encoders for classification and features."
+  "summary": "Small text encoders for classification and features.",
+  "summary_source": "ai"
 }

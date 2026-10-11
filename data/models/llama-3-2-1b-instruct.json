@@ -2,6 +2,10 @@
   "id": "llama-3-2-1b-instruct",
   "name": "Llama-3.2-1B-Instruct",
   "family": "open-llm",
+  "developer": "meta-llama",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",

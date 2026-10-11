@@ -2,6 +2,10 @@
   "id": "parakeet-ultra",
   "name": "parakeet-ultra",
   "family": "parakeet",
+  "developer": "moondream",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "audio",

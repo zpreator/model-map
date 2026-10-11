@@ -2,6 +2,10 @@
   "id": "ornith-1-5-35b-a3b",
   "name": "Ornith-1.5-35B-A3B",
   "family": "open-llm",
+  "developer": "ornith-ai",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",

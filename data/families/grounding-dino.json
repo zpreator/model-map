@@ -1,5 +1,6 @@
 {
   "id": "grounding-dino",
   "name": "Grounding DINO",
-  "summary": "Open-vocabulary detector: finds objects named in a text prompt."
+  "summary": "Open-vocabulary detector: finds objects named in a text prompt.",
+  "summary_source": "ai"
 }

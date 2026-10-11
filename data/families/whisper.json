@@ -1,5 +1,6 @@
 {
   "id": "whisper",
   "name": "Whisper",
-  "summary": "General-purpose speech recognition."
+  "summary": "General-purpose speech recognition.",
+  "summary_source": "ai"
 }

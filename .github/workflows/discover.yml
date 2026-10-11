@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 9 * * 1" # Mondays 09:00 UTC
   workflow_dispatch:
+    inputs:
+      backfill:
+        description: "Also summarize every existing entry that has no summary yet"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -23,7 +28,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }} # optional; raises Hub rate limits
-        run: node tools/discover.mjs --pr-body="$RUNNER_TEMP/pr-body.md"
+        run: node tools/discover.mjs ${{ inputs.backfill && '--backfill' || '' }} --pr-body="$RUNNER_TEMP/pr-body.md"
       # A bad proposal must fail here, not in a reviewer's PR.
       - run: npm run build
       - name: Open a pull request

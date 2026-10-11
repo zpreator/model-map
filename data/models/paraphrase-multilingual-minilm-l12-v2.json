@@ -2,6 +2,10 @@
   "id": "paraphrase-multilingual-minilm-l12-v2",
   "name": "paraphrase-multilingual-MiniLM-L12-v2",
   "family": "sentence-transformers",
+  "developer": "sentence-transformers",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",

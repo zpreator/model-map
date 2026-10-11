@@ -1,5 +1,6 @@
 {
   "id": "bge",
   "name": "BGE",
-  "summary": "Text embedding models for retrieval."
+  "summary": "Text embedding models for retrieval.",
+  "summary_source": "ai"
 }

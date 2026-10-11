@@ -2,6 +2,10 @@
   "id": "parakeet-redux",
   "name": "parakeet-redux",
   "family": "parakeet",
+  "developer": "moondream",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "audio",

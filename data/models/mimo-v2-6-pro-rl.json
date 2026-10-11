@@ -2,6 +2,10 @@
   "id": "mimo-v2-6-pro-rl",
   "name": "MiMo-V2.6-Pro-RL",
   "family": "open-llm",
+  "developer": "XiaomiMiMo",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",

@@ -1,13 +1,17 @@
 {
+  "id": "closed-vlm",
+  "name": "Closed VLM",
+  "family": "closed-llm",
+  "developer": null,
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "links": [],
   "feeds_into": [],
   "verified": false,
   "notes": "Placeholder for hosted vision-language models. No vendor chosen yet.",
   "source": "curated",
   "metrics": null,
-  "id": "closed-vlm",
-  "name": "Closed VLM",
-  "family": "closed-vlm",
   "cells": [
     {
       "input": "image",

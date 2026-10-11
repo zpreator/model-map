@@ -2,6 +2,10 @@
   "id": "whistle",
   "name": "whistle",
   "family": "whistle",
+  "developer": "Cactus-Compute",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "audio",

@@ -1,5 +1,6 @@
 {
   "id": "diffusion",
   "name": "Diffusion models",
-  "summary": "Image generators that start from noise and refine it, guided by text or an image."
+  "summary": "Image generators that start from noise and refine it, guided by text or an image.",
+  "summary_source": "ai"
 }

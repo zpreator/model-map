@@ -1,4 +1,11 @@
 {
+  "id": "resnet18",
+  "name": "ResNet18",
+  "family": "resnet",
+  "developer": "timm",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "links": [
     {
       "label": "timm/resnet18.a1_in1k on Hugging Face",
@@ -14,9 +21,6 @@
     "likes": 16,
     "fetched_at": "2026-10-11T05:07:36.156Z"
   },
-  "id": "resnet18",
-  "name": "ResNet18",
-  "family": "resnet",
   "cells": [
     {
       "input": "image",

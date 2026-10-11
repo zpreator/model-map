@@ -2,6 +2,10 @@
   "id": "vit-base-patch16-224",
   "name": "vit-base-patch16-224",
   "family": "vision-transformer-vit",
+  "developer": "google",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "image",

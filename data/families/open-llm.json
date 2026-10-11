@@ -1,5 +1,6 @@
 {
   "id": "open-llm",
   "name": "Open LLMs",
-  "summary": "Open-weights language models you can run yourself."
+  "summary": "Open-weights language models you can download and run yourself, including multimodal ones that also read images or video.",
+  "summary_source": "ai"
 }

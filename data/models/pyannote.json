@@ -1,4 +1,11 @@
 {
+  "id": "pyannote",
+  "name": "pyannote",
+  "family": "pyannote",
+  "developer": "pyannote",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "links": [
     {
       "label": "pyannote/speaker-diarization-3.1 on Hugging Face",
@@ -16,9 +23,6 @@
     "likes": 4268,
     "fetched_at": "2026-10-11T05:07:36.156Z"
   },
-  "id": "pyannote",
-  "name": "pyannote",
-  "family": "pyannote",
   "cells": [
     {
       "input": "audio",

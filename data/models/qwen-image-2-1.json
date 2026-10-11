@@ -2,14 +2,18 @@
   "id": "qwen-image-2-1",
   "name": "Qwen-Image-2.1",
   "family": "diffusion",
+  "developer": "Qwen",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",
-      "output": "media"
+      "output": "image"
     },
     {
       "input": "image",
-      "output": "media"
+      "output": "image"
     }
   ],
   "hf_task": "text-to-image",

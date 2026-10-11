@@ -1,7 +1,11 @@
 {
   "id": "qwen3-8-flash-next",
   "name": "Qwen3.8-Flash-Next",
-  "family": "open-vlm",
+  "family": "open-llm",
+  "developer": "Qwen",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "image",

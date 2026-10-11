@@ -2,10 +2,14 @@
   "id": "breeze-tts-2",
   "name": "Breeze-TTS-2",
   "family": "breeze-tts",
+  "developer": "BreezeBlue",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",
-      "output": "media"
+      "output": "audio"
     }
   ],
   "hf_task": "text-to-speech",

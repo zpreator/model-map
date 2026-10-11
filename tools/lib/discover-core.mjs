@@ -1,4 +1,5 @@
 // Pure helpers for tools/discover.mjs (kept side-effect free so they can be unit tested).
+import { createHash } from "node:crypto";
 
 const DERIVED_PREFIXES = ["base_model:finetune", "base_model:quantized", "base_model:merge", "base_model:adapter"];
 
@@ -59,6 +60,10 @@ export function draftModel({ hf, familyId, cells, taskIds, now = new Date() }) {
     id: slugify(repo.split("/")[1]),
     name: repo.split("/")[1],
     family: familyId,
+    developer: developerFromRepo(repo),
+    summary: null, // filled by the summarize step; never by classification
+    summary_source: null,
+    card_hash: null,
     cells,
     hf_task: taskIds.has(hf.pipeline_tag) ? hf.pipeline_tag : null,
     tiers: tier ? [tier] : [],
@@ -94,4 +99,108 @@ export function normalizeDecision(d, familyIds, inputs, outputs) {
     return familyIds.has(id) ? { ...d, action: "assign", family_id: id } : { ...d, family_id: id };
   }
   return bad("unknown action");
+}
+
+// ---- sanitizing and summaries -----------------------------------------------------------------------------
+
+/** Strip markup a model card is full of (HTML, images, badges, code, links, URLs) so the model sees prose. */
+export function sanitizeCard(readme, max) {
+  const t = readme
+    .replace(/^---\n[\s\S]*?\n---\n/, "")
+    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/https?:\/\/\S+/g, " ")
+    .replace(/^\s*\|.*\|\s*$/gm, " ") // tables
+    .replace(/[#>*_`~]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return t.slice(0, max);
+}
+
+export const cardHash = (text) => createHash("sha1").update(text).digest("hex").slice(0, 12);
+export const developerFromRepo = (repo) => repo?.split("/")[0] ?? null;
+
+/** Accept a summary only if it is short plain text; otherwise null (never store markup or links). */
+export function validSummary(s) {
+  if (typeof s !== "string") return null;
+  const t = s.trim().replace(/\s+/g, " ");
+  if (!t || t.length > 300) return null;
+  if (/https?:\/\/|www\.|<[^>]+>|\]\(|[`*_]{2}/.test(t)) return null;
+  return t;
+}
+
+// ---- OpenRouter (closed-model source) ---------------------------------------------------------------------
+
+const OR_INPUTS = { text: "text", image: "image", audio: "audio", video: "video" }; // "file" is ignored
+const OR_OUTPUTS = { text: "text", image: "image", audio: "audio" };
+
+/** Base model id without a routing variant suffix (":free", ":batch", ":thinking", ...). */
+export const orBaseId = (id) => id.split(":")[0];
+export const orHasVariant = (id) => id.includes(":");
+
+/** Cells from the listed modalities (every supported input paired with every output). */
+export function orCells(arch) {
+  const ins = (arch?.input_modalities ?? []).map((m) => OR_INPUTS[m]).filter(Boolean);
+  const outs = (arch?.output_modalities ?? []).map((m) => OR_OUTPUTS[m]).filter(Boolean);
+  return ins.flatMap((input) => outs.map((output) => ({ input, output })));
+}
+
+/** "Anthropic: Claude Haiku 5.5" -> { developer: "Anthropic", name: "Claude Haiku 5.5" } */
+export function orSplitName(name) {
+  const i = name.indexOf(": ");
+  return i > 0 ? { developer: name.slice(0, i), name: name.slice(i + 2) } : { developer: null, name };
+}
+
+/**
+ * Parse per-model token usage from the embedded data on openrouter.ai/rankings. Undocumented, so it can
+ * break: returns an empty Map when the shape changes and the caller falls back to recency.
+ */
+export function parseRankings(html) {
+  const re = /\{\\?"date\\?":\\?"(\d{4}-\d{2}-\d{2})[^"\\]*\\?",\\?"model_permaslug\\?":\\?"([^"\\]+)\\?",\\?"variant\\?":\\?"([^"\\]+)\\?",\\?"total_completion_tokens\\?":(\d+),\\?"total_prompt_tokens\\?":(\d+)/g;
+  const usage = new Map();
+  for (let m; (m = re.exec(html)); ) usage.set(m[2], (usage.get(m[2]) ?? 0) + Number(m[4]) + Number(m[5]));
+  return usage;
+}
+
+/**
+ * Closed LLM candidates: models without Hub weights that produce text, ranked by observed usage
+ * (falling back to release date when no usage data is available).
+ */
+export function pickClosed(orModels, usage, { top, skip }) {
+  const rows = orModels
+    .filter((m) => !orHasVariant(m.id) && !m.hugging_face_id && (m.architecture?.output_modalities ?? []).includes("text") && !skip(m))
+    .map((m) => ({ m, tokens: usage.get(m.canonical_slug) ?? 0 }));
+  const haveUsage = rows.some((r) => r.tokens > 0);
+  // With usage data, only models people actually use qualify; newcomers appear once they show up in the rankings.
+  const pool = haveUsage ? rows.filter((r) => r.tokens > 0) : rows;
+  pool.sort((a, b) => (haveUsage ? b.tokens - a.tokens : b.m.created - a.m.created));
+  return pool.slice(0, top).map((r) => ({ ...r, ranked_by: haveUsage ? "usage" : "recency" }));
+}
+
+export function draftClosedModel({ m, familyId = "closed-llm", now = new Date() }) {
+  const { developer, name } = orSplitName(m.name);
+  return {
+    id: slugify(name),
+    name,
+    family: familyId,
+    developer,
+    summary: null,
+    summary_source: null,
+    card_hash: null,
+    cells: orCells(m.architecture),
+    hf_task: null,
+    tiers: ["api"],
+    license: null,
+    open_weights: false,
+    hf_repo: null,
+    links: [{ label: "OpenRouter model page", url: `https://openrouter.ai/${m.id}` }],
+    feeds_into: [],
+    verified: false,
+    notes: "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+    source: "auto",
+    metrics: null,
+  };
 }

@@ -10,7 +10,8 @@ export const INPUTS: { id: Input; label: string }[] = [
 ];
 export const OUTPUTS: { id: Output; label: string }[] = [
   { id: "label", label: "Label / score" }, { id: "embedding", label: "Embedding" },
-  { id: "boxes_masks", label: "Boxes / masks" }, { id: "text", label: "Text" }, { id: "media", label: "Media" },
+  { id: "boxes_masks", label: "Boxes / masks" }, { id: "text", label: "Text" },
+  { id: "image", label: "Image output" }, { id: "audio", label: "Audio output" }, { id: "video", label: "Video output" },
 ];
 // Order matters: the first tier a family has is its chip colour (lightest setup). "api" is a separate axis.
 export const TIERS: { id: Tier; label: string; short: string }[] = [
@@ -22,7 +23,7 @@ export const TIERS: { id: Tier; label: string; short: string }[] = [
 ];
 const tierMeta = new Map(TIERS.map((t) => [t.id, t]));
 const inLabel = new Map(INPUTS.map((i) => [i.id, i.label]));
-const outLabel = new Map(OUTPUTS.map((o) => [o.id, o.label]));
+const outLabel = new Map(OUTPUTS.map((o) => [o.id, o.label.replace(" output", "")]));
 
 export const BASE = import.meta.env.BASE_URL; // e.g. "/model-map/"
 export const SITE_URL = site.url;
@@ -77,6 +78,9 @@ const familyTiers = (fid: string): Tier[] => {
   const present = new Set(modelsOfFamily(fid).flatMap((m) => m.tiers));
   return TIERS.filter((t) => present.has(t.id)).map((t) => t.id);
 };
+/** Popularity for ordering chips within a cell: the most-downloaded member's trailing-30-day downloads. */
+const familyScore = (fid: string) => Math.max(0, ...modelsOfFamily(fid).map((m) => m.metrics?.downloads_30d ?? 0));
+const CELL_CAP = 6;
 const familyHasCell = (fid: string, i: Input, o: Output) =>
   modelsOfFamily(fid).some((m) => m.cells.some((c) => c.input === i && c.output === o));
 
@@ -108,8 +112,13 @@ function grid(s: State): string {
   const head = INPUTS.map((i) => `<th scope="col" data-col="${i.id}">${i.label}</th>`).join("");
   const rows = OUTPUTS.map((o) => {
     const cells = INPUTS.map((i) => {
-      const fids = families.filter((f) => familyHasCell(f.id, i.id, o.id)).map((f) => f.id);
-      return `<td data-col="${i.id}">${fids.map((f) => chip(f, s)).join("") || `<span class="empty" aria-hidden="true">·</span>`}</td>`;
+      const inv = focusFamilies(s.focus);
+      const fids = families.filter((f) => familyHasCell(f.id, i.id, o.id)).map((f) => f.id)
+        .sort((a, b) => Number(inv.has(b)) - Number(inv.has(a)) || familyScore(b) - familyScore(a) || a.localeCompare(b));
+      const extra = Math.max(0, fids.length - CELL_CAP);
+      const chips = fids.map((f, idx) => (idx >= CELL_CAP ? chip(f, s).replace("<button ", '<button data-extra="true" ') : chip(f, s))).join("");
+      const more = extra ? `<button type="button" class="more" data-more aria-expanded="false">Show ${extra} more</button>` : "";
+      return `<td data-col="${i.id}">${chips || `<span class="empty" aria-hidden="true">·</span>`}${more}</td>`;
     }).join("");
     return `<tr><th scope="row">${o.label}</th>${cells}</tr>`;
   }).join("");
@@ -118,7 +127,7 @@ function grid(s: State): string {
     </div>
     <div class="grid-wrap"><table class="grid" data-col="${s.col}">
       <caption class="sr-only">Models by input modality (columns) and output type (rows)</caption>
-      <thead><tr><td class="corner"><span class="sr-only">Output type</span></td>${head}</tr></thead><tbody>${rows}</tbody></table></div>
+      <thead><tr><td class="corner"><span class="axis">Output ↓ · Input →</span></td>${head}</tr></thead><tbody>${rows}</tbody></table></div>
     <ul class="legend" aria-label="Deployment tier legend">
       ${TIERS.map((t) => `<li><span class="swatch" data-tier="${t.id}"><span class="badge">${t.short}</span></span>${t.label}</li>`).join("")}
       <li><span class="swatch" data-tier="unknown"><span class="badge">?</span></span>Unknown</li>
@@ -167,6 +176,9 @@ function focusPanel(f: Focus): string {
     ${p.note ? `<p class="notes">${esc(p.note)}</p>` : ""}`;
 }
 
+const aiTag = (src: "ai" | "curated" | null) =>
+  src === "ai" ? `<span class="tag" title="Summarized by an AI model from the model card; not reviewed by a person">AI summary</span>` : "";
+
 export function detailPanel(fid: string | null): string {
   if (!fid) return `<p class="hint">Select a model to see details. Select it again to clear.</p>`;
   const fam = familyById.get(fid)!;
@@ -174,14 +186,16 @@ export function detailPanel(fid: string | null): string {
   const usedBy = problems.filter((p) => p.steps.some((s) => s.models.some((id) => members.some((m) => m.id === id))));
   const row = (m: Model) => `<li class="member">
       <h3>${esc(m.name)} ${m.verified ? `<span class="tag ok">verified</span>` : `<span class="tag">unverified</span>`}</h3>
+      ${m.summary ? `<p class="summary">${esc(m.summary)} ${aiTag(m.summary_source)}</p>` : ""}
       <dl>
+        ${m.developer ? `<dt>Developer</dt><dd>${esc(m.developer)}</dd>` : ""}
         <dt>Takes → gives</dt><dd>${m.cells.map((c) => `${inLabel.get(c.input)} → ${outLabel.get(c.output)}`).join("; ")}</dd>
         <dt>Tier</dt><dd>${m.tiers.length ? m.tiers.map((t) => tierMeta.get(t)!.label).join(", ") : "unknown"}</dd>
         <dt>License</dt><dd>${m.license ? esc(m.license) : "unknown"}${m.open_weights === false ? " (closed)" : m.open_weights ? " (open weights)" : ""}</dd>
         ${m.hf_task ? `<dt>Hub task</dt><dd>${taskById.has(m.hf_task) ? `<a href="${focusHref({ kind: "task", id: m.hf_task })}" data-nav>${esc(m.hf_task)}</a>` : esc(m.hf_task)}</dd>` : ""}
         ${m.links.length ? `<dt>Links</dt><dd>${m.links.map((l) => `<a href="${esc(l.url)}" rel="noopener">${esc(l.label)}</a>`).join(", ")}</dd>` : ""}
       </dl>${m.notes ? `<p class="notes">${esc(m.notes)}</p>` : ""}</li>`;
-  return `<h2>${esc(fam.name)}</h2>${fam.summary ? `<p>${esc(fam.summary)}</p>` : ""}
+  return `<h2>${esc(fam.name)}</h2>${fam.summary ? `<p class="summary">${esc(fam.summary)} ${aiTag(fam.summary_source)}</p>` : ""}
     <p class="used"><strong>Used in:</strong> ${usedBy.length ? usedBy.map((p) => `<a href="${focusHref({ kind: "problem", id: p.id })}" data-nav>${esc(p.title)}</a>`).join(", ") : "no problem presets yet"}</p>
     <ul class="members">${members.map(row).join("")}</ul>`;
 }
@@ -227,7 +241,10 @@ export function renderMethodology(): string {
       <ul><li>the license against the license text in the model's repository (a Hub tag of "other" is never enough),</li><li>the parameter counts against the model card, and</li><li>the tier against a published source or a test run.</li></ul>
       <p>Unknown values stay empty. The map prefers saying "unknown" to guessing.</p>
       <h2>How models are chosen</h2>
-      <p>The list is curated. A weekly job queries the Hugging Face Hub for popular and trending models, filters out fine-tunes, quantized copies and test repositories, and proposes candidates in a pull request, with an AI model suggesting which family each belongs to. The suggestions are drafts. A person decides what is added, and any AI-written text stays marked unverified until approved. Download counts are used only to surface candidates, never displayed as a ranking.</p>
+      <p>The list is curated, with weekly help from a script. It looks for open models on the Hugging Face Hub (most downloaded and trending per task) and for hosted models on OpenRouter (ranked by how much they are used), and filters out fine-tunes, quantized copies, test repositories and low-traffic noise. For open models an AI model suggests which family each belongs to. The results arrive as a pull request, and a person decides what is added. Download and usage numbers are used only to surface candidates, never displayed as a ranking.</p>
+      <p>Facts such as the developer, license, parameter count and supported modalities come from those services, never from an AI model. All general-purpose language models are grouped under two chips, Open LLMs and Closed LLMs, and the models inside are the ones currently most downloaded or most used.</p>
+      <h2>AI-written summaries</h2>
+      <p>The one-to-two sentence descriptions are written by a small AI model from the model's own card or catalogue entry. Before the model sees it, the text is stripped of HTML, links and code, truncated, and treated as untrusted data; the output must be short plain text with no links. Every such summary is labelled "AI summary" until a person reviews and edits it. If a card says too little, the summary says only what the metadata supports.</p>
       <p>Anyone can propose a correction or a new model with a pull request; see the <a href="${esc(site.repo)}/blob/main/CONTRIBUTING.md" rel="noopener">contributing guide</a>.</p>
       <h2>Task categories</h2>
       <p>Task names and definitions come from the Hugging Face task taxonomy (the <code>@huggingface/tasks</code> package), so they match what you see on the Hub.</p>

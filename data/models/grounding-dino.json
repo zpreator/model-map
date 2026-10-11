@@ -1,4 +1,11 @@
 {
+  "id": "grounding-dino",
+  "name": "Grounding DINO",
+  "family": "grounding-dino",
+  "developer": "IDEA-Research",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "links": [
     {
       "label": "IDEA-Research/grounding-dino-base on Hugging Face",
@@ -16,9 +23,6 @@
     "likes": 213,
     "fetched_at": "2026-10-11T05:07:36.156Z"
   },
-  "id": "grounding-dino",
-  "name": "Grounding DINO",
-  "family": "grounding-dino",
   "cells": [
     {
       "input": "image",

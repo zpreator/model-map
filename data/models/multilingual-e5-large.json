@@ -2,6 +2,10 @@
   "id": "multilingual-e5-large",
   "name": "multilingual-e5-large",
   "family": "multilingual-e5",
+  "developer": "intfloat",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",

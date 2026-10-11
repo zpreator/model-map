@@ -1,4 +1,11 @@
 {
+  "id": "whisper",
+  "name": "Whisper large-v3",
+  "family": "whisper",
+  "developer": "openai",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "links": [
     {
       "label": "openai/whisper-large-v3 on Hugging Face",
@@ -17,9 +24,6 @@
     "likes": 6589,
     "fetched_at": "2026-10-11T05:07:36.156Z"
   },
-  "id": "whisper",
-  "name": "Whisper large-v3",
-  "family": "whisper",
   "cells": [
     {
       "input": "audio",

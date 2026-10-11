@@ -1,4 +1,11 @@
 {
+  "id": "yolo26",
+  "name": "YOLO26",
+  "family": "yolo",
+  "developer": "Ultralytics",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "feeds_into": [
     "sam3"
   ],
@@ -10,9 +17,6 @@
     "likes": 217,
     "fetched_at": "2026-10-11T05:07:36.156Z"
   },
-  "id": "yolo26",
-  "family": "yolo",
-  "name": "YOLO26",
   "cells": [
     {
       "input": "image",

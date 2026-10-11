@@ -1,5 +1,6 @@
 {
   "id": "yolo",
   "name": "YOLO",
-  "summary": "Fast real-time object detectors."
+  "summary": "Fast real-time object detectors.",
+  "summary_source": "ai"
 }

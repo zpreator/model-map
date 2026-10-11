@@ -29,7 +29,9 @@ CI runs `npm run build` on every pull request. A PR that fails validation can't 
 |---|---|
 | `name` | The specific model or generation, e.g. `SAM 3`. One entry per generation, not per size. |
 | `family` | Id of a file in `data/families/`. Display grouping only; the entry does not inherit anything from it. |
-| `cells` | Where it sits on the grid: pairs of `input` (`image`, `text`, `audio`, `video`) and `output` (`label`, `embedding`, `boxes_masks`, `text`, `media`). List only what *this* model does. |
+| `cells` | Where it sits on the grid: pairs of `input` (`image`, `text`, `audio`, `video`) and `output` (`label`, `embedding`, `boxes_masks`, `text`, `image`, `audio`, `video`). List only what *this* model does. |
+| `developer` | Who built it: the Hub organization for open models, the provider for hosted ones. |
+| `summary`, `summary_source` | 1-2 plain sentences (max 300 characters, no links or markup): what it is, what problem it solves, why it exists. `summary_source` is `ai` for machine-written text and `curated` once a person has written or approved it. |
 | `hf_task` | The Hugging Face pipeline tag, which must exist in `data/tasks.json`. `null` for API-only models. |
 | `tiers` | Subset of `cpu_edge`, `gpu_8gb`, `gpu_24gb`, `datacenter`, `api`. Cover the sizes the entry spans. `[]` if unknown. |
 | `license`, `open_weights`, `hf_repo` | From the repo; `null` when unknown. A Hub license tag of `other` should be read in full, not copied. |
@@ -47,7 +49,7 @@ Create `data/problems/<id>.json` with a `title`, a one-or-two-sentence `descript
 
 ## The weekly discovery PR
 
-A scheduled job (`.github/workflows/discover.yml`) opens a PR proposing new models found on the Hugging Face Hub. An AI model picked the family and grid cells; licenses, parameter counts and downloads come from the Hub API. Review it like any other PR: delete the files for proposals you reject (their repos are remembered in `data/decisions.json`), fix cells or families where the AI got it wrong, and leave `verified: false`.
+A scheduled job (`.github/workflows/discover.yml`) opens a PR proposing new models found on the Hugging Face Hub. An AI model picked the family and grid cells for Hub models and wrote short summaries from the model cards; developers, licenses, parameter counts and downloads come from the Hub API, and hosted models come from OpenRouter's catalogue. Review it like any other PR: delete the files for proposals you reject (their repos are remembered in `data/decisions.json`), fix cells, families or summaries where the AI got it wrong (set `summary_source` to `curated` once you've edited a summary, and the job will never overwrite it), and leave `verified: false`.
 
 ## Code changes
 

@@ -19,7 +19,10 @@
     "feeds_into",
     "verified",
     "notes",
-    "source"
+    "source",
+    "developer",
+    "summary",
+    "summary_source"
   ],
   "properties": {
     "id": {
@@ -63,7 +66,9 @@
               "embedding",
               "boxes_masks",
               "text",
-              "media"
+              "image",
+              "audio",
+              "video"
             ]
           }
         }
@@ -183,6 +188,40 @@
       ],
       "pattern": "^[\\w.-]+/[\\w.-]+$",
       "description": "Example Hub repo (checked to exist)."
+    },
+    "developer": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Who built it: the Hub organization for open models, the provider for hosted ones. Taken from the source, never from an AI model."
+    },
+    "summary": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 300,
+      "description": "1-2 plain sentences: what it is, what problem it solves, why it exists. No URLs or markup."
+    },
+    "summary_source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "ai",
+        "curated",
+        null
+      ],
+      "description": "'ai' = summarized by an AI model from the model card (unreviewed); 'curated' = written or approved by a person."
+    },
+    "card_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Hash of the sanitized card text the summary was made from; the job regenerates the summary only when it changes."
     }
   }
 }

@@ -1,5 +1,6 @@
 {
   "id": "qwen3-embedding",
   "name": "Qwen3-Embedding",
-  "summary": "Text embedding models in several sizes."
+  "summary": "Text embedding models in several sizes.",
+  "summary_source": "ai"
 }

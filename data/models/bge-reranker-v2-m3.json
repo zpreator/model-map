@@ -2,6 +2,10 @@
   "id": "bge-reranker-v2-m3",
   "name": "bge-reranker-v2-m3",
   "family": "bge",
+  "developer": "BAAI",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "cells": [
     {
       "input": "text",

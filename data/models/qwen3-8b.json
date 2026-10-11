@@ -1,4 +1,11 @@
 {
+  "id": "qwen3-8b",
+  "name": "Qwen3-8B",
+  "family": "open-llm",
+  "developer": "Qwen",
+  "summary": null,
+  "summary_source": null,
+  "card_hash": null,
   "links": [
     {
       "label": "Qwen/Qwen3-8B on Hugging Face",
@@ -14,9 +21,6 @@
     "likes": 2083,
     "fetched_at": "2026-10-11T05:07:36.156Z"
   },
-  "id": "qwen3-8b",
-  "name": "Qwen3-8B",
-  "family": "open-llm",
   "cells": [
     {
       "input": "text",
