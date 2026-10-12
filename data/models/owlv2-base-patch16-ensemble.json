@@ -1,0 +1,38 @@
+{
+  "id": "owlv2-base-patch16-ensemble",
+  "name": "owlv2-base-patch16-ensemble",
+  "family": "owlv2",
+  "developer": "google",
+  "summary": "Google’s OWLv2 is a zero-shot object-detection model that finds objects in images based on text queries. It enables detection using text descriptions instead of requiring a fixed list of object categories.",
+  "summary_source": "ai",
+  "card_hash": "f54dbe36350e",
+  "cells": [
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "zero-shot-object-detection",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "google/owlv2-base-patch16-ensemble",
+  "links": [
+    {
+      "label": "google/owlv2-base-patch16-ensemble on Hugging Face",
+      "url": "https://huggingface.co/google/owlv2-base-patch16-ensemble"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 620 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 1917826,
+    "likes": 136,
+    "created_at": "2023-10-13T09:27:09.000Z",
+    "fetched_at": "2026-10-12T18:47:44.951Z"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "jev-router",
+  "name": "Jev Router",
+  "family": "closed-llm",
+  "developer": "TypeSafe",
+  "summary": "Built by TypeSafe, Jev Router selects a model and reasoning effort for each request, balancing quality, speed, and cost.",
+  "summary_source": "ai",
+  "card_hash": "7b7b3fec36b1",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "video",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/typesafe/jev-router"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+  "source": "auto",
+  "metrics": null
+}

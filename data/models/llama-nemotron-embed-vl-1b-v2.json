@@ -1,0 +1,42 @@
+{
+  "id": "llama-nemotron-embed-vl-1b-v2",
+  "name": "llama-nemotron-embed-vl-1b-v2",
+  "family": "open-llm",
+  "developer": "nvidia",
+  "summary": "NVIDIA developed llama-nemotron-embed-vl-1b-v2 to represent document pages containing text, images, tables, or charts as embeddings. It helps retrieve relevant pages from a text query for multimodal question answering.",
+  "summary_source": "ai",
+  "card_hash": "83506f554b9d",
+  "cells": [
+    {
+      "input": "image",
+      "output": "embedding"
+    },
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "sentence-similarity",
+  "tiers": [
+    "gpu_8gb"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "nvidia/llama-nemotron-embed-vl-1b-v2",
+  "links": [
+    {
+      "label": "nvidia/llama-nemotron-embed-vl-1b-v2 on Hugging Face",
+      "url": "https://huggingface.co/nvidia/llama-nemotron-embed-vl-1b-v2"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 3.4 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 28877,
+    "likes": 107,
+    "created_at": "2025-12-03T17:07:48.000Z",
+    "fetched_at": "2026-10-12T18:47:44.951Z"
+  }
+}

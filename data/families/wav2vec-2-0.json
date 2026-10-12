@@ -1,0 +1,6 @@
+{
+  "id": "wav2vec-2-0",
+  "name": "wav2vec 2.0",
+  "summary": "Facebook built wav2vec 2.0, a model that transcribes speech audio into text. It was developed to make speech recognition work well even when only limited transcribed speech is available.",
+  "summary_source": "ai"
+}

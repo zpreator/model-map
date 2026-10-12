@@ -1,0 +1,33 @@
+{
+  "id": "ling-3-1-flash",
+  "name": "Ling 3.1 Flash",
+  "family": "closed-llm",
+  "developer": "inclusionAI",
+  "summary": "Ling 3.1 Flash was built by inclusionAI. It is a hosted language model with a 262,144-token context, but the supplied text does not explain what problem it solves.",
+  "summary_source": "ai",
+  "card_hash": "0ecf49fa0f15",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/inclusionai/ling-3.1-flash"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+  "source": "auto",
+  "metrics": null
+}

@@ -1,0 +1,6 @@
+{
+  "id": "llama-nemotron-embedding",
+  "name": "Llama Nemotron Embedding",
+  "summary": "Built by NVIDIA, Llama Nemotron Embedding turns text into numerical representations for multilingual and cross-lingual question-answering retrieval. It supports long documents and variable-size representations to reduce storage needs for large datasets.",
+  "summary_source": "ai"
+}
