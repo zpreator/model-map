@@ -1,0 +1,38 @@
+{
+  "id": "qwen3-forcedaligner-0-6b",
+  "name": "Qwen3-ForcedAligner-0.6B",
+  "family": "qwen3-forced-aligner",
+  "developer": "Qwen",
+  "summary": "Built by Qwen, Qwen3-ForcedAligner-0.6B predicts timestamps for arbitrary units in speech in 11 languages, helping align spoken words or units with their timing.",
+  "summary_source": "ai",
+  "card_hash": "0f19bb22249f",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "Qwen/Qwen3-ForcedAligner-0.6B",
+  "links": [
+    {
+      "label": "Qwen/Qwen3-ForcedAligner-0.6B on Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3-ForcedAligner-0.6B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 1.8 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 400408,
+    "likes": 168,
+    "created_at": "2026-01-28T03:29:54.000Z",
+    "fetched_at": "2026-10-12T18:47:44.951Z"
+  }
+}

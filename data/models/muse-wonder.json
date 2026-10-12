@@ -1,0 +1,45 @@
+{
+  "id": "muse-wonder",
+  "name": "Muse Wonder",
+  "family": "closed-llm",
+  "developer": "Meta",
+  "summary": "Built by Meta, Muse Wonder is a hosted language model that handles text, images, video, audio, and PDFs and returns text. It is designed for complex personal and professional agentic tasks.",
+  "summary_source": "ai",
+  "card_hash": "ed430be4375a",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "video",
+      "output": "text"
+    },
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/meta/muse-wonder"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+  "source": "auto",
+  "metrics": null
+}

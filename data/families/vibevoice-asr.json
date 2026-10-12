@@ -1,0 +1,6 @@
+{
+  "id": "vibevoice-asr",
+  "name": "VibeVoice-ASR",
+  "summary": "Built by Microsoft Research, VibeVoice-ASR transcribes speech and identifies speakers and timestamps, supporting long recordings and more than 50 languages. It is designed to preserve context across long audio and provide structured transcripts.",
+  "summary_source": "ai"
+}

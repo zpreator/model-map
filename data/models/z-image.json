@@ -1,0 +1,38 @@
+{
+  "id": "z-image",
+  "name": "Z-Image",
+  "family": "z-image",
+  "developer": "Tongyi-MAI",
+  "summary": "Built by Tongyi-MAI, Z-Image is a 6.2B-parameter model that creates images from text prompts. It exists as a full-capacity foundation model for generating varied images and following detailed prompts.",
+  "summary_source": "ai",
+  "card_hash": "7ab1da7bfe1a",
+  "cells": [
+    {
+      "input": "text",
+      "output": "image"
+    }
+  ],
+  "hf_task": "text-to-image",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "Tongyi-MAI/Z-Image",
+  "links": [
+    {
+      "label": "Tongyi-MAI/Z-Image on Hugging Face",
+      "url": "https://huggingface.co/Tongyi-MAI/Z-Image"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 12.3 GB of weights (parameters x 2 bytes).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 51743,
+    "likes": 1270,
+    "created_at": "2026-01-23T10:02:00.000Z",
+    "fetched_at": "2026-10-12T18:47:44.951Z"
+  }
+}

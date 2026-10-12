@@ -1,0 +1,6 @@
+{
+  "id": "indextts",
+  "name": "IndexTTS",
+  "summary": "IndexTeam developed IndexTTS, a text-to-speech model that can generate speech in several languages while cloning a voice from one reference audio clip. It exists to turn text into speech with control over voice and emotion.",
+  "summary_source": "ai"
+}

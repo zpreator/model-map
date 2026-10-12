@@ -1,0 +1,6 @@
+{
+  "id": "florence-2",
+  "name": "Florence-2",
+  "summary": "Microsoft built Florence-2, a vision model that uses text prompts to caption images, detect objects, and perform segmentation. It was created to handle a variety of vision and vision-language tasks with one model.",
+  "summary_source": "ai"
+}

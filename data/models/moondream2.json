@@ -1,0 +1,42 @@
+{
+  "id": "moondream2",
+  "name": "moondream2",
+  "family": "open-llm",
+  "developer": "vikhyatk",
+  "summary": "Built by vikhyatk, Moondream 2 is a 1.9B vision-language model that answers text queries about images. It is designed to run efficiently across a range of devices and settings.",
+  "summary_source": "ai",
+  "card_hash": "3ee8a5d42d66",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "gpu_8gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "vikhyatk/moondream2",
+  "links": [
+    {
+      "label": "vikhyatk/moondream2 on Hugging Face",
+      "url": "https://huggingface.co/vikhyatk/moondream2"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 3.9 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 2325529,
+    "likes": 1441,
+    "created_at": "2024-03-04T18:03:06.000Z",
+    "fetched_at": "2026-10-12T18:47:44.951Z"
+  }
+}

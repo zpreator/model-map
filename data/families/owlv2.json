@@ -1,0 +1,6 @@
+{
+  "id": "owlv2",
+  "name": "OWLv2",
+  "summary": "Proposed by Matthias Minderer, Alexey Gritsenko, and Neil Houlsby, OWLv2 detects objects in images based on text queries, including categories it was not specifically trained to recognize. It is intended for research into zero-shot, text-conditioned object detection.",
+  "summary_source": "ai"
+}
