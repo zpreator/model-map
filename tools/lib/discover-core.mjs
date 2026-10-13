@@ -199,11 +199,16 @@ export const orBaseId = (id) => id.split(":")[0];
 export const orHasVariant = (id) => id.includes(":");
 
 /** Cells from the listed modalities (every supported input paired with every output). */
-export function orCells(arch) {
+export function orCells(arch, { mediaOnly = false } = {}) {
   const ins = (arch?.input_modalities ?? []).map((m) => OR_INPUTS[m]).filter(Boolean);
-  const outs = (arch?.output_modalities ?? []).map((m) => OR_OUTPUTS[m]).filter(Boolean);
+  let outs = (arch?.output_modalities ?? []).map((m) => OR_OUTPUTS[m]).filter(Boolean);
+  // A model that makes images or audio is placed by what it generates; its side talent for replying in text is not the point.
+  if (mediaOnly && outs.some((o) => o !== "text")) outs = outs.filter((o) => o !== "text");
   return ins.flatMap((input) => outs.map((output) => ({ input, output })));
 }
+
+const MEDIA_OUT = ["video", "image", "audio"]; // priority order when a model produces several
+export const orMediaKind = (arch) => MEDIA_OUT.find((k) => (arch?.output_modalities ?? []).includes(k)) ?? null;
 
 /** "Anthropic: Claude Haiku 5.5" -> { developer: "Anthropic", name: "Claude Haiku 5.5" } */
 export function orSplitName(name) {
@@ -228,16 +233,46 @@ export function parseRankings(html) {
  */
 export function pickClosed(orModels, usage, { top, skip }) {
   const rows = orModels
-    .filter((m) => !orHasVariant(m.id) && !m.hugging_face_id && (m.architecture?.output_modalities ?? []).includes("text") && !skip(m))
+    .filter((m) => !orHasVariant(m.id) && !m.hugging_face_id && (m.architecture?.output_modalities ?? []).includes("text") && !orMediaKind(m.architecture) && !skip(m))
     .map((m) => ({ m, tokens: usage.get(m.canonical_slug) ?? 0 }));
-  const haveUsage = rows.some((r) => r.tokens > 0);
+  // Usage data being available is what matters, not whether the *remaining* candidates have any: once the busiest
+  // models are on the map the rest legitimately show zero, and they must not be replaced by random recent releases.
+  const haveUsage = usage.size > 0;
   // With usage data, only models people actually use qualify; newcomers appear once they show up in the rankings.
   const pool = haveUsage ? rows.filter((r) => r.tokens > 0) : rows;
   pool.sort((a, b) => (haveUsage ? b.tokens - a.tokens : b.m.created - a.m.created));
   return pool.slice(0, top).map((r) => ({ ...r, ranked_by: haveUsage ? "usage" : "recency" }));
 }
 
-export function draftClosedModel({ m, familyId = "closed-llm", now = new Date() }) {
+/**
+ * Closed image/audio/video generators. OpenRouter's usage ranking is dominated by text models and never shows these,
+ * so they are picked by release date instead: the newest few per kind, skipping previews that have a released twin,
+ * routers like openrouter/auto, and anything older than maxAgeDays.
+ */
+export function pickClosedMedia(orModels, { topPerKind, perProvider = 2, maxAgeDays, skip, now = new Date() }) {
+  const ids = new Set(orModels.map((m) => m.id));
+  const base = (id) => id.replace(/-(preview|beta|exp|experimental)$/, "");
+  const rows = orModels
+    .filter((m) => !orHasVariant(m.id) && !m.hugging_face_id && !m.id.startsWith("openrouter/") && orMediaKind(m.architecture) && !skip(m))
+    .filter((m) => (now - new Date(m.created * 1000)) / 86_400_000 <= maxAgeDays)
+    .filter((m) => base(m.id) === m.id || !ids.has(base(m.id))) // a "-preview" whose released twin exists is superseded
+    .map((m) => ({ m, kind: orMediaKind(m.architecture) }))
+    .sort((a, b) => b.m.created - a.m.created);
+  // Newest few per provider first (so one lab's many variants cannot crowd out the others), then the newest overall.
+  const perProv = {};
+  const spread = rows.filter((r) => (perProv[`${r.kind}/${r.m.id.split("/")[0]}`] = (perProv[`${r.kind}/${r.m.id.split("/")[0]}`] ?? 0) + 1) <= perProvider);
+  const taken = {};
+  return spread.filter((r) => (taken[r.kind] = (taken[r.kind] ?? 0) + 1) <= topPerKind);
+}
+
+/** One family per kind of generator; created on demand. */
+export const MEDIA_FAMILIES = {
+  image: { id: "closed-image", name: "Closed image models" },
+  audio: { id: "closed-audio", name: "Closed audio models" },
+  video: { id: "closed-video", name: "Closed video models" },
+};
+
+export function draftClosedModel({ m, familyId = "closed-llm", mediaOnly = false, now = new Date() }) {
   const { developer, name } = orSplitName(m.name);
   return {
     id: slugify(name),
@@ -247,7 +282,7 @@ export function draftClosedModel({ m, familyId = "closed-llm", now = new Date() 
     summary: null,
     summary_source: null,
     card_hash: null,
-    cells: orCells(m.architecture),
+    cells: orCells(m.architecture, { mediaOnly }),
     hf_task: null,
     tiers: ["api"],
     license: null,

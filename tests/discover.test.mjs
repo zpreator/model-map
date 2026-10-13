@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { unknownReason, autoNote, draftClosedModel, stemKey, weightBytes, orBaseId, orCells, orSplitName, parseRankings, pickClosed, sanitizeCard, validSummary, cardHash, draftModel, estimateTier, isDerived, keepCandidate, normalizeDecision, slugify, cardExcerpt } from "../tools/lib/discover-core.mjs";
+import { MEDIA_FAMILIES, orMediaKind, pickClosedMedia, unknownReason, autoNote, draftClosedModel, stemKey, weightBytes, orBaseId, orCells, orSplitName, parseRankings, pickClosed, sanitizeCard, validSummary, cardHash, draftModel, estimateTier, isDerived, keepCandidate, normalizeDecision, slugify, cardExcerpt } from "../tools/lib/discover-core.mjs";
 import { readFileSync } from "node:fs";
 
 const cfg = JSON.parse(readFileSync(new URL("../tools/discover.config.json", import.meta.url)));
@@ -94,7 +94,36 @@ const usage = new Map([["a/small-d", 500], ["a/big-d", 100]]);
 assert.deepEqual(pickClosed([...orList, ORM("e/unused")], usage, { top: 9, skip: () => false }).map((p) => p.m.id), ["a/small", "a/big"]); // zero-usage models excluded when usage is known
 const picked = pickClosed(orList, usage, { top: 5, skip: () => false });
 assert.deepEqual(picked.map((p) => p.m.id), ["a/small", "a/big"]); // open-weights, image-only and variants excluded; ranked by usage
-assert.equal(pickClosed(orList, new Map(), { top: 1, skip: () => false })[0].ranked_by, "recency");
+assert.equal(pickClosed(orList, new Map(), { top: 1, skip: () => false })[0].ranked_by, "recency"); // no usage data at all: fall back to release date
+assert.deepEqual(pickClosed(orList, new Map([["zzz-d", 5]]), { top: 5, skip: () => false }), []); // usage exists but none of these have any: do not pad with recent releases
+// closed media generators
+const IMG = { input_modalities: ["image", "text"], output_modalities: ["image", "text"] };
+const AUD = { input_modalities: ["text"], output_modalities: ["text", "audio"] };
+const mnow = new Date("2026-10-12T00:00:00Z"), ts = (d) => Math.floor(new Date(d).getTime() / 1000);
+const media = [
+  ORM("g/pic-3", { architecture: IMG, created: ts("2026-09-01") }),
+  ORM("g/pic-3-preview", { architecture: IMG, created: ts("2026-06-01") }),       // superseded by pic-3
+  ORM("g/pic-4-preview", { architecture: IMG, created: ts("2026-10-01") }),       // no released twin: kept
+  ORM("o/pic-old", { architecture: IMG, created: ts("2024-01-01") }),             // too old
+  ORM("openrouter/auto", { architecture: IMG, created: ts("2026-10-01") }),       // router, not a model
+  ORM("o/open-pic", { architecture: IMG, hugging_face_id: "o/open-pic", created: ts("2026-10-01") }), // has weights
+  ORM("o/voice", { architecture: AUD, created: ts("2026-08-01") }),
+  ORM("o/text-only", { created: ts("2026-10-01") }),
+];
+const mp = pickClosedMedia(media, { topPerKind: 5, maxAgeDays: 450, skip: () => false, now: mnow });
+assert.deepEqual(mp.map((r) => `${r.kind}:${r.m.id}`), ["image:g/pic-4-preview", "image:g/pic-3", "audio:o/voice"]);
+// one lab with many variants must not crowd out another
+const crowd = [
+  ORM("g/a-1", { architecture: IMG, created: ts("2026-09-05") }), ORM("g/a-2", { architecture: IMG, created: ts("2026-09-04") }), ORM("g/a-3", { architecture: IMG, created: ts("2026-09-03") }),
+  ORM("o/b-1", { architecture: IMG, created: ts("2026-04-01") }),
+];
+assert.deepEqual(pickClosedMedia(crowd, { topPerKind: 3, perProvider: 2, maxAgeDays: 450, skip: () => false, now: mnow }).map((r) => r.m.id), ["g/a-1", "g/a-2", "o/b-1"].slice(0, 3));
+assert.equal(pickClosedMedia(media, { topPerKind: 1, maxAgeDays: 450, skip: () => false, now: mnow }).filter((r) => r.kind === "image").length, 1);
+assert.deepEqual(orCells(IMG, { mediaOnly: true }), [{ input: "image", output: "image" }, { input: "text", output: "image" }]); // placed by what it generates
+assert.equal(orMediaKind({ output_modalities: ["text", "image", "audio"] }), "image");
+assert.equal(MEDIA_FAMILIES.image.id, "closed-image");
+// image generators never leak into the closed LLM list
+assert.deepEqual(pickClosed([...media, ORM("a/chat")], new Map([["a/chat-d", 5], ["g/pic-3-d", 9]]), { top: 5, skip: () => false }).map((p) => p.m.id), ["a/chat"]);
 const dc = draftClosedModel({ m: ORM("a/big", { name: "Acme: Big 1" }), now });
 assert.deepEqual([dc.id, dc.developer, dc.tiers, dc.open_weights, dc.verified, dc.license], ["big-1", "Acme", ["api"], false, false, null]);
 console.log("discover: all pass");

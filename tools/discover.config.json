@@ -46,5 +46,8 @@
     "openrouter"
   ],
   "max_summaries_per_run": 40,
-  "summary_input_chars": 1800
+  "summary_input_chars": 1800,
+  "closed_media_top_per_kind": 8,
+  "closed_media_max_age_days": 450,
+  "closed_media_per_provider": 2
 }

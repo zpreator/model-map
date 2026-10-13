@@ -60,7 +60,7 @@ For each step of a problem, take the lightest tier among its candidates; the ove
 
 1. queries the Hugging Face Hub API for the most downloaded and trending open models per task, and filters out fine-tunes, quantized copies, test repos and low-download noise,
 2. asks an OpenAI model which family and grid cells each remaining candidate belongs in (or whether to ignore it). All general-purpose language models go under the single **Open LLMs** family,
-3. pulls the most-used hosted models from OpenRouter into **Closed LLMs**. The model catalogue is a documented API; the usage ranking is read from the public rankings page, which is undocumented, so if its format changes the job falls back to release date and says so in the PR,
+3. pulls the most-used hosted text models from OpenRouter into **Closed LLMs**, and the newest hosted image and audio generators (a couple per lab, so one lab's variants don't crowd out the others) into **Closed image models** and **Closed audio models**. Generators are picked by release date because OpenRouter's usage ranking never shows them, and they are placed by what they generate. OpenRouter only lists models it routes to, so dedicated APIs it doesn't carry (for example OpenAI's gpt-image) are not found this way. The model catalogue is a documented API; the usage ranking is read from the public rankings page, which is undocumented, so if its format changes the job falls back to release date and says so in the PR,
 4. writes a 1-2 sentence summary for each new entry (and for older entries that lack one) from sanitized card text, marked `summary_source: "ai"`,
 5. opens a pull request for a person to review. Everything proposed is `verified: false`.
 

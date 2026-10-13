@@ -17,7 +17,7 @@ import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
 import {
   autoNote, cardHash, developerFromRepo, draftClosedModel, draftModel, estimateTier, fmtParams, keepCandidate, metricsFrom, normalizeDecision,
-  orBaseId, parseRankings, pickClosed, sanitizeCard, slugify, stemKey, validSummary, weightBytes,
+  MEDIA_FAMILIES, orBaseId, parseRankings, pickClosed, pickClosedMedia, sanitizeCard, slugify, stemKey, validSummary, weightBytes,
 } from "./lib/discover-core.mjs";
 import { applyPatch, computeTier } from "./lib/retier.mjs";
 
@@ -94,7 +94,7 @@ for (const [est, ris] = [byKind("established"), byKind("rising")]; picked.length
 // ---- 1b. closed-model candidates from OpenRouter ----------------------------------------------------------
 // The catalogue API is documented. Usage ranking is scraped from the public rankings page and is best-effort:
 // if its embedded data changes shape we fall back to release date and say so in the PR.
-let closedPicked = [], rankingsOk = false;
+let closedPicked = [], mediaPicked = [], rankingsOk = false;
 try {
   const orModels = (await (await fetch("https://openrouter.ai/api/v1/models")).json()).data;
   let usage = new Map();
@@ -102,18 +102,19 @@ try {
   rankingsOk = usage.size >= 5;
   if (!rankingsOk) console.warn("warning: OpenRouter rankings parsed no usable data; ranking closed models by release date instead");
   const knownNames = new Set(models.map((m) => m.id));
-  closedPicked = pickClosed(orModels, rankingsOk ? usage : new Map(), {
-    top: cfg.closed_top_n,
-    skip: (m) => cfg.closed_exclude_providers.includes(m.id.split("/")[0])
-      || Boolean(m.expiration_date && new Date(m.expiration_date) < now)
-      || `openrouter:${orBaseId(m.id)}` in decisions
-      || knownNames.has(slugify(m.name.replace(/^[^:]*:\s*/, ""))),
-  });
+  const skipOr = (m) => cfg.closed_exclude_providers.includes(m.id.split("/")[0])
+    || Boolean(m.expiration_date && new Date(m.expiration_date) < now)
+    || `openrouter:${orBaseId(m.id)}` in decisions
+    || knownNames.has(slugify(m.name.replace(/^[^:]*:\s*/, "")));
+  closedPicked = pickClosed(orModels, rankingsOk ? usage : new Map(), { top: cfg.closed_top_n, skip: skipOr });
+  // Image/audio/video generators never reach OpenRouter's usage top list, so they are picked by release date.
+  mediaPicked = pickClosedMedia(orModels, { topPerKind: cfg.closed_media_top_per_kind, perProvider: cfg.closed_media_per_provider, maxAgeDays: cfg.closed_media_max_age_days, skip: skipOr, now });
 } catch (e) { console.warn(`OpenRouter unavailable: ${e.message}`); }
 
-console.log(`${candidates.size} open candidates after filters; considering ${picked.length}. Closed candidates: ${closedPicked.length}`);
+console.log(`${candidates.size} open candidates after filters; considering ${picked.length}. Closed candidates: ${closedPicked.length} text + ${mediaPicked.length} media`);
 if (NO_LLM) {
   for (const c of picked) console.log(`open   ${c.kind.padEnd(11)} ${c.hf.id.padEnd(55)} ${String(c.hf.downloads).padStart(10)} dl  ${fmtParams(c.hf.safetensors?.total)}  ${c.hf.pipeline_tag}`);
+  for (const c of mediaPicked) console.log(`closed ${c.kind.padEnd(11)} ${c.m.id.padEnd(55)} ${c.m.name}`);
   for (const c of closedPicked) console.log(`closed ${c.ranked_by.padEnd(11)} ${c.m.id.padEnd(55)} ${(c.tokens / 1e9).toFixed(1).padStart(9)}B tok  ${c.m.name}`);
   process.exit(0);
 }
@@ -196,7 +197,7 @@ for (const { hf } of picked) {
 }
 
 // ---- 3. build proposals -----------------------------------------------------------------------------------
-const added = [], newFamilies = [], ignored = [], closedAdded = [];
+const added = [], newFamilies = [], ignored = [], closedAdded = [], mediaAdded = [];
 const takenIds = new Set(models.map((m) => m.id));
 const uniqueId = (id, extra) => { let out = takenIds.has(id) ? `${id}-${slugify(extra)}` : id; takenIds.add(out); return out; };
 const newFiles = new Map(), patches = new Map(); // path -> object; model id -> partial update for existing entries
@@ -235,6 +236,32 @@ for (const { m, tokens, ranked_by } of closedPicked) {
   newFiles.set(`data/models/${entry.id}.json`, entry);
   decisions[`openrouter:${orBaseId(m.id)}`] = { action: "assign", family: "closed-llm", reason: `Top closed model by ${ranked_by}.`, decided: day, status: "proposed" };
   closedAdded.push({ entry, tokens, ranked_by });
+}
+
+const mediaFamilyIds = new Set();
+for (const { m, kind } of mediaPicked) {
+  const fam = MEDIA_FAMILIES[kind];
+  const entry = draftClosedModel({ m, familyId: fam.id, mediaOnly: true, now });
+  entry.id = uniqueId(entry.id, entry.developer ?? "x");
+  if (!entry.cells.length) continue;
+  const text = sanitizeCard(m.description ?? "", cfg.summary_input_chars);
+  const summary = await summarize({ name: entry.name, developer: entry.developer, task: `hosted ${kind} generation model`, size: null }, text);
+  if (summary) Object.assign(entry, { summary, summary_source: "ai", card_hash: cardHash(text) });
+  entry.notes = `Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Hosted ${kind} generator: proprietary, weights not public, license unknown.`;
+  newFiles.set(`data/models/${entry.id}.json`, entry);
+  decisions[`openrouter:${orBaseId(m.id)}`] = { action: "assign", family: fam.id, reason: `Newest closed ${kind} model on OpenRouter.`, decided: day, status: "proposed" };
+  mediaAdded.push({ entry, kind });
+  if (!familyIds.has(fam.id)) mediaFamilyIds.add(fam.id);
+}
+// Families for hosted generators are created on demand, with a summary written from their members' summaries.
+for (const kind of Object.keys(MEDIA_FAMILIES)) {
+  const fam = MEDIA_FAMILIES[kind];
+  if (!mediaFamilyIds.has(fam.id)) continue;
+  familyIds.add(fam.id);
+  const text = mediaAdded.filter((x) => x.kind === kind).map((x) => `${x.entry.name}: ${x.entry.summary ?? ""}`).join("\n");
+  const summary = await summarize({ name: fam.name, developer: null, task: "model family" }, text);
+  newFiles.set(`data/families/${fam.id}.json`, { id: fam.id, name: fam.name, summary, summary_source: summary ? "ai" : null });
+  newFamilies.push({ id: fam.id, name: fam.name, summary });
 }
 
 // Summaries for existing entries that lack one (capped per run unless --backfill).
@@ -294,6 +321,10 @@ ${added.length ? added.map(({ entry, d }) => line(entry, `; ${entry.metrics.down
 Ranked by ${rankingsOk ? "recent token usage on OpenRouter" : "**release date (OpenRouter usage data was unavailable this run)**"}; hosted models, so tier \`api\`, license unknown.
 ${closedAdded.length ? closedAdded.map(({ entry, tokens }) => line(entry, rankingsOk ? `; ${(tokens / 1e9).toFixed(1)}B tokens recently` : "")).join("\n") : "_None this week._"}
 
+### Proposed closed media models (${mediaAdded.length})
+Hosted image, audio and video generators, newest per kind (OpenRouter's usage ranking never shows these). Placed by what they generate.
+${mediaAdded.length ? mediaAdded.map(({ entry }) => line(entry, "")).join("\n") : "_None this week._"}
+
 ### New families (${newFamilies.length})
 ${newFamilies.length ? newFamilies.map((f) => `- \`${f.id}\` "${f.name}"${f.summary ? `. _AI summary:_ ${f.summary}` : ""}`).join("\n") : "_None._"}
 
@@ -305,4 +336,4 @@ Metrics refreshed for ${refreshed} existing models; summaries added for ${summar
 > Pull requests opened by GitHub Actions do not trigger other workflows, so run \`npm run build\` locally (or close and reopen the PR) to see the CI check.
 `;
 if (opt["pr-body"]) writeFileSync(opt["pr-body"], body);
-console.log(DRY ? "dry run: nothing written" : `proposed ${added.length} open + ${closedAdded.length} closed, ignored ${ignored.length}, summarized ${summarized}+${famSummarized}, refreshed ${refreshed}`);
+console.log(DRY ? "dry run: nothing written" : `proposed ${added.length} open + ${closedAdded.length} closed + ${mediaAdded.length} media, ignored ${ignored.length}, summarized ${summarized}+${famSummarized}, refreshed ${refreshed}`);
