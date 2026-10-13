@@ -1,0 +1,38 @@
+{
+  "id": "voyage-4-nano",
+  "name": "voyage-4-nano",
+  "family": "voyage-embeddings",
+  "developer": "voyageai",
+  "summary": "Voyage AI built voyage-4-nano, a text embedding model that converts text into representations for semantic search and retrieval. It is designed to support these tasks, including local development.",
+  "summary_source": "ai",
+  "card_hash": "c8c055ff2b5c",
+  "cells": [
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "feature-extraction",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "voyageai/voyage-4-nano",
+  "links": [
+    {
+      "label": "voyageai/voyage-4-nano on Hugging Face",
+      "url": "https://huggingface.co/voyageai/voyage-4-nano"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 693 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 341990,
+    "likes": 147,
+    "created_at": "2026-01-06T00:15:08.000Z",
+    "fetched_at": "2026-10-13T02:08:18.673Z"
+  }
+}

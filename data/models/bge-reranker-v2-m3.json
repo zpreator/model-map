@@ -30,9 +30,9 @@
   "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 2.3 GB of weight files (largest checkpoint if several).",
   "source": "auto",
   "metrics": {
-    "downloads_30d": 16384212,
-    "likes": 1229,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2024-03-15T13:32:18.000Z"
+    "downloads_30d": 16000331,
+    "likes": 1243,
+    "created_at": "2024-03-15T13:32:18.000Z",
+    "fetched_at": "2026-10-13T02:08:18.673Z"
   }
 }

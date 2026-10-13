@@ -1,0 +1,37 @@
+{
+  "id": "lyria-3-clip-preview",
+  "name": "Lyria 3 Clip Preview",
+  "family": "closed-audio",
+  "developer": "Google",
+  "summary": "Google's Lyria 3 Clip Preview is a hosted audio-generation model for generating music.",
+  "summary_source": "ai",
+  "card_hash": "9662178be977",
+  "cells": [
+    {
+      "input": "text",
+      "output": "audio"
+    },
+    {
+      "input": "image",
+      "output": "audio"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/google/lyria-3-clip-preview"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Hosted audio generator: proprietary, weights not public, license unknown.",
+  "source": "auto",
+  "metrics": null
+}

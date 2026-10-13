@@ -1,0 +1,6 @@
+{
+  "id": "wav2vec-2-0",
+  "name": "wav2vec 2.0",
+  "summary": "Facebook built wav2vec 2.0 to turn speech audio into written words. It learns from audio and can be fine-tuned with transcribed speech, helping speech recognition work with limited labeled data.",
+  "summary_source": "ai"
+}

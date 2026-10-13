@@ -32,10 +32,10 @@
   "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier unknown: no weight size available.",
   "source": "auto",
   "metrics": {
-    "downloads_30d": 133900,
-    "likes": 325,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2026-09-16T06:41:36.000Z"
+    "downloads_30d": 144913,
+    "likes": 330,
+    "created_at": "2026-09-16T06:41:36.000Z",
+    "fetched_at": "2026-10-13T02:08:18.673Z"
   },
   "tier_note": "Weights are in .cact format, which can't be sized reliably."
 }

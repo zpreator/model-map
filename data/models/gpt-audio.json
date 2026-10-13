@@ -1,0 +1,37 @@
+{
+  "id": "gpt-audio",
+  "name": "GPT Audio",
+  "family": "closed-audio",
+  "developer": "OpenAI",
+  "summary": "Built by OpenAI, GPT Audio is a hosted audio generation model. It is designed to produce more natural-sounding voices with better consistency.",
+  "summary_source": "ai",
+  "card_hash": "9567f4a7d274",
+  "cells": [
+    {
+      "input": "text",
+      "output": "audio"
+    },
+    {
+      "input": "audio",
+      "output": "audio"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/openai/gpt-audio"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Hosted audio generator: proprietary, weights not public, license unknown.",
+  "source": "auto",
+  "metrics": null
+}

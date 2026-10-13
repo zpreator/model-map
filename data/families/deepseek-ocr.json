@@ -1,0 +1,6 @@
+{
+  "id": "deepseek-ocr",
+  "name": "DeepSeek OCR",
+  "summary": "DeepSeek-AI built DeepSeek OCR to turn images into text, supporting optical character recognition and document processing.",
+  "summary_source": "ai"
+}
