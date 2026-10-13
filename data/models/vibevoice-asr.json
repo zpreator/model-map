@@ -1,0 +1,38 @@
+{
+  "id": "vibevoice-asr",
+  "name": "VibeVoice-ASR",
+  "family": "vibevoice-asr",
+  "developer": "microsoft",
+  "summary": "Built by Microsoft, VibeVoice-ASR transcribes speech, identifying speakers and timestamps, and supports long recordings and more than 50 languages. It is designed to handle hour-long audio in one pass while preserving context and speaker tracking.",
+  "summary_source": "ai",
+  "card_hash": "864644ddb3c9",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "microsoft/VibeVoice-ASR",
+  "links": [
+    {
+      "label": "microsoft/VibeVoice-ASR on Hugging Face",
+      "url": "https://huggingface.co/microsoft/VibeVoice-ASR"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 17.3 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 705482,
+    "likes": 1308,
+    "created_at": "2026-01-21T15:04:18.000Z",
+    "fetched_at": "2026-10-13T02:08:18.673Z"
+  }
+}

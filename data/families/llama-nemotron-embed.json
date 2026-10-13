@@ -1,0 +1,6 @@
+{
+  "id": "llama-nemotron-embed",
+  "name": "Llama Nemotron Embed",
+  "summary": "Built by NVIDIA, Llama Nemotron Embed turns text into vectors for multilingual and cross-lingual question-answering retrieval, including with long documents. It supports large-scale retrieval while reducing storage needs through dynamically sized embeddings.",
+  "summary_source": "ai"
+}

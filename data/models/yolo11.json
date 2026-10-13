@@ -13,10 +13,10 @@
   "notes": "License shown is the Ultralytics repo's; other YOLO implementations differ. Tier estimated from the largest checkpoint in the repo (about 120 MB); the repo holds several sizes, n through x.",
   "source": "curated",
   "metrics": {
-    "downloads_30d": 23916,
+    "downloads_30d": 25077,
     "likes": 207,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2024-10-16T12:53:43.000Z"
+    "created_at": "2024-10-16T12:53:43.000Z",
+    "fetched_at": "2026-10-13T02:08:18.673Z"
   },
   "cells": [
     {

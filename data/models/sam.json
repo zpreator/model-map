@@ -11,10 +11,10 @@
   "notes": "Tier estimated from vit-huge (641M parameters); smaller sizes exist.",
   "source": "curated",
   "metrics": {
-    "downloads_30d": 315565,
-    "likes": 199,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2023-04-10T13:51:24.000Z"
+    "downloads_30d": 310097,
+    "likes": 202,
+    "created_at": "2023-04-10T13:51:24.000Z",
+    "fetched_at": "2026-10-13T02:08:18.673Z"
   },
   "cells": [
     {

@@ -1,0 +1,6 @@
+{
+  "id": "closed-image",
+  "name": "Closed image models",
+  "summary": "This family includes image models built by Google and OpenAI. They generate and edit images, supporting uses such as rapid visual exploration and multimodal workflows.",
+  "summary_source": "ai"
+}

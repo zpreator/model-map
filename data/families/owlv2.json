@@ -1,0 +1,6 @@
+{
+  "id": "owlv2",
+  "name": "OWLv2",
+  "summary": "Developed by Google, OWLv2 detects objects in images based on text queries, including object categories it was not specifically trained to recognize. It enables zero-shot, text-conditioned object detection.",
+  "summary_source": "ai"
+}

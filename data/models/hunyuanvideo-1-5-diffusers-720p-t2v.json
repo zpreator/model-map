@@ -1,0 +1,38 @@
+{
+  "id": "hunyuanvideo-1-5-diffusers-720p-t2v",
+  "name": "HunyuanVideo-1.5-Diffusers-720p_t2v",
+  "family": "ltx",
+  "developer": "hunyuanvideo-community",
+  "summary": "HunyuanVideo-1.5-Diffusers-720p_t2v was built by hunyuanvideo-community. It is an 8.3B-parameter text-to-video model that generates videos from text.",
+  "summary_source": "ai",
+  "card_hash": "93f3b5df33d3",
+  "cells": [
+    {
+      "input": "text",
+      "output": "video"
+    }
+  ],
+  "hf_task": "text-to-video",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_t2v",
+  "links": [
+    {
+      "label": "hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_t2v on Hugging Face",
+      "url": "https://huggingface.co/hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_t2v"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 16.7 GB of weights (parameters x 2 bytes).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 20813,
+    "likes": 2,
+    "created_at": "2025-11-27T09:38:49.000Z",
+    "fetched_at": "2026-10-13T02:08:18.673Z"
+  }
+}

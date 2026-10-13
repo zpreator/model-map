@@ -1,0 +1,38 @@
+{
+  "id": "unlimited-ocr",
+  "name": "Unlimited-OCR",
+  "family": "unlimited-ocr",
+  "developer": "baidu",
+  "summary": "Built by Baidu, Unlimited-OCR converts images containing text into text. It aims to extend long-horizon document parsing for OCR.",
+  "summary_source": "ai",
+  "card_hash": "570dae8098f1",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "baidu/Unlimited-OCR",
+  "links": [
+    {
+      "label": "baidu/Unlimited-OCR on Hugging Face",
+      "url": "https://huggingface.co/baidu/Unlimited-OCR"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 6.7 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 1205646,
+    "likes": 4516,
+    "created_at": "2026-06-19T09:40:33.000Z",
+    "fetched_at": "2026-10-13T02:08:18.673Z"
+  }
+}

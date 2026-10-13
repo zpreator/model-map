@@ -1,0 +1,6 @@
+{
+  "id": "nemotron-embed-vl",
+  "name": "Nemotron Embed VL",
+  "summary": "Developed by NVIDIA, Nemotron Embed VL turns text and document pages—including images, charts, and tables—into embeddings for retrieving relevant pages from a text query. It is designed for multimodal question-answering retrieval.",
+  "summary_source": "ai"
+}

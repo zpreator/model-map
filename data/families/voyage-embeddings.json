@@ -1,0 +1,6 @@
+{
+  "id": "voyage-embeddings",
+  "name": "Voyage Embeddings",
+  "summary": "Voyage AI built Voyage Embeddings, a text embedding model for semantic search and retrieval. It turns text into representations that help find relevant information.",
+  "summary_source": "ai"
+}

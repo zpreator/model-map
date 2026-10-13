@@ -1,0 +1,37 @@
+{
+  "id": "nano-banana-2-lite-gemini-3-1-flash-lite-image",
+  "name": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
+  "family": "closed-image",
+  "developer": "Google",
+  "summary": "Google built Nano Banana 2 Lite to generate images from text, for developer workflows that need rapid image generation and visual exploration.",
+  "summary_source": "ai",
+  "card_hash": "c9c13a027ed1",
+  "cells": [
+    {
+      "input": "image",
+      "output": "image"
+    },
+    {
+      "input": "text",
+      "output": "image"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/google/gemini-3.1-flash-lite-image"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Hosted image generator: proprietary, weights not public, license unknown.",
+  "source": "auto",
+  "metrics": null
+}

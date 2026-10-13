@@ -1,0 +1,6 @@
+{
+  "id": "flexray",
+  "name": "FleXray",
+  "summary": "VictorButoi built FleXray, an image-segmentation model that identifies 60 anatomical structures in standard X-rays. It is designed to segment anatomy across body regions, projections, and imaging settings.",
+  "summary_source": "ai"
+}

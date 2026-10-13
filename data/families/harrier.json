@@ -1,0 +1,6 @@
+{
+  "id": "harrier",
+  "name": "Harrier",
+  "summary": "Microsoft built Harrier, a family of multilingual text embedding models that turns text into vectors for tasks such as retrieval, clustering, and similarity. It exists to support a wide range of text tasks across many languages.",
+  "summary_source": "ai"
+}

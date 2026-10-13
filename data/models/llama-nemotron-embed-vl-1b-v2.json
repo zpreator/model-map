@@ -1,0 +1,42 @@
+{
+  "id": "llama-nemotron-embed-vl-1b-v2",
+  "name": "llama-nemotron-embed-vl-1b-v2",
+  "family": "nemotron-embed-vl",
+  "developer": "nvidia",
+  "summary": "Developed by NVIDIA, llama-nemotron-embed-vl-1b-v2 creates embeddings from text, images, or both so users can retrieve document pages with a text query. It is designed for multimodal question-answering retrieval, including pages with tables, charts, and infographics.",
+  "summary_source": "ai",
+  "card_hash": "83506f554b9d",
+  "cells": [
+    {
+      "input": "image",
+      "output": "embedding"
+    },
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "sentence-similarity",
+  "tiers": [
+    "gpu_8gb"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "nvidia/llama-nemotron-embed-vl-1b-v2",
+  "links": [
+    {
+      "label": "nvidia/llama-nemotron-embed-vl-1b-v2 on Hugging Face",
+      "url": "https://huggingface.co/nvidia/llama-nemotron-embed-vl-1b-v2"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 3.4 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 28877,
+    "likes": 107,
+    "created_at": "2025-12-03T17:07:48.000Z",
+    "fetched_at": "2026-10-13T02:08:18.673Z"
+  }
+}
