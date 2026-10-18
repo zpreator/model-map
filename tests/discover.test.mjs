@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { MEDIA_FAMILIES, orMediaKind, pickClosedMedia, unknownReason, autoNote, draftClosedModel, stemKey, weightBytes, orBaseId, orCells, orSplitName, parseRankings, pickClosed, sanitizeCard, validSummary, cardHash, draftModel, estimateTier, isDerived, keepCandidate, normalizeDecision, slugify, cardExcerpt } from "../tools/lib/discover-core.mjs";
+import { draftOpenAiMedia, openaiBaseId, pickOpenAiMedia, MEDIA_FAMILIES, orMediaKind, pickClosedMedia, unknownReason, autoNote, draftClosedModel, stemKey, weightBytes, orBaseId, orCells, orSplitName, parseRankings, pickClosed, sanitizeCard, validSummary, cardHash, draftModel, estimateTier, isDerived, keepCandidate, normalizeDecision, slugify, cardExcerpt } from "../tools/lib/discover-core.mjs";
 import { readFileSync } from "node:fs";
 
 const cfg = JSON.parse(readFileSync(new URL("../tools/discover.config.json", import.meta.url)));
@@ -124,6 +124,25 @@ assert.equal(orMediaKind({ output_modalities: ["text", "image", "audio"] }), "im
 assert.equal(MEDIA_FAMILIES.image.id, "closed-image");
 // image generators never leak into the closed LLM list
 assert.deepEqual(pickClosed([...media, ORM("a/chat")], new Map([["a/chat-d", 5], ["g/pic-3-d", 9]]), { top: 5, skip: () => false }).map((p) => p.m.id), ["a/chat"]);
+// OpenAI's own list
+const rules = JSON.parse(readFileSync(new URL("../tools/discover.config.json", import.meta.url))).openai_media.rules;
+const oa = (id, d) => ({ id, created: ts(d), owned_by: "system" });
+const oList = [
+  oa("gpt-image-2.5-sunburst", "2026-09-01"), oa("gpt-image-2.5-sunburst-2026-09-01", "2026-09-01"), // snapshot of the alias above
+  oa("gpt-image-2.5-flare", "2026-08-01"), oa("gpt-image-1", "2025-04-01"),                            // too old
+  oa("gpt-4o-mini-tts", "2026-03-01"), oa("gpt-4o-mini-tts-2026-03-01", "2026-03-01"),
+  oa("gpt-realtime-2.1", "2026-07-01"), oa("gpt-realtime-whisper", "2026-06-01"), oa("gpt-transcribe", "2026-05-01"),
+  oa("sora-3", "2026-10-01"), oa("sora-3-preview", "2026-09-01"),
+  oa("gpt-6-luna", "2026-09-22"), oa("text-embedding-4", "2026-09-01"), oa("omni-moderation-2", "2026-09-01"), // not generators
+];
+const op = pickOpenAiMedia(oList, { rules, perKind: 5, maxAgeDays: 450, skip: () => false, now: mnow });
+assert.deepEqual(op.map((r) => `${r.rule.kind}:${openaiBaseId(r.m.id)}`).sort(),
+  ["audio:gpt-4o-mini-tts", "audio:gpt-realtime-2.1", "audio:gpt-realtime-whisper", "audio:gpt-transcribe", "image:gpt-image-2.5-flare", "image:gpt-image-2.5-sunburst", "video:sora-3"]);
+assert.equal(pickOpenAiMedia(oList, { rules, perKind: 1, maxAgeDays: 450, skip: () => false, now: mnow }).filter((r) => r.rule.kind === "image").length, 1);
+assert.equal(openaiBaseId("gpt-image-2-20260301"), "gpt-image-2");
+const rt = op.find((r) => r.m.id === "gpt-realtime-whisper"); assert.deepEqual(rt.rule.cells, [{ input: "audio", output: "text" }]); // "whisper" must beat the realtime rule
+const di = draftOpenAiMedia({ m: op.find((r) => r.m.id === "sora-3").m, rule: op.find((r) => r.m.id === "sora-3").rule, familyId: "closed-video", now: mnow });
+assert.deepEqual([di.id, di.developer, di.tiers, di.open_weights, di.verified, di.family], ["sora-3", "OpenAI", ["api"], false, false, "closed-video"]);
 const dc = draftClosedModel({ m: ORM("a/big", { name: "Acme: Big 1" }), now });
 assert.deepEqual([dc.id, dc.developer, dc.tiers, dc.open_weights, dc.verified, dc.license], ["big-1", "Acme", ["api"], false, false, null]);
 console.log("discover: all pass");

@@ -49,5 +49,78 @@
   "summary_input_chars": 1800,
   "closed_media_top_per_kind": 8,
   "closed_media_max_age_days": 450,
-  "closed_media_per_provider": 2
+  "closed_media_per_provider": 2,
+  "openai_media": {
+    "per_kind": 3,
+    "max_age_days": 450,
+    "rules": [
+      {
+        "kind": "image",
+        "match": "^(gpt-image-|dall-e-)",
+        "cells": [
+          {
+            "input": "text",
+            "output": "image"
+          },
+          {
+            "input": "image",
+            "output": "image"
+          }
+        ],
+        "describe": "OpenAI's hosted model for generating and editing images from text prompts, served through the OpenAI API."
+      },
+      {
+        "kind": "video",
+        "match": "^sora-",
+        "cells": [
+          {
+            "input": "text",
+            "output": "video"
+          },
+          {
+            "input": "image",
+            "output": "video"
+          }
+        ],
+        "describe": "OpenAI's hosted model for generating video from text or image prompts, served through the OpenAI API."
+      },
+      {
+        "kind": "audio",
+        "match": "(transcribe|whisper)",
+        "cells": [
+          {
+            "input": "audio",
+            "output": "text"
+          }
+        ],
+        "describe": "OpenAI's hosted speech-to-text model that transcribes audio, served through the OpenAI API."
+      },
+      {
+        "kind": "audio",
+        "match": "(^|-)tts(-|$)",
+        "cells": [
+          {
+            "input": "text",
+            "output": "audio"
+          }
+        ],
+        "describe": "OpenAI's hosted text-to-speech model that turns text into spoken audio, served through the OpenAI API."
+      },
+      {
+        "kind": "audio",
+        "match": "^gpt-(realtime|live)",
+        "cells": [
+          {
+            "input": "text",
+            "output": "audio"
+          },
+          {
+            "input": "audio",
+            "output": "audio"
+          }
+        ],
+        "describe": "OpenAI's hosted low-latency voice model that listens and replies in speech, served through the OpenAI API."
+      }
+    ]
+  }
 }

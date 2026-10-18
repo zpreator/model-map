@@ -296,3 +296,51 @@ export function draftClosedModel({ m, familyId = "closed-llm", mediaOnly = false
     metrics: null,
   };
 }
+
+// ---- OpenAI's own model list (closed generators OpenRouter does not carry) --------------------------------
+// GET /v1/models returns only ids and creation times, with no modalities, so models are classified by id patterns
+// written in tools/discover.config.json (first matching rule wins). Anything that matches no rule is ignored.
+
+/** "gpt-image-2.5-2026-03-01" -> "gpt-image-2.5": dated snapshots collapse onto their alias. */
+export const openaiBaseId = (id) => id.replace(/-\d{4}-\d{2}-\d{2}$/, "").replace(/-\d{8}$/, "");
+
+export function pickOpenAiMedia(list, { rules, perKind, maxAgeDays, skip, now = new Date() }) {
+  const compiled = rules.map((r) => ({ ...r, re: new RegExp(r.match, "i") }));
+  const ids = new Set(list.map((m) => m.id));
+  const rows = list
+    .map((m) => ({ m, rule: compiled.find((r) => r.re.test(m.id)) }))
+    .filter((r) => r.rule && !/-(preview|beta|exp)$/.test(r.m.id) && !skip(r.m))
+    .filter((r) => (now - new Date(r.m.created * 1000)) / 86_400_000 <= maxAgeDays)
+    // A dated snapshot is dropped when its undated alias exists; among snapshots only the newest remains.
+    .filter((r) => openaiBaseId(r.m.id) === r.m.id || !ids.has(openaiBaseId(r.m.id)))
+    .sort((a, b) => b.m.created - a.m.created);
+  const seen = new Set(), taken = {};
+  return rows
+    .filter((r) => { const k = openaiBaseId(r.m.id); if (seen.has(k)) return false; seen.add(k); return true; })
+    .filter((r) => (taken[r.rule.kind] = (taken[r.rule.kind] ?? 0) + 1) <= perKind);
+}
+
+export function draftOpenAiMedia({ m, rule, familyId, now = new Date() }) {
+  const base = openaiBaseId(m.id);
+  return {
+    id: slugify(base),
+    name: base,
+    family: familyId,
+    developer: "OpenAI",
+    summary: null,
+    summary_source: null,
+    card_hash: null,
+    cells: rule.cells,
+    hf_task: null,
+    tiers: ["api"],
+    license: null,
+    open_weights: false,
+    hf_repo: null,
+    links: [{ label: "OpenAI model page", url: `https://developers.openai.com/api/docs/models/${base}` }],
+    feeds_into: [],
+    verified: false,
+    notes: `Auto-proposed by the weekly discovery job from OpenAI's model list, classified by its id; unreviewed. Hosted ${rule.kind} model: proprietary, weights not public, license unknown. The list API gives no description, so the summary is based on the model's category only.`,
+    source: "auto",
+    metrics: null,
+  };
+}

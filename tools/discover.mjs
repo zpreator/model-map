@@ -17,7 +17,7 @@ import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
 import {
   autoNote, cardHash, developerFromRepo, draftClosedModel, draftModel, estimateTier, fmtParams, keepCandidate, metricsFrom, normalizeDecision,
-  MEDIA_FAMILIES, orBaseId, parseRankings, pickClosed, pickClosedMedia, sanitizeCard, slugify, stemKey, validSummary, weightBytes,
+  MEDIA_FAMILIES, draftOpenAiMedia, openaiBaseId, pickOpenAiMedia, orBaseId, parseRankings, pickClosed, pickClosedMedia, sanitizeCard, slugify, stemKey, validSummary, weightBytes,
 } from "./lib/discover-core.mjs";
 import { applyPatch, computeTier } from "./lib/retier.mjs";
 
@@ -94,7 +94,7 @@ for (const [est, ris] = [byKind("established"), byKind("rising")]; picked.length
 // ---- 1b. closed-model candidates from OpenRouter ----------------------------------------------------------
 // The catalogue API is documented. Usage ranking is scraped from the public rankings page and is best-effort:
 // if its embedded data changes shape we fall back to release date and say so in the PR.
-let closedPicked = [], mediaPicked = [], rankingsOk = false;
+let closedPicked = [], mediaPicked = [], openaiPicked = [], rankingsOk = false;
 try {
   const orModels = (await (await fetch("https://openrouter.ai/api/v1/models")).json()).data;
   let usage = new Map();
@@ -111,9 +111,24 @@ try {
   mediaPicked = pickClosedMedia(orModels, { topPerKind: cfg.closed_media_top_per_kind, perProvider: cfg.closed_media_per_provider, maxAgeDays: cfg.closed_media_max_age_days, skip: skipOr, now });
 } catch (e) { console.warn(`OpenRouter unavailable: ${e.message}`); }
 
-console.log(`${candidates.size} open candidates after filters; considering ${picked.length}. Closed candidates: ${closedPicked.length} text + ${mediaPicked.length} media`);
+// OpenAI's own model list covers generators OpenRouter does not carry (gpt-image, Sora, TTS, realtime voice). It
+// needs the API key the job already has and gives only ids and dates, so rules in the config classify by id.
+if (process.env.OPENAI_API_KEY && cfg.openai_media) {
+  try {
+    const r = await fetch(`${process.env.OPENAI_BASE_URL ?? "https://api.openai.com/v1"}/models`, { headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` } });
+    if (!r.ok) throw new Error(`OpenAI models list returned ${r.status}`);
+    const known = new Set(models.map((m) => m.id));
+    openaiPicked = pickOpenAiMedia((await r.json()).data, {
+      rules: cfg.openai_media.rules, perKind: cfg.openai_media.per_kind, maxAgeDays: cfg.openai_media.max_age_days, now,
+      skip: (m) => `openai:${openaiBaseId(m.id)}` in decisions || known.has(slugify(openaiBaseId(m.id))),
+    });
+  } catch (e) { console.warn(`OpenAI model list unavailable: ${e.message}`); }
+} else console.warn("OPENAI_API_KEY not set: skipping OpenAI's own model list");
+
+console.log(`${candidates.size} open candidates after filters; considering ${picked.length}. Closed candidates: ${closedPicked.length} text + ${mediaPicked.length} media + ${openaiPicked.length} from OpenAI's list`);
 if (NO_LLM) {
   for (const c of picked) console.log(`open   ${c.kind.padEnd(11)} ${c.hf.id.padEnd(55)} ${String(c.hf.downloads).padStart(10)} dl  ${fmtParams(c.hf.safetensors?.total)}  ${c.hf.pipeline_tag}`);
+  for (const c of openaiPicked) console.log(`closed ${c.rule.kind.padEnd(11)} ${c.m.id.padEnd(55)} OpenAI model list`);
   for (const c of mediaPicked) console.log(`closed ${c.kind.padEnd(11)} ${c.m.id.padEnd(55)} ${c.m.name}`);
   for (const c of closedPicked) console.log(`closed ${c.ranked_by.padEnd(11)} ${c.m.id.padEnd(55)} ${(c.tokens / 1e9).toFixed(1).padStart(9)}B tok  ${c.m.name}`);
   process.exit(0);
@@ -253,6 +268,17 @@ for (const { m, kind } of mediaPicked) {
   mediaAdded.push({ entry, kind });
   if (!familyIds.has(fam.id)) mediaFamilyIds.add(fam.id);
 }
+for (const { m, rule } of openaiPicked) {
+  const fam = MEDIA_FAMILIES[rule.kind];
+  const entry = draftOpenAiMedia({ m, rule, familyId: fam.id, now });
+  entry.id = uniqueId(entry.id, "openai");
+  const summary = await summarize({ name: entry.name, developer: "OpenAI", task: `hosted ${rule.kind} model`, size: null }, rule.describe);
+  if (summary) Object.assign(entry, { summary, summary_source: "ai", card_hash: cardHash(rule.describe) });
+  newFiles.set(`data/models/${entry.id}.json`, entry);
+  decisions[`openai:${openaiBaseId(m.id)}`] = { action: "assign", family: fam.id, reason: `Matched the ${rule.kind} rule on OpenAI's model list.`, decided: day, status: "proposed" };
+  mediaAdded.push({ entry, kind: rule.kind });
+  if (!familyIds.has(fam.id)) mediaFamilyIds.add(fam.id);
+}
 // Families for hosted generators are created on demand, with a summary written from their members' summaries.
 for (const kind of Object.keys(MEDIA_FAMILIES)) {
   const fam = MEDIA_FAMILIES[kind];
@@ -322,7 +348,7 @@ Ranked by ${rankingsOk ? "recent token usage on OpenRouter" : "**release date (O
 ${closedAdded.length ? closedAdded.map(({ entry, tokens }) => line(entry, rankingsOk ? `; ${(tokens / 1e9).toFixed(1)}B tokens recently` : "")).join("\n") : "_None this week._"}
 
 ### Proposed closed media models (${mediaAdded.length})
-Hosted image, audio and video generators, newest per kind (OpenRouter's usage ranking never shows these). Placed by what they generate.
+Hosted image, audio and video models, newest per kind, from OpenRouter's catalogue and OpenAI's own model list (usage rankings never show these). Placed by what they generate.
 ${mediaAdded.length ? mediaAdded.map(({ entry }) => line(entry, "")).join("\n") : "_None this week._"}
 
 ### New families (${newFamilies.length})
