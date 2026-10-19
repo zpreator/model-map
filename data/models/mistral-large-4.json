@@ -1,0 +1,37 @@
+{
+  "id": "mistral-large-4",
+  "name": "Mistral Large 4",
+  "family": "closed-llm",
+  "developer": "Mistral",
+  "summary": "Mistral built Mistral Large 4, a language model that can process text and images and assist with reasoning, coding, and agent-like tasks. Its large context window is intended to support work with lengthy inputs.",
+  "summary_source": "ai",
+  "card_hash": "23412e08786e",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/mistralai/mistral-large-4-0"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+  "source": "auto",
+  "metrics": null
+}

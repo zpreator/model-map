@@ -1,0 +1,42 @@
+{
+  "id": "florence-2-base",
+  "name": "Florence-2-base",
+  "family": "florence-2",
+  "developer": "microsoft",
+  "summary": "Microsoft built Florence-2-base, a 232-million-parameter vision model that uses text prompts to handle tasks such as image captioning, object detection, and segmentation. It provides one model for a variety of vision and vision-language tasks.",
+  "summary_source": "ai",
+  "card_hash": "b099ea9e9c2b",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "microsoft/Florence-2-base",
+  "links": [
+    {
+      "label": "microsoft/Florence-2-base on Hugging Face",
+      "url": "https://huggingface.co/microsoft/Florence-2-base"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 463 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 2940005,
+    "likes": 416,
+    "created_at": "2024-06-15T00:57:24.000Z",
+    "fetched_at": "2026-10-12T18:47:44.951Z"
+  }
+}

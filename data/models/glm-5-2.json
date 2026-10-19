@@ -1,0 +1,38 @@
+{
+  "id": "glm-5-2",
+  "name": "GLM-5.2",
+  "family": "open-llm",
+  "developer": "zai-org",
+  "summary": "Built by zai-org, GLM-5.2 is a 753.3B text-generation model designed for long-horizon tasks, including coding, with support for a 1M-token context. It exists to handle extended work more reliably than its predecessor.",
+  "summary_source": "ai",
+  "card_hash": "e3b279fe407f",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "zai-org/GLM-5.2",
+  "links": [
+    {
+      "label": "zai-org/GLM-5.2 on Hugging Face",
+      "url": "https://huggingface.co/zai-org/GLM-5.2"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 1506.7 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 594609,
+    "likes": 5164,
+    "created_at": "2026-06-16T07:39:20.000Z",
+    "fetched_at": "2026-10-12T18:47:44.951Z"
+  }
+}

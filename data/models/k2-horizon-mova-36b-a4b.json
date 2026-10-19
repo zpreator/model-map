@@ -1,0 +1,38 @@
+{
+  "id": "k2-horizon-mova-36b-a4b",
+  "name": "K2-Horizon-MoVA-36B-A4B",
+  "family": "open-llm",
+  "developer": "IFM",
+  "summary": "Built by IFM, K2-Horizon-MoVA-36B-A4B is a text-generation model designed for agentic tasks and reasoning. Its sparse Mixture-of-Experts design uses 4B parameters per token, aiming to deliver these capabilities with fewer active parameters.",
+  "summary_source": "ai",
+  "card_hash": "6addb6eec34b",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "IFM/K2-Horizon-MoVA-36B-A4B",
+  "links": [
+    {
+      "label": "IFM/K2-Horizon-MoVA-36B-A4B on Hugging Face",
+      "url": "https://huggingface.co/IFM/K2-Horizon-MoVA-36B-A4B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 74.9 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 17339,
+    "likes": 414,
+    "created_at": "2026-09-01T23:01:25.000Z",
+    "fetched_at": "2026-10-12T18:47:44.951Z"
+  }
+}

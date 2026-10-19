@@ -1,0 +1,37 @@
+{
+  "id": "claude-haiku-5-5",
+  "name": "Claude Haiku 5.5",
+  "family": "closed-llm",
+  "developer": "Anthropic",
+  "summary": "Built by Anthropic, Claude Haiku 5.5 is a hosted language model for tasks such as summarization, subagents, and browser use. It is designed for high-volume, cost-sensitive work.",
+  "summary_source": "ai",
+  "card_hash": "901383b8293d",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "text"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/anthropic/claude-haiku-5.5"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Proprietary: license unknown, weights not public.",
+  "source": "auto",
+  "metrics": null
+}
