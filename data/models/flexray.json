@@ -1,0 +1,37 @@
+{
+  "id": "flexray",
+  "name": "flexray",
+  "family": "flexray",
+  "developer": "VictorButoi",
+  "summary": "FleXray was developed by VictorButoi. It segments 60 anatomical structures in standard X-ray images, addressing the need to identify anatomy across body regions, projections, and imaging settings.",
+  "summary_source": "ai",
+  "card_hash": "fee4cb78d338",
+  "cells": [
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "image-segmentation",
+  "tiers": [],
+  "license": "cc-by-nc-4.0",
+  "open_weights": true,
+  "hf_repo": "VictorButoi/flexray",
+  "links": [
+    {
+      "label": "VictorButoi/flexray on Hugging Face",
+      "url": "https://huggingface.co/VictorButoi/flexray"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier unknown: no weight size available.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 13795,
+    "likes": 8,
+    "created_at": "2026-06-18T14:40:52.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
+  },
+  "tier_note": "No weight files found at the top level of the repo."
+}

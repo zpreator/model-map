@@ -1,0 +1,38 @@
+{
+  "id": "snowflake-arctic-embed-l-v2-0",
+  "name": "snowflake-arctic-embed-l-v2.0",
+  "family": "snowflake-arctic-embed",
+  "developer": "Snowflake",
+  "summary": "Built by Snowflake, snowflake-arctic-embed-l-v2.0 creates multilingual text embeddings for sentence similarity and search. It is designed to help applications retrieve relevant text across languages efficiently.",
+  "summary_source": "ai",
+  "card_hash": "0db462d0b92b",
+  "cells": [
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "sentence-similarity",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "Snowflake/snowflake-arctic-embed-l-v2.0",
+  "links": [
+    {
+      "label": "Snowflake/snowflake-arctic-embed-l-v2.0 on Hugging Face",
+      "url": "https://huggingface.co/Snowflake/snowflake-arctic-embed-l-v2.0"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 2.3 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 1889654,
+    "likes": 262,
+    "created_at": "2024-11-08T16:55:31.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
+  }
+}

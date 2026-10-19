@@ -1,0 +1,6 @@
+{
+  "id": "surya-layout",
+  "name": "Surya Layout",
+  "summary": "Built by datalab-to, Surya Layout detects regions such as text, tables, and figures in page images. It provides a lightweight alternative to Surya’s VLM-based layout model.",
+  "summary_source": "ai"
+}

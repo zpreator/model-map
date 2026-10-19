@@ -11,10 +11,10 @@
   "notes": "License is listed as 'other' on the Hub; read the repo's license text before filling this in. ~860M parameters.",
   "source": "curated",
   "metrics": {
-    "downloads_30d": 2128836,
-    "likes": 4015,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2025-11-07T05:17:48.000Z"
+    "downloads_30d": 1902371,
+    "likes": 4674,
+    "created_at": "2025-11-07T05:17:48.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
   },
   "cells": [
     {

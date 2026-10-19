@@ -1,0 +1,38 @@
+{
+  "id": "minimax-h3-fun-controlnet-union-2-0",
+  "name": "MiniMax-H3-Fun-Controlnet-Union-2.0",
+  "family": "ltx",
+  "developer": "alibaba-pai",
+  "summary": "Built by alibaba-pai, MiniMax-H3-Fun-Controlnet-Union-2.0 generates videos from text and supports video-to-video control using eight types of visual guidance. It exists to provide structural control and inpainting with one checkpoint.",
+  "summary_source": "ai",
+  "card_hash": "c49af5075c87",
+  "cells": [
+    {
+      "input": "video",
+      "output": "video"
+    }
+  ],
+  "hf_task": "text-to-video",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "alibaba-pai/MiniMax-H3-Fun-Controlnet-Union-2.0",
+  "links": [
+    {
+      "label": "alibaba-pai/MiniMax-H3-Fun-Controlnet-Union-2.0 on Hugging Face",
+      "url": "https://huggingface.co/alibaba-pai/MiniMax-H3-Fun-Controlnet-Union-2.0"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 13.6 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 24105,
+    "likes": 69,
+    "created_at": "2026-09-22T03:26:09.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
+  }
+}

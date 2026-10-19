@@ -1,0 +1,37 @@
+{
+  "id": "gpt-5-4-image-2",
+  "name": "GPT-5.4 Image 2",
+  "family": "closed-image",
+  "developer": "OpenAI",
+  "summary": "OpenAI built GPT-5.4 Image 2, a hosted model for generating images. It combines GPT-5.4 with image-generation capabilities, though the text does not specify what problem it solves.",
+  "summary_source": "ai",
+  "card_hash": "6e7271e00976",
+  "cells": [
+    {
+      "input": "image",
+      "output": "image"
+    },
+    {
+      "input": "text",
+      "output": "image"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/openai/gpt-5.4-image-2"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenRouter's catalogue; unreviewed. Hosted image generator: proprietary, weights not public, license unknown.",
+  "source": "auto",
+  "metrics": null
+}

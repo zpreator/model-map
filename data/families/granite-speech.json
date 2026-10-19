@@ -1,0 +1,6 @@
+{
+  "id": "granite-speech",
+  "name": "Granite Speech",
+  "summary": "Built by ibm-granite, Granite Speech converts English speech into text. It is designed for fast, high-throughput transcription in enterprise applications and on edge devices.",
+  "summary_source": "ai"
+}

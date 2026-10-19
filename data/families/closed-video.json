@@ -1,0 +1,6 @@
+{
+  "id": "closed-video",
+  "name": "Closed video models",
+  "summary": "OpenAI built Sora 2 and Sora 2 Pro, hosted models that generate videos from text or image prompts. They provide video generation through the OpenAI API.",
+  "summary_source": "ai"
+}

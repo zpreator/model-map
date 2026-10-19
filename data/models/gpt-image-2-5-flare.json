@@ -1,0 +1,37 @@
+{
+  "id": "gpt-image-2-5-flare",
+  "name": "gpt-image-2.5-flare",
+  "family": "closed-image",
+  "developer": "OpenAI",
+  "summary": "OpenAI built gpt-image-2.5-flare to generate and edit images from text prompts through the OpenAI API.",
+  "summary_source": "ai",
+  "card_hash": "d0ca8bffab40",
+  "cells": [
+    {
+      "input": "text",
+      "output": "image"
+    },
+    {
+      "input": "image",
+      "output": "image"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenAI model page",
+      "url": "https://developers.openai.com/api/docs/models/gpt-image-2.5-flare"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenAI's model list, classified by its id; unreviewed. Hosted image model: proprietary, weights not public, license unknown. The list API gives no description, so the summary is based on the model's category only.",
+  "source": "auto",
+  "metrics": null
+}

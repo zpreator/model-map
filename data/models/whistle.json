@@ -3,9 +3,9 @@
   "name": "whistle",
   "family": "whistle",
   "developer": "Cactus-Compute",
-  "summary": "Built by Cactus-Compute, Whistle transcribes speech on-device and also provides word timestamps and speech embeddings. It is designed to let phones and other devices process speech without a GPU or extra runtime.",
+  "summary": "Cactus-Compute built Whistle to transcribe speech on devices such as phones, robots, and microcontrollers. It also provides word timestamps and speech embeddings, enabling on-device speech recognition and related audio tasks without a GPU.",
   "summary_source": "ai",
-  "card_hash": "95a9957c7106",
+  "card_hash": "e1bfec9cd9d7",
   "cells": [
     {
       "input": "audio",
@@ -32,10 +32,10 @@
   "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier unknown: no weight size available.",
   "source": "auto",
   "metrics": {
-    "downloads_30d": 12816,
-    "likes": 318,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2026-09-30T17:13:26.000Z"
+    "downloads_30d": 43079,
+    "likes": 443,
+    "created_at": "2026-09-30T17:13:26.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
   },
   "tier_note": "Weights are in .cact format, which can't be sized reliably."
 }

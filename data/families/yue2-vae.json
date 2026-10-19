@@ -1,0 +1,6 @@
+{
+  "id": "yue2-vae",
+  "name": "YuE2-Vae",
+  "summary": "Built by m-a-p, YuE2-Vae extracts acoustic features and converts them into 48 kHz stereo audio. It serves as YuE2’s decoder for generating and listening to full songs.",
+  "summary_source": "ai"
+}

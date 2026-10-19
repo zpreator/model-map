@@ -17,10 +17,10 @@
   "notes": "Example open LLM; 8.2B parameters (tier estimated; 8 GB GPU assumes quantization).",
   "source": "curated",
   "metrics": {
-    "downloads_30d": 9821408,
-    "likes": 2083,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2025-04-27T03:42:21.000Z"
+    "downloads_30d": 8939707,
+    "likes": 2126,
+    "created_at": "2025-04-27T03:42:21.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
   },
   "cells": [
     {

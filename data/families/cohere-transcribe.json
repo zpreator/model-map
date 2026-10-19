@@ -1,6 +1,6 @@
 {
   "id": "cohere-transcribe",
   "name": "Cohere Transcribe",
-  "summary": null,
-  "summary_source": null
+  "summary": "Cohere Transcribe is a model family.",
+  "summary_source": "ai"
 }

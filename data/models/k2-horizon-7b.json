@@ -1,0 +1,38 @@
+{
+  "id": "k2-horizon-7b",
+  "name": "K2-Horizon-7B",
+  "family": "open-llm",
+  "developer": "IFM",
+  "summary": "IFM built K2-Horizon-7B, a text-generation model designed for tasks including coding, reasoning, and long-context use. It exists as a dense baseline for evaluating capabilities across these tasks.",
+  "summary_source": "ai",
+  "card_hash": "e9ae3c69866a",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "IFM/K2-Horizon-7B",
+  "links": [
+    {
+      "label": "IFM/K2-Horizon-7B on Hugging Face",
+      "url": "https://huggingface.co/IFM/K2-Horizon-7B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 18.0 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 82915,
+    "likes": 265,
+    "created_at": "2026-09-01T23:14:30.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "surya-layout2",
+  "name": "surya_layout2",
+  "family": "surya-layout",
+  "developer": "datalab-to",
+  "summary": "Built by datalab-to, Surya Layout detects regions such as text, tables, and figures in page images. It provides a lightweight, fast alternative to Surya’s VLM-based layout model.",
+  "summary_source": "ai",
+  "card_hash": "f1ab143c7f5a",
+  "cells": [
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "object-detection",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "openrail",
+  "open_weights": true,
+  "hf_repo": "datalab-to/surya_layout2",
+  "links": [
+    {
+      "label": "datalab-to/surya_layout2 on Hugging Face",
+      "url": "https://huggingface.co/datalab-to/surya_layout2"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 135 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 14993,
+    "likes": 8,
+    "created_at": "2026-07-08T13:50:04.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
+  }
+}
