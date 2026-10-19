@@ -11,10 +11,10 @@
   "notes": "Video support is from the SAM 2 release; verify against the model card. Tier estimated from 224M parameters.",
   "source": "curated",
   "metrics": {
-    "downloads_30d": 265067,
-    "likes": 147,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2024-09-24T01:00:03.000Z"
+    "downloads_30d": 282187,
+    "likes": 153,
+    "created_at": "2024-09-24T01:00:03.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
   },
   "cells": [
     {

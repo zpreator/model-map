@@ -17,10 +17,10 @@
   "notes": "Tier estimated from small/base/large parameter counts (22M-304M).",
   "source": "curated",
   "metrics": {
-    "downloads_30d": 2947912,
-    "likes": 204,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2023-07-17T16:44:29.000Z"
+    "downloads_30d": 3106054,
+    "likes": 212,
+    "created_at": "2023-07-17T16:44:29.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
   },
   "cells": [
     {

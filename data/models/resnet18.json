@@ -17,10 +17,10 @@
   "notes": "Tier estimated from parameter count (~12M).",
   "source": "curated",
   "metrics": {
-    "downloads_30d": 2139632,
-    "likes": 16,
-    "fetched_at": "2026-10-11T05:48:06.034Z",
-    "created_at": "2023-04-05T18:02:50.000Z"
+    "downloads_30d": 2027104,
+    "likes": 27,
+    "created_at": "2023-04-05T18:02:50.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
   },
   "cells": [
     {

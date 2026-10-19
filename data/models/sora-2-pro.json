@@ -1,0 +1,37 @@
+{
+  "id": "sora-2-pro",
+  "name": "sora-2-pro",
+  "family": "closed-video",
+  "developer": "OpenAI",
+  "summary": "OpenAI built sora-2-pro, a hosted model that generates videos from text or image prompts. It provides video generation through the OpenAI API.",
+  "summary_source": "ai",
+  "card_hash": "b9dee943334c",
+  "cells": [
+    {
+      "input": "text",
+      "output": "video"
+    },
+    {
+      "input": "image",
+      "output": "video"
+    }
+  ],
+  "hf_task": null,
+  "tiers": [
+    "api"
+  ],
+  "license": null,
+  "open_weights": false,
+  "hf_repo": null,
+  "links": [
+    {
+      "label": "OpenAI model page",
+      "url": "https://developers.openai.com/api/docs/models/sora-2-pro"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job from OpenAI's model list, classified by its id; unreviewed. Hosted video model: proprietary, weights not public, license unknown. The list API gives no description, so the summary is based on the model's category only.",
+  "source": "auto",
+  "metrics": null
+}

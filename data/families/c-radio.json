@@ -1,0 +1,6 @@
+{
+  "id": "c-radio",
+  "name": "C-RADIO",
+  "summary": "NVIDIA built C-RADIO to extract image features and create embeddings for other models. These embeddings support tasks such as image classification and segmentation.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "minicpm-v-4-7-35b-a3b",
+  "name": "MiniCPM-V-4.7-35B-A3B",
+  "family": "open-llm",
+  "developer": "openbmb",
+  "summary": "Built by OpenBMB, MiniCPM-V-4.7-35B-A3B processes images and text, including single images, multiple images, and video. It is designed to provide visual understanding efficiently, including on resource-constrained devices.",
+  "summary_source": "ai",
+  "card_hash": "fa6bda06c9ad",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "video",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "openbmb/MiniCPM-V-4.7-35B-A3B",
+  "links": [
+    {
+      "label": "openbmb/MiniCPM-V-4.7-35B-A3B on Hugging Face",
+      "url": "https://huggingface.co/openbmb/MiniCPM-V-4.7-35B-A3B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 70.4 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 76410,
+    "likes": 1040,
+    "created_at": "2026-10-07T07:07:30.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
+  }
+}

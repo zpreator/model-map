@@ -1,0 +1,37 @@
+{
+  "id": "pp-doclayoutv3",
+  "name": "PP-DocLayoutV3",
+  "family": "pp-doclayout",
+  "developer": "PaddlePaddle",
+  "summary": "Built by PaddlePaddle, PP-DocLayoutV3 analyzes document images by locating layout elements and determining their reading order. It is designed to handle skewed or curved documents, helping with document parsing.",
+  "summary_source": "ai",
+  "card_hash": "3130d02f73f5",
+  "cells": [
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "image-segmentation",
+  "tiers": [],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "PaddlePaddle/PP-DocLayoutV3",
+  "links": [
+    {
+      "label": "PaddlePaddle/PP-DocLayoutV3 on Hugging Face",
+      "url": "https://huggingface.co/PaddlePaddle/PP-DocLayoutV3"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier unknown: no weight size available.",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 41751,
+    "likes": 121,
+    "created_at": "2026-01-20T09:56:25.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
+  },
+  "tier_note": "No weight files found at the top level of the repo."
+}

@@ -1,0 +1,6 @@
+{
+  "id": "fish-audio-drama",
+  "name": "Fish Audio Drama",
+  "summary": "Fish Audio developed Fish Audio Drama, a text-to-speech model that generates speech for multi-character scenes and long-form content. It exists to support tasks such as creating different voices and controlling speech with natural-language instructions.",
+  "summary_source": "ai"
+}

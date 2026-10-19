@@ -1,0 +1,42 @@
+{
+  "id": "yue2-vae",
+  "name": "YuE2-Vae",
+  "family": "yue2-vae",
+  "developer": "m-a-p",
+  "summary": "Built by m-a-p, YuE2-Vae is a 133M feature-extraction model that encodes audio and decodes acoustic latents into 48 kHz stereo music. It exists to support full-song generation and listening in the YuE2 system.",
+  "summary_source": "ai",
+  "card_hash": "40f788923e58",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "audio"
+    },
+    {
+      "input": "audio",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "feature-extraction",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "cc-by-nc-4.0",
+  "open_weights": true,
+  "hf_repo": "m-a-p/YuE2-Vae",
+  "links": [
+    {
+      "label": "m-a-p/YuE2-Vae on Hugging Face",
+      "url": "https://huggingface.co/m-a-p/YuE2-Vae"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 531 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 26170,
+    "likes": 38,
+    "created_at": "2026-09-09T18:30:25.000Z",
+    "fetched_at": "2026-10-19T16:19:55.469Z"
+  }
+}
