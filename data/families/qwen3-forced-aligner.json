@@ -1,0 +1,6 @@
+{
+  "id": "qwen3-forced-aligner",
+  "name": "Qwen3 Forced Aligner",
+  "summary": "Built by Qwen, Qwen3 Forced Aligner predicts timestamps for speech in 11 languages. It helps match spoken audio to the corresponding units of text.",
+  "summary_source": "ai"
+}

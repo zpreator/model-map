@@ -1,0 +1,6 @@
+{
+  "id": "minimax-h3",
+  "name": "MiniMax H3",
+  "summary": "Alibaba PAI built MiniMax H3, a text-to-video model. The supplied text describes a related control model for guiding video-to-video generation and inpainting, but does not explain what problem MiniMax H3 itself solves.",
+  "summary_source": "ai"
+}

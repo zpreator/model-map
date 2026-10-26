@@ -1,0 +1,6 @@
+{
+  "id": "yue2-vae",
+  "name": "YuE2-Vae",
+  "summary": "Built by m-a-p, YuE2-Vae extracts audio features and encodes or decodes acoustic latents into stereo music. It supports full-song generation and listening with YuE2.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "granite-speech",
+  "name": "Granite Speech",
+  "summary": "Built by ibm-granite, Granite Speech transcribes speech into punctuated, capitalized text in seven languages. It is designed for fast deployment on devices such as laptops and smartphones.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "closed-audio",
+  "name": "Closed audio models",
+  "summary": "This family includes hosted audio models built by Google and OpenAI. They generate music or audio, handle spoken interactions, and transcribe audio into text.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "z-image",
+  "name": "Z-Image",
+  "summary": "Built by Tongyi-MAI, Z-Image is a text-to-image model that creates images from written prompts. It exists as a foundation model for users who want creative flexibility and precise control over generated images.",
+  "summary_source": "ai"
+}
