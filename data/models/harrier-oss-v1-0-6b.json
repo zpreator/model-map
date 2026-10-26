@@ -1,0 +1,38 @@
+{
+  "id": "harrier-oss-v1-0-6b",
+  "name": "harrier-oss-v1-0.6b",
+  "family": "harrier-oss",
+  "developer": "microsoft",
+  "summary": "Microsoft developed harrier-oss-v1-0.6b to turn multilingual text into embeddings for tasks such as finding similar text, retrieval, and classification. It exists to support a range of text-processing tasks across languages.",
+  "summary_source": "ai",
+  "card_hash": "b0c43b6afd7b",
+  "cells": [
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "feature-extraction",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "microsoft/harrier-oss-v1-0.6b",
+  "links": [
+    {
+      "label": "microsoft/harrier-oss-v1-0.6b on Hugging Face",
+      "url": "https://huggingface.co/microsoft/harrier-oss-v1-0.6b"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 1.2 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 198469,
+    "likes": 328,
+    "created_at": "2026-03-30T08:00:39.000Z",
+    "fetched_at": "2026-10-26T15:59:07.502Z"
+  }
+}

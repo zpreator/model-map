@@ -1,0 +1,6 @@
+{
+  "id": "supertonic",
+  "name": "Supertonic",
+  "summary": "Built by Supertone, Supertonic turns text into speech on your device. It exists to enable local speech generation without sending synthesis requests to the cloud.",
+  "summary_source": "ai"
+}

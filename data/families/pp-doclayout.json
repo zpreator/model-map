@@ -1,0 +1,6 @@
+{
+  "id": "pp-doclayout",
+  "name": "PP-DocLayout",
+  "summary": "Built by PaddlePaddle, PP-DocLayout analyzes document images by locating layout elements and identifying their reading order, including on skewed or curved pages. It is designed to help parse real-world documents with non-flat layouts.",
+  "summary_source": "ai"
+}

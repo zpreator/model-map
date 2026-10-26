@@ -1,0 +1,6 @@
+{
+  "id": "unlimited-ocr",
+  "name": "Unlimited-OCR",
+  "summary": "Baidu built Unlimited-OCR to turn images into text. It aims to extend Deepseek-OCR for long-horizon parsing.",
+  "summary_source": "ai"
+}

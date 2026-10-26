@@ -1,0 +1,6 @@
+{
+  "id": "qwen3-tts",
+  "name": "Qwen3-TTS",
+  "summary": "Qwen built Qwen3-TTS to turn text into speech, with control over tone, speaking rate, and emotional expression. It supports multiple languages and dialectal voice profiles for speech generation.",
+  "summary_source": "ai"
+}
