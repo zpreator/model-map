@@ -1,0 +1,6 @@
+{
+  "id": "moondream",
+  "name": "Moondream",
+  "summary": "Built by vikhyatk, Moondream is a small vision-language model that responds to text about images. It exists to run efficiently across different environments and support tasks such as image understanding and object detection.",
+  "summary_source": "ai"
+}

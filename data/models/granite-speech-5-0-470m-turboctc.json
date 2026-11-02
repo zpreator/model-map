@@ -1,0 +1,38 @@
+{
+  "id": "granite-speech-5-0-470m-turboctc",
+  "name": "granite-speech-5.0-470m-turboctc",
+  "family": "granite-speech",
+  "developer": "ibm-granite",
+  "summary": "IBM Granite built this 473-million-parameter model to turn speech in seven languages into punctuated, capitalized text. It provides fast speech recognition for use on laptops, smartphones, and other edge devices.",
+  "summary_source": "ai",
+  "card_hash": "eb1e23c4a3b2",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "ibm-granite/granite-speech-5.0-470m-turboctc",
+  "links": [
+    {
+      "label": "ibm-granite/granite-speech-5.0-470m-turboctc on Hugging Face",
+      "url": "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 946 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 59147,
+    "likes": 113,
+    "created_at": "2026-08-04T14:07:13.000Z",
+    "fetched_at": "2026-11-02T19:19:36.159Z"
+  }
+}

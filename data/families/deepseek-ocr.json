@@ -1,0 +1,6 @@
+{
+  "id": "deepseek-ocr",
+  "name": "DeepSeek-OCR",
+  "summary": "DeepSeek-OCR, developed by deepseek-ai, converts images containing text into text. It explores visual-text compression, though the supplied text does not explain what problem it is intended to solve.",
+  "summary_source": "ai"
+}

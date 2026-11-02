@@ -1,0 +1,6 @@
+{
+  "id": "gte",
+  "name": "GTE",
+  "summary": "Alibaba’s Institute for Intelligent Computing developed GTE, a text-embedding model for measuring sentence similarity. It helps represent text so that similar sentences can be identified.",
+  "summary_source": "ai"
+}

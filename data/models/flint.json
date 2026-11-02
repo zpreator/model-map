@@ -1,0 +1,38 @@
+{
+  "id": "flint",
+  "name": "flint",
+  "family": "open-llm",
+  "developer": "RecursiveSI",
+  "summary": "Built by RecursiveSI, Flint is a 39.8-billion-parameter language model that generates text for coding agents. It is designed to explore codebases, fix bugs, implement features, and write tests.",
+  "summary_source": "ai",
+  "card_hash": "63fa39f87dc1",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "RecursiveSI/flint",
+  "links": [
+    {
+      "label": "RecursiveSI/flint on Hugging Face",
+      "url": "https://huggingface.co/RecursiveSI/flint"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 79.6 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 29574,
+    "likes": 1310,
+    "created_at": "2026-10-21T14:20:58.000Z",
+    "fetched_at": "2026-11-02T19:19:36.159Z"
+  }
+}

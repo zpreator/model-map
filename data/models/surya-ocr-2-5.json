@@ -1,0 +1,42 @@
+{
+  "id": "surya-ocr-2-5",
+  "name": "surya-ocr-2.5",
+  "family": "surya",
+  "developer": "datalab-to",
+  "summary": "Built by Datalab, Surya is a 689M-parameter OCR model that extracts text from documents and analyzes their layout and reading order. It exists to handle document pages across a range of languages and formats.",
+  "summary_source": "ai",
+  "card_hash": "486340926b8a",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "boxes_masks"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "openrail",
+  "open_weights": true,
+  "hf_repo": "datalab-to/surya-ocr-2.5",
+  "links": [
+    {
+      "label": "datalab-to/surya-ocr-2.5 on Hugging Face",
+      "url": "https://huggingface.co/datalab-to/surya-ocr-2.5"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 1.4 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 11960,
+    "likes": 38,
+    "created_at": "2026-10-25T20:57:58.000Z",
+    "fetched_at": "2026-11-02T19:19:36.159Z"
+  }
+}

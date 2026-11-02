@@ -1,0 +1,6 @@
+{
+  "id": "surya",
+  "name": "Surya",
+  "summary": "Datalab-to built Surya, a 689-million-parameter OCR model that reads text and analyzes document layout in multiple languages. It exists to help extract and organize information from a range of documents.",
+  "summary_source": "ai"
+}
