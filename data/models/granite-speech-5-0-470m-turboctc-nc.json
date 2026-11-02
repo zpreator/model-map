@@ -1,0 +1,38 @@
+{
+  "id": "granite-speech-5-0-470m-turboctc-nc",
+  "name": "granite-speech-5.0-470m-turboctc-nc",
+  "family": "granite-speech",
+  "developer": "ibm-granite",
+  "summary": "Built by IBM Granite, this 473-million-parameter model converts English speech into text. It was created for fast automatic speech recognition and is intended for research and non-commercial use.",
+  "summary_source": "ai",
+  "card_hash": "6a7b95ec54e9",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "cc-by-nc-sa-4.0",
+  "open_weights": true,
+  "hf_repo": "ibm-granite/granite-speech-5.0-470m-turboctc-nc",
+  "links": [
+    {
+      "label": "ibm-granite/granite-speech-5.0-470m-turboctc-nc on Hugging Face",
+      "url": "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc-nc"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 946 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 38752,
+    "likes": 47,
+    "created_at": "2026-08-17T17:29:48.000Z",
+    "fetched_at": "2026-11-02T19:19:36.159Z"
+  }
+}

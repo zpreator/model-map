@@ -1,0 +1,6 @@
+{
+  "id": "liquid-codec",
+  "name": "Liquid Codec",
+  "summary": "LiquidAI built Liquid Codec, a feature-extraction model with a codec implementation that supports native loading and streaming.",
+  "summary_source": "ai"
+}

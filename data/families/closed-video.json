@@ -1,0 +1,6 @@
+{
+  "id": "closed-video",
+  "name": "Closed video models",
+  "summary": "OpenAI built sora-2 and sora-2-pro to generate videos from text or image prompts. The text does not say what problem they were created to solve.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "arctic-embed",
+  "name": "Arctic Embed",
+  "summary": "Snowflake built Arctic Embed, a sentence-similarity model that creates text embeddings for multilingual search and retrieval. It exists to support efficient, high-quality retrieval in English and other languages.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "unlimited-ocr",
+  "name": "Unlimited OCR",
+  "summary": "Built by Baidu, Unlimited OCR turns images into text and parses long documents. It aims to extend OCR to documents of unlimited length while keeping decoding time and memory use nearly constant as documents grow.",
+  "summary_source": "ai"
+}

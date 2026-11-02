@@ -647,5 +647,408 @@
     "reason": "Top closed model by usage.",
     "decided": "2026-10-11",
     "status": "proposed"
+  },
+  "microsoft/Florence-2-base": {
+    "action": "propose_family",
+    "family": "florence-2",
+    "reason": "Florence-2 is a notable prompt-driven vision-language model that handles captioning, object detection, and segmentation. Its image-to-text and localization outputs make it a distinct family not represented by the existing map entries.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "baidu/Unlimited-OCR-2": {
+    "action": "propose_family",
+    "family": "unlimited-ocr",
+    "reason": "Unlimited OCR 2 is a dedicated document-parsing lineage, with the excerpt highlighting long- and unlimited-horizon parsing as a capability. It takes images and produces text.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "baidu/Unlimited-OCR": {
+    "action": "propose_family",
+    "family": "unlimited-ocr",
+    "reason": "Unlimited-OCR is presented as a distinct OCR model lineage for long-horizon document parsing, rather than a general-purpose language model. Its image-text-to-text task indicates image input and text output.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "RecursiveSI/flint": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "Flint is a public-weights, general-purpose language model with text generation and tool-use capabilities. Its coding-agent focus makes it notable as an open LLM rather than a separate family for this map.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openai/whisper-small": {
+    "action": "ignore",
+    "reason": "Whisper-small is a size variant of the Whisper family, which is already represented by Whisper large-v3. It does not add a new generation or capability for the family-level map.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "MiniMaxAI/MiniMax-M3.1-Flash": {
+    "action": "assign",
+    "family": "open-llm",
+    "reason": "MiniMax-M3.1-Flash is a notable open-weights multimodal language model with text, image, and video inputs and text output. It is a newer generation than MiniMax-M3, so it belongs in the shared open-llm family.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "timm/tf_efficientnetv2_s.in21k_ft_in1k": {
+    "action": "propose_family",
+    "family": "efficientnetv2",
+    "reason": "EfficientNetV2 is a distinct image-classification and feature-backbone lineage not represented by an existing family. This checkpoint supports both classification and image feature extraction.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "fishaudio/drama-3": {
+    "action": "propose_family",
+    "family": "fish-audio-drama",
+    "reason": "Fish Audio Drama 3 is a distinct text-to-speech lineage for multi-character, long-form speech with voice cloning and natural-language control, rather than a size variant of the existing Fish Audio S2 family. Its described input and output are text and audio.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "EleutherAI/pythia-160m": {
+    "action": "ignore",
+    "reason": "Pythia-160m is an older, small research-focused checkpoint in a size-varied suite, not a notable current top model for the open-llm map entry.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "InternScience/Sage-A1.5": {
+    "action": "ignore",
+    "reason": "Sage-A1.5 is a public-weights language model, so it belongs to the existing open-llm family; the excerpt describes a specialized scientific agent rather than evidence of a distinct general-purpose top model or new model generation for the map.",
+    "confidence": "medium",
+    "decided": "2026-11-02"
+  },
+  "jonatasgrosman/wav2vec2-large-xlsr-53-polish": {
+    "action": "ignore",
+    "reason": "This is a Polish-language fine-tune of the existing wav2vec2 XLSR-53 model, so it is a narrow-domain/language variant rather than a distinct model family or generation. Its audio-to-text task is already represented by speech-recognition families on the map.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "datalab-to/surya-ocr-2.5": {
+    "action": "propose_family",
+    "family": "surya",
+    "reason": "Surya is a distinct document-intelligence lineage for multilingual OCR, and this release also provides layout analysis and reading order. Its image input produces recognized text as well as spatial layout information.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "Snowflake/snowflake-arctic-embed-l-v2.0": {
+    "action": "propose_family",
+    "family": "arctic-embed",
+    "reason": "Snowflake Arctic Embed is a distinct, notable text-embedding lineage focused on multilingual retrieval; it is not merely a size or packaging variant of a listed family. The model maps text to embeddings for search and retrieval.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "OpenMOSS-Team/MOSS-Image-Base": {
+    "action": "assign",
+    "family": "diffusion",
+    "reason": "MOSS-Image-Base is a text-to-image image generator, fitting the existing diffusion family. Its prompt formats and layout controls are capabilities of that generator rather than a new input/output modality.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "sentence-transformers/all-distilroberta-v1": {
+    "action": "ignore",
+    "reason": "This is another sentence-transformers sentence-embedding checkpoint, a size/model variant within the existing Sentence Transformers family rather than a distinct lineage or generation for the map.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "Qwen/Qwen3-Coder-Next": {
+    "action": "ignore",
+    "reason": "Qwen3-Coder-Next is a coding-focused open-weight language model, which belongs to the existing open-llm family. The map already represents Qwen3 generations, and this specialized variant does not warrant a separate family or entry under the one-entry-per-generation rule.",
+    "confidence": "medium",
+    "decided": "2026-11-02"
+  },
+  "distilbert/distilbert-base-uncased-finetuned-sst-2-english": {
+    "action": "ignore",
+    "reason": "This is a task-specific SST-2 fine-tune of DistilBERT, whose family is already represented by DistilBERT; it is not a new generation or materially different family member for the map.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "ibm-granite/granite-speech-5.0-470m-turboctc": {
+    "action": "propose_family",
+    "family": "granite-speech",
+    "reason": "Granite Speech is a notable multilingual speech-recognition lineage, producing punctuated and capitalized transcripts from audio. It is distinct from the existing ASR families listed, and the excerpt describes multilingual capability rather than a mere size or packaging variant.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "jonatasgrosman/wav2vec2-large-xlsr-53-dutch": {
+    "action": "ignore",
+    "reason": "This is a Dutch, dataset-specific fine-tune of the existing wav2vec2 lineage, rather than a distinct model generation or capability. The map has no wav2vec2 family, and this checkpoint is not enough to justify adding one.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "ibm-granite/granite-speech-5.0-470m-turboctc-nc": {
+    "action": "propose_family",
+    "family": "granite-speech",
+    "reason": "Granite Speech is a distinct English ASR lineage, and no Granite Speech family is on the map. This is an ASR model that converts audio to text; its non-commercial designation is a release variant, not a separate family.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "BAAI/bge-base-en": {
+    "action": "ignore",
+    "reason": "BAAI/bge-base-en is an earlier BGE embedding checkpoint, and its README recommends the already-mapped bge-base-en-v1.5 as the updated version. It is a checkpoint variant rather than a distinct family entry.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "Supertone/supertonic-3": {
+    "action": "propose_family",
+    "family": "supertonic",
+    "reason": "Supertonic 3 is a distinct open-weight, on-device text-to-speech lineage, with multilingual expansion and expressive voice controls rather than merely a size or packaging variant of an existing listed family.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "vikhyatk/moondream2": {
+    "action": "propose_family",
+    "family": "moondream",
+    "reason": "Moondream is a notable vision-language model lineage for image question answering and grounded detection. The excerpt identifies this as Moondream 2, a previous generation; no Moondream family is on the map, and its stated capabilities support both text answers and object localization.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "convaiinnovations/laya-multilingual": {
+    "action": "ignore",
+    "reason": "Laya Multilingual is a language and long-context variant of the existing Laya decision-model family, not a new generation or materially different capability. The existing Laya entry already represents this family, so learners can choose this checkpoint there.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "jonatasgrosman/wav2vec2-large-xlsr-53-arabic": {
+    "action": "ignore",
+    "reason": "This is an Arabic, domain-specific fine-tune of wav2vec2 XLSR-53 rather than a distinct model lineage. It does not justify a new map entry, and no wav2vec2 family is listed to assign it to.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "LiquidAI/Liquid-Codec": {
+    "action": "propose_family",
+    "family": "liquid-codec",
+    "reason": "The metadata identifies this as a feature-extraction model, and the codec description indicates an audio representation model rather than a text-generating or speech-transcription system. No existing family covers this distinct audio codec lineage.",
+    "confidence": "low",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "HuggingFaceTB/SmolLM2-135M": {
+    "action": "ignore",
+    "reason": "SmolLM2 is a general-purpose language model with public weights, but this 135M checkpoint is a size variant within its family, and the map already covers open language models under the open-llm family rather than adding a separate lineage.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "alibaba-pai/MiniMax-H3-Fun-Controlnet-Union-2.0": {
+    "action": "ignore",
+    "reason": "This is a specialized control/inpainting checkpoint for video generation, rather than a distinct general model lineage; its control conditions do not warrant a separate family entry on this map.",
+    "confidence": "medium",
+    "decided": "2026-11-02"
+  },
+  "MahmoudAshraf/mms-300m-1130-forced-aligner": {
+    "action": "ignore",
+    "reason": "This is a converted MMS-300M checkpoint for forced alignment, a narrow task-specific artifact rather than a distinct general model lineage. Its alignment output also does not fit the map’s available output categories.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "Tongyi-MAI/Z-Image": {
+    "action": "assign",
+    "family": "diffusion",
+    "reason": "Z-Image is a notable text-to-image diffusion foundation model, so it belongs with the existing image-generation diffusion family. The supplied description supports text input and image output.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "meta-llama/Prompt-Guard-86M": {
+    "action": "ignore",
+    "reason": "Prompt Guard is a specialized text safety classifier rather than a general-purpose model lineage, so it is a narrow-domain model that does not merit a separate map entry.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "ARTPARK-IISc/SraVaani-1.0": {
+    "action": "ignore",
+    "reason": "The repository is labeled for automatic speech recognition, but with no README or other metadata there is not enough information to determine whether it represents a distinct, notable lineage or a member of an existing ASR family. Following the conservative rule, ignore it.",
+    "confidence": "low",
+    "decided": "2026-11-02"
+  },
+  "ResembleAI/chatterbox": {
+    "action": "propose_family",
+    "family": "chatterbox",
+    "reason": "Chatterbox is a distinct, widely used multilingual TTS lineage, with V3 described as a general-purpose model supporting expressive generation and voice cloning. Voice cloning implies audio input alongside text-to-audio output.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "PaddlePaddle/PP-DocLayoutV3": {
+    "action": "propose_family",
+    "family": "pp-doclayout",
+    "reason": "PP-DocLayoutV3 is a document-layout model that predicts multi-point boxes for layout elements and reading order, with capabilities aimed at skewed and curved document images. This is a distinct, useful layout-analysis lineage not represented by an existing family.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "Alibaba-NLP/gte-large-en-v1.5": {
+    "action": "propose_family",
+    "family": "gte",
+    "reason": "GTE is a distinct text-embedding lineage, with this release emphasizing long-context retrieval embeddings; no GTE family exists on the map. Its strong adoption and stated benchmark standing make it useful for learners to know.",
+    "confidence": "high",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "nvidia/C-RADIOv4-H": {
+    "action": "propose_family",
+    "family": "radio",
+    "reason": "C-RADIOv4 is an image-feature model that produces embeddings for downstream vision tasks. It represents the RADIO lineage, distinct from the existing DINOv2 and SigLIP families.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "deepseek-ai/DeepSeek-OCR": {
+    "action": "propose_family",
+    "family": "deepseek-ocr",
+    "reason": "DeepSeek-OCR is a distinct OCR model lineage that reads images and produces text; it is not a general-purpose language model. The supplied metadata indicates substantial adoption, making it useful as a family for learners to discover.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "microsoft/harrier-oss-v1-270m": {
+    "action": "propose_family",
+    "family": "harrier-oss",
+    "reason": "Harrier OSS is a distinct multilingual text-embedding lineage from Microsoft, intended for retrieval and related semantic tasks. The 270M checkpoint is a size variant within that lineage, so the family entry should represent Harrier OSS rather than this checkpoint alone.",
+    "confidence": "medium",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "timm/vit_small_patch14_dinov2.lvd142m": {
+    "action": "ignore",
+    "reason": "This is a size and patch-configuration variant of the existing DINOv2 image-feature family, not a distinct generation. Learners can choose this checkpoint from Hugging Face within that family.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "shalev396/calorie-lens": {
+    "action": "ignore",
+    "reason": "Calorie Lens is a specialized meal-photo nutrition estimator, rather than a broadly useful model lineage for the map. Its narrow food-domain task makes it a poor fit as a separate family entry.",
+    "confidence": "high",
+    "decided": "2026-11-02"
+  },
+  "openrouter:anthropic/claude-haiku-5.5": {
+    "action": "assign",
+    "family": "closed-llm",
+    "reason": "Top closed model by usage.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openrouter:google/gemini-nano-banana-2.1": {
+    "action": "assign",
+    "family": "closed-image",
+    "reason": "Newest closed image model on OpenRouter.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openrouter:google/gemini-3.1-flash-lite-image": {
+    "action": "assign",
+    "family": "closed-image",
+    "reason": "Newest closed image model on OpenRouter.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openrouter:openai/gpt-5.4-image-2": {
+    "action": "assign",
+    "family": "closed-image",
+    "reason": "Newest closed image model on OpenRouter.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openrouter:google/lyria-3-pro-preview": {
+    "action": "assign",
+    "family": "closed-audio",
+    "reason": "Newest closed audio model on OpenRouter.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openrouter:google/lyria-3-clip-preview": {
+    "action": "assign",
+    "family": "closed-audio",
+    "reason": "Newest closed audio model on OpenRouter.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openrouter:openai/gpt-audio": {
+    "action": "assign",
+    "family": "closed-audio",
+    "reason": "Newest closed audio model on OpenRouter.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openrouter:openai/gpt-audio-mini": {
+    "action": "assign",
+    "family": "closed-audio",
+    "reason": "Newest closed audio model on OpenRouter.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openrouter:openai/gpt-5-image-mini": {
+    "action": "assign",
+    "family": "closed-image",
+    "reason": "Newest closed image model on OpenRouter.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openai:gpt-live-1": {
+    "action": "assign",
+    "family": "closed-audio",
+    "reason": "Matched the audio rule on OpenAI's model list.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openai:gpt-image-2.5-sunburst": {
+    "action": "assign",
+    "family": "closed-image",
+    "reason": "Matched the image rule on OpenAI's model list.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openai:gpt-image-2.5-flare": {
+    "action": "assign",
+    "family": "closed-image",
+    "reason": "Matched the image rule on OpenAI's model list.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openai:gpt-live-transcribe": {
+    "action": "assign",
+    "family": "closed-audio",
+    "reason": "Matched the audio rule on OpenAI's model list.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openai:gpt-transcribe": {
+    "action": "assign",
+    "family": "closed-audio",
+    "reason": "Matched the audio rule on OpenAI's model list.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openai:gpt-image-2": {
+    "action": "assign",
+    "family": "closed-image",
+    "reason": "Matched the image rule on OpenAI's model list.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openai:sora-2-pro": {
+    "action": "assign",
+    "family": "closed-video",
+    "reason": "Matched the video rule on OpenAI's model list.",
+    "decided": "2026-11-02",
+    "status": "proposed"
+  },
+  "openai:sora-2": {
+    "action": "assign",
+    "family": "closed-video",
+    "reason": "Matched the video rule on OpenAI's model list.",
+    "decided": "2026-11-02",
+    "status": "proposed"
   }
 }

@@ -1,0 +1,6 @@
+{
+  "id": "radio",
+  "name": "RADIO",
+  "summary": "NVIDIA’s RADIO extracts visual features from images and produces embeddings for downstream models. These features support tasks such as image classification, segmentation, and depth estimation.",
+  "summary_source": "ai"
+}

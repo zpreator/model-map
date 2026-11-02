@@ -1,0 +1,42 @@
+{
+  "id": "chatterbox",
+  "name": "chatterbox",
+  "family": "chatterbox",
+  "developer": "ResembleAI",
+  "summary": "Resemble AI built Chatterbox, a text-to-speech model that generates spoken audio from text. Its multilingual version is designed to create natural speech across languages and support voice cloning.",
+  "summary_source": "ai",
+  "card_hash": "2421a5b90e1e",
+  "cells": [
+    {
+      "input": "text",
+      "output": "audio"
+    },
+    {
+      "input": "audio",
+      "output": "audio"
+    }
+  ],
+  "hf_task": "text-to-speech",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "ResembleAI/chatterbox",
+  "links": [
+    {
+      "label": "ResembleAI/chatterbox on Hugging Face",
+      "url": "https://huggingface.co/ResembleAI/chatterbox"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 10.7 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 2203606,
+    "likes": 1885,
+    "created_at": "2025-04-24T12:03:33.000Z",
+    "fetched_at": "2026-11-02T19:19:36.159Z"
+  }
+}
