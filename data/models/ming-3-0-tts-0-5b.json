@@ -1,0 +1,42 @@
+{
+  "id": "ming-3-0-tts-0-5b",
+  "name": "Ming-3.0-tts-0.5B",
+  "family": "ming-tts",
+  "developer": "inclusionAI",
+  "summary": "Built by inclusionAI, Ming-3.0-tts-0.5B turns text into multilingual speech with controls for voice and speaking style. It is designed for text-to-speech synthesis.",
+  "summary_source": "ai",
+  "card_hash": "13598a9ffb78",
+  "cells": [
+    {
+      "input": "text",
+      "output": "audio"
+    },
+    {
+      "input": "audio",
+      "output": "audio"
+    }
+  ],
+  "hf_task": "text-to-speech",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "inclusionAI/Ming-3.0-tts-0.5B",
+  "links": [
+    {
+      "label": "inclusionAI/Ming-3.0-tts-0.5B on Hugging Face",
+      "url": "https://huggingface.co/inclusionAI/Ming-3.0-tts-0.5B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 3.0 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 13259,
+    "likes": 218,
+    "created_at": "2026-09-22T12:46:58.000Z",
+    "fetched_at": "2026-11-09T19:38:53.317Z"
+  }
+}

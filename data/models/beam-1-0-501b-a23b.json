@@ -1,0 +1,38 @@
+{
+  "id": "beam-1-0-501b-a23b",
+  "name": "Beam-1.0-501B-A23B",
+  "family": "open-llm",
+  "developer": "reflection",
+  "summary": "Reflection built Beam-1.0-501B-A23B, a 501.3B-parameter model that takes text as input and generates text. It is designed for coding, tool use, and general reasoning, with an emphasis on using fewer reasoning tokens.",
+  "summary_source": "ai",
+  "card_hash": "5746ce23f7d3",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "reflection/Beam-1.0-501B-A23B",
+  "links": [
+    {
+      "label": "reflection/Beam-1.0-501B-A23B on Hugging Face",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 1002.7 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 12595,
+    "likes": 316,
+    "created_at": "2026-10-07T19:52:01.000Z",
+    "fetched_at": "2026-11-09T19:38:53.317Z"
+  }
+}

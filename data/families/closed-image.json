@@ -1,0 +1,6 @@
+{
+  "id": "closed-image",
+  "name": "Closed image models",
+  "summary": "The listed models were built by Google and OpenAI. They generate or edit images, often from text prompts, and some also support multimodal workflows or rapid visual exploration.",
+  "summary_source": "ai"
+}

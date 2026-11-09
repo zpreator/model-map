@@ -1,0 +1,6 @@
+{
+  "id": "efficientnetv2",
+  "name": "EfficientNetV2",
+  "summary": "EfficientNetV2 was originally trained by the paper’s authors and ported to PyTorch by Ross Wightman. It classifies images, helping identify what is shown in them.",
+  "summary_source": "ai"
+}

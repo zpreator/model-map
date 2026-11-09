@@ -1,0 +1,38 @@
+{
+  "id": "moss-image-base",
+  "name": "MOSS-Image-Base",
+  "family": "diffusion",
+  "developer": "OpenMOSS-Team",
+  "summary": "Built by OpenMOSS-Team, MOSS-Image-Base is a 5.1B text-to-image model that creates images from natural-language prompts, tags, or JSON layouts. It exists to let users guide image content and placement.",
+  "summary_source": "ai",
+  "card_hash": "2abf5b8f99ce",
+  "cells": [
+    {
+      "input": "text",
+      "output": "image"
+    }
+  ],
+  "hf_task": "text-to-image",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "OpenMOSS-Team/MOSS-Image-Base",
+  "links": [
+    {
+      "label": "OpenMOSS-Team/MOSS-Image-Base on Hugging Face",
+      "url": "https://huggingface.co/OpenMOSS-Team/MOSS-Image-Base"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 10.2 GB of weights (parameters x 2 bytes).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 12648,
+    "likes": 645,
+    "created_at": "2026-10-11T06:49:17.000Z",
+    "fetched_at": "2026-11-09T19:38:53.317Z"
+  }
+}

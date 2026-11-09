@@ -1,0 +1,6 @@
+{
+  "id": "vibevoice-asr",
+  "name": "VibeVoice-ASR",
+  "summary": "Built by Microsoft, VibeVoice-ASR transcribes long-form audio into structured text with speakers and timestamps, supporting customized hotwords and over 50 languages. It is designed to maintain speaker tracking and context across up to 60 minutes of audio.",
+  "summary_source": "ai"
+}

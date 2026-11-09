@@ -1,0 +1,6 @@
+{
+  "id": "chatterbox",
+  "name": "Chatterbox",
+  "summary": "ResembleAI built Chatterbox, a text-to-speech model that generates conversational speech across languages. It provides multilingual speech generation and voice cloning, with improved speaker similarity and fewer unwanted repetitions or off-prompt speech.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "granite-speech",
+  "name": "Granite Speech",
+  "summary": "IBM’s Granite Speech converts speech into written transcripts in English, French, German, Spanish, Portuguese, Italian, and Japanese. It is designed for fast speech recognition on devices such as laptops and smartphones.",
+  "summary_source": "ai"
+}
