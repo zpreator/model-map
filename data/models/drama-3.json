@@ -1,0 +1,38 @@
+{
+  "id": "drama-3",
+  "name": "drama-3",
+  "family": "fish-audio-s2",
+  "developer": "fishaudio",
+  "summary": "Fish Audio built Drama 3, a 35.9B-parameter text-to-speech model for generating multi-speaker scenes and long-form content, with voice cloning and natural-language controls.",
+  "summary_source": "ai",
+  "card_hash": "77f042284794",
+  "cells": [
+    {
+      "input": "text",
+      "output": "audio"
+    }
+  ],
+  "hf_task": "text-to-speech",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "fishaudio/drama-3",
+  "links": [
+    {
+      "label": "fishaudio/drama-3 on Hugging Face",
+      "url": "https://huggingface.co/fishaudio/drama-3"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 39.6 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 44913,
+    "likes": 1232,
+    "created_at": "2026-10-01T04:34:57.000Z",
+    "fetched_at": "2026-11-09T19:38:53.317Z"
+  }
+}

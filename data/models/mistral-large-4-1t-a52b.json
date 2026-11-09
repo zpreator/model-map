@@ -1,0 +1,42 @@
+{
+  "id": "mistral-large-4-1t-a52b",
+  "name": "Mistral-Large-4-1T-A52B",
+  "family": "open-llm",
+  "developer": "mistralai",
+  "summary": "Built by Mistral AI, Mistral Large 4 is a multimodal model that takes text and images as input and produces text. It combines instruction following, reasoning, coding, and agentic workflows in one model.",
+  "summary_source": "ai",
+  "card_hash": "9a6fa2c4ca70",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    },
+    {
+      "input": "image",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "mistralai/Mistral-Large-4-1T-A52B",
+  "links": [
+    {
+      "label": "mistralai/Mistral-Large-4-1T-A52B on Hugging Face",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 1060.6 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 12060,
+    "likes": 1644,
+    "created_at": "2026-09-30T18:35:13.000Z",
+    "fetched_at": "2026-11-09T19:38:53.317Z"
+  }
+}

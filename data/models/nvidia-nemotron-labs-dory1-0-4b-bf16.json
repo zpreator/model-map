@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-nemotron-labs-dory1-0-4b-bf16",
+  "name": "NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16",
+  "family": "open-llm",
+  "developer": "nvidia",
+  "summary": "Built by NVIDIA, Dory1.0 is a 4-billion-parameter text-generation model that reuses layers to spend adjustable amounts of computation on each token. It exists to let users trade inference compute for accuracy without retraining or switching models.",
+  "summary_source": "ai",
+  "card_hash": "2c768cbb176e",
+  "cells": [
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "text-generation",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16",
+  "links": [
+    {
+      "label": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16 on Hugging Face",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 8.0 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 13143,
+    "likes": 245,
+    "created_at": "2026-10-16T18:25:29.000Z",
+    "fetched_at": "2026-11-09T19:38:53.317Z"
+  }
+}

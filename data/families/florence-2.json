@@ -1,0 +1,6 @@
+{
+  "id": "florence-2",
+  "name": "Florence-2",
+  "summary": "Built by Microsoft, Florence-2 responds to text prompts to handle vision tasks such as captioning, object detection, and segmentation. It provides one model for a variety of vision and vision-language tasks.",
+  "summary_source": "ai"
+}

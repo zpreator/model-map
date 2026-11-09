@@ -1,0 +1,6 @@
+{
+  "id": "voyage-4",
+  "name": "Voyage 4",
+  "summary": "MongoDB’s Voyage 4 is a feature-extraction model that turns text into embeddings for semantic search and retrieval. It exists to help find relevant text by meaning.",
+  "summary_source": "ai"
+}

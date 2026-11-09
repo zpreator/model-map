@@ -1,0 +1,38 @@
+{
+  "id": "gte-small",
+  "name": "gte-small",
+  "family": "gte",
+  "developer": "thenlper",
+  "summary": "Alibaba DAMO Academy trained gte-small to create text embeddings for comparing sentence meanings. It was trained on relevance text pairs to support tasks such as semantic similarity and information retrieval.",
+  "summary_source": "ai",
+  "card_hash": "254bf29873e4",
+  "cells": [
+    {
+      "input": "text",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "sentence-similarity",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "thenlper/gte-small",
+  "links": [
+    {
+      "label": "thenlper/gte-small on Hugging Face",
+      "url": "https://huggingface.co/thenlper/gte-small"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 67 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 2343089,
+    "likes": 201,
+    "created_at": "2023-07-27T10:14:55.000Z",
+    "fetched_at": "2026-11-09T19:38:53.317Z"
+  }
+}

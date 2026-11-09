@@ -1,0 +1,6 @@
+{
+  "id": "gte",
+  "name": "GTE",
+  "summary": "GTE was developed by thenlper to compare how similar sentences are. It was created for text-embedding tasks such as finding relevant text and measuring semantic similarity.",
+  "summary_source": "ai"
+}
