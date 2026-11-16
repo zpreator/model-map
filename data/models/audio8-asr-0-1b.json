@@ -1,0 +1,38 @@
+{
+  "id": "audio8-asr-0-1b",
+  "name": "Audio8-ASR-0.1B",
+  "family": "audio8-asr",
+  "developer": "Edge0",
+  "summary": "Built by Edge0, Audio8-ASR-0.1B recognizes speech in multiple languages and turns it into text. It is designed to provide speech recognition in a compact model.",
+  "summary_source": "ai",
+  "card_hash": "a8d13bb387dc",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "cc-by-nc-4.0",
+  "open_weights": true,
+  "hf_repo": "Edge0/Audio8-ASR-0.1B",
+  "links": [
+    {
+      "label": "Edge0/Audio8-ASR-0.1B on Hugging Face",
+      "url": "https://huggingface.co/Edge0/Audio8-ASR-0.1B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 648 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 31383,
+    "likes": 94,
+    "created_at": "2026-07-10T06:57:05.000Z",
+    "fetched_at": "2026-11-16T19:25:37.131Z"
+  }
+}

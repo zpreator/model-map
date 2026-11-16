@@ -1,0 +1,6 @@
+{
+  "id": "gte",
+  "name": "GTE",
+  "summary": "Alibaba DAMO Academy trained GTE, a text-embedding model used to compare sentence meaning and support information retrieval and related tasks. It was developed for use across a wide range of text domains and scenarios.",
+  "summary_source": "ai"
+}

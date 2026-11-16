@@ -1,0 +1,6 @@
+{
+  "id": "closed-image",
+  "name": "Closed image models",
+  "summary": "Google and OpenAI built models in this family to generate images from text, with some also editing images. They support image creation and workflows that combine image generation with other tasks.",
+  "summary_source": "ai"
+}
