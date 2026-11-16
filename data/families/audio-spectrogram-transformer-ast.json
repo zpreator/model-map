@@ -1,0 +1,6 @@
+{
+  "id": "audio-spectrogram-transformer-ast",
+  "name": "Audio Spectrogram Transformer (AST)",
+  "summary": "Built by MIT, the Audio Spectrogram Transformer classifies audio into AudioSet categories by analyzing spectrograms, which represent audio as images.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "voyage",
+  "name": "Voyage",
+  "summary": "Voyage AI built voyage-4-nano, a multilingual text embedding model that turns text into vectors for semantic search and retrieval. It exists to support retrieval with flexible embedding sizes and output formats.",
+  "summary_source": "ai"
+}

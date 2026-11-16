@@ -1,0 +1,6 @@
+{
+  "id": "granite-speech",
+  "name": "Granite Speech",
+  "summary": "IBM’s Granite Speech is an automatic speech recognition model that turns speech into punctuated, capitalized text in seven languages. It is designed to transcribe audio quickly on laptops, smartphones, and other edge devices.",
+  "summary_source": "ai"
+}

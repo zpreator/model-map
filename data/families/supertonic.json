@@ -1,0 +1,6 @@
+{
+  "id": "supertonic",
+  "name": "Supertonic",
+  "summary": "Built by Supertone, Supertonic is a text-to-speech system that generates speech locally on a device. It exists to let users synthesize speech without sending audio requests to the cloud.",
+  "summary_source": "ai"
+}

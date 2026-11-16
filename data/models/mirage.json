@@ -1,0 +1,38 @@
+{
+  "id": "mirage",
+  "name": "mirage",
+  "family": "mirage",
+  "developer": "Cactus-Compute",
+  "summary": "Built by Cactus-Compute, Mirage is a vision model that takes images and text as input and produces text, including structured information extracted from images.",
+  "summary_source": "ai",
+  "card_hash": "e6de50aa84f1",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "Cactus-Compute/mirage",
+  "links": [
+    {
+      "label": "Cactus-Compute/mirage on Hugging Face",
+      "url": "https://huggingface.co/Cactus-Compute/mirage"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 216 MB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 32031,
+    "likes": 359,
+    "created_at": "2026-11-05T19:01:53.000Z",
+    "fetched_at": "2026-11-16T19:25:37.131Z"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "audio8-asr",
+  "name": "Audio8-ASR",
+  "summary": "Built by Edge0, Audio8-ASR recognizes speech in multiple languages and turns it into text. It exists as a compact model for speech recognition, including deployment on edge devices and local iPhone transcription.",
+  "summary_source": "ai"
+}

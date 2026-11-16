@@ -1,0 +1,6 @@
+{
+  "id": "closed-audio",
+  "name": "Closed audio models",
+  "summary": "Google and OpenAI built the models described. They generate music and other audio, support spoken interactions, and transcribe audio to text, with aims including natural-sounding voices and low-latency conversations.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "mms-forced-aligner",
+  "name": "MMS Forced Aligner",
+  "summary": "MahmoudAshraf developed MMS Forced Aligner to match text with audio using pretrained models. It exists to perform this alignment efficiently while using less memory than TorchAudio’s forced alignment API.",
+  "summary_source": "ai"
+}
