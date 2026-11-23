@@ -1,0 +1,42 @@
+{
+  "id": "inkling-2-mini",
+  "name": "Inkling-2-Mini",
+  "family": "open-llm",
+  "developer": "thinkingmachines",
+  "summary": "Built by Thinking Machines Lab, Inkling-2-Mini takes image and text inputs and generates text. It is intended for conversational and other language and visual tasks, including coding and AI-powered applications.",
+  "summary_source": "ai",
+  "card_hash": "c85240bc8372",
+  "cells": [
+    {
+      "input": "image",
+      "output": "text"
+    },
+    {
+      "input": "text",
+      "output": "text"
+    }
+  ],
+  "hf_task": "image-text-to-text",
+  "tiers": [
+    "datacenter"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "thinkingmachines/Inkling-2-Mini",
+  "links": [
+    {
+      "label": "thinkingmachines/Inkling-2-Mini on Hugging Face",
+      "url": "https://huggingface.co/thinkingmachines/Inkling-2-Mini"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 20.2 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 41888,
+    "likes": 5445,
+    "created_at": "2026-11-17T00:26:57.000Z",
+    "fetched_at": "2026-11-23T21:00:37.093Z"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "florence",
+  "name": "Florence",
+  "summary": "Microsoft built Florence-2 to handle image and vision-language tasks such as captioning, object detection, and segmentation from text prompts. It provides one model for a variety of vision tasks.",
+  "summary_source": "ai"
+}

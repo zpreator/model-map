@@ -1,0 +1,6 @@
+{
+  "id": "efficientnet",
+  "name": "EfficientNet",
+  "summary": "EfficientNet was developed by timm. It classifies images, providing a model for recognizing what is shown in them.",
+  "summary_source": "ai"
+}

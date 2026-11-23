@@ -1,0 +1,6 @@
+{
+  "id": "closed-video",
+  "name": "Closed video models",
+  "summary": "Google built the Gemini Omni Flash models to generate and edit videos, including from text or images. The supplied text does not explain why they were created.",
+  "summary_source": "ai"
+}

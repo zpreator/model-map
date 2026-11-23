@@ -1,0 +1,6 @@
+{
+  "id": "jais-asr",
+  "name": "Jais-ASR",
+  "summary": "IFM built Jais-ASR to transcribe Modern Standard Arabic and dialects, including speech that switches between Arabic and several other languages. It is designed for Arabic as spoken in real-world recordings.",
+  "summary_source": "ai"
+}

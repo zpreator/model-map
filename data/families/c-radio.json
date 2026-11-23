@@ -1,0 +1,6 @@
+{
+  "id": "c-radio",
+  "name": "C-RADIO",
+  "summary": "C-RADIO was built by NVIDIA. It extracts image features as embeddings for downstream models, supporting tasks such as image classification and segmentation.",
+  "summary_source": "ai"
+}
