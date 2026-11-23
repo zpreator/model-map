@@ -1,0 +1,38 @@
+{
+  "id": "vibevoice-asr-streaming-7b",
+  "name": "VibeVoice-ASR-Streaming-7B",
+  "family": "vibevoice-asr",
+  "developer": "microsoft",
+  "summary": "Built by Microsoft, VibeVoice-ASR-Streaming-7B transcribes speech as it arrives, identifying who said what. It supports custom hotwords and multiple languages to help recognize names, technical terms, and spoken content.",
+  "summary_source": "ai",
+  "card_hash": "bebf1d95de1a",
+  "cells": [
+    {
+      "input": "audio",
+      "output": "text"
+    }
+  ],
+  "hf_task": "automatic-speech-recognition",
+  "tiers": [
+    "gpu_24gb"
+  ],
+  "license": "mit",
+  "open_weights": true,
+  "hf_repo": "microsoft/VibeVoice-ASR-Streaming-7B",
+  "links": [
+    {
+      "label": "microsoft/VibeVoice-ASR-Streaming-7B on Hugging Face",
+      "url": "https://huggingface.co/microsoft/VibeVoice-ASR-Streaming-7B"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 17.3 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 13114,
+    "likes": 271,
+    "created_at": "2026-09-02T15:46:22.000Z",
+    "fetched_at": "2026-11-23T21:00:37.093Z"
+  }
+}

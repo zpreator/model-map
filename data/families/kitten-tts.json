@@ -1,0 +1,6 @@
+{
+  "id": "kitten-tts",
+  "name": "Kitten TTS",
+  "summary": "KittenML built Kitten TTS, a text-to-speech model that turns written text into spoken audio. It supports multiple languages and voices; the supplied text does not state what problem it was created to solve.",
+  "summary_source": "ai"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "defm",
+  "name": "defm",
+  "family": "defm",
+  "developer": "leggedrobotics",
+  "summary": "DeFM was built by leggedrobotics to extract useful features from depth images for robotic perception. It aims to help robots work across simulation and real-world settings and different depth sensors.",
+  "summary_source": "ai",
+  "card_hash": "48ee6d76e18e",
+  "cells": [
+    {
+      "input": "image",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "image-feature-extraction",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": "apache-2.0",
+  "open_weights": true,
+  "hf_repo": "leggedrobotics/defm",
+  "links": [
+    {
+      "label": "leggedrobotics/defm on Hugging Face",
+      "url": "https://huggingface.co/leggedrobotics/defm"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 1.2 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 11433,
+    "likes": 13,
+    "created_at": "2026-01-20T19:21:47.000Z",
+    "fetched_at": "2026-11-23T21:00:37.093Z"
+  }
+}

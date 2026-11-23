@@ -1,0 +1,38 @@
+{
+  "id": "c-radiov4-so400m",
+  "name": "C-RADIOv4-SO400M",
+  "family": "c-radio",
+  "developer": "nvidia",
+  "summary": "NVIDIA built C-RADIOv4-SO400M to extract visual features from images as embeddings for downstream models, supporting tasks such as image classification, segmentation, and depth estimation.",
+  "summary_source": "ai",
+  "card_hash": "a49106d43d4e",
+  "cells": [
+    {
+      "input": "image",
+      "output": "embedding"
+    }
+  ],
+  "hf_task": "feature-extraction",
+  "tiers": [
+    "cpu_edge"
+  ],
+  "license": null,
+  "open_weights": true,
+  "hf_repo": "nvidia/C-RADIOv4-SO400M",
+  "links": [
+    {
+      "label": "nvidia/C-RADIOv4-SO400M on Hugging Face",
+      "url": "https://huggingface.co/nvidia/C-RADIOv4-SO400M"
+    }
+  ],
+  "feeds_into": [],
+  "verified": false,
+  "notes": "Auto-proposed by the weekly discovery job; unreviewed. Tier estimated from 1.7 GB of weight files (largest checkpoint if several).",
+  "source": "auto",
+  "metrics": {
+    "downloads_30d": 14990,
+    "likes": 52,
+    "created_at": "2026-01-26T14:08:40.000Z",
+    "fetched_at": "2026-11-23T21:00:37.093Z"
+  }
+}

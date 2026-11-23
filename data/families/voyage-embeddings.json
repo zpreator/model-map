@@ -1,0 +1,6 @@
+{
+  "id": "voyage-embeddings",
+  "name": "Voyage Embeddings",
+  "summary": "MongoDB’s Voyage Embeddings model creates text embeddings for semantic search and retrieval. It is intended to help find relevant text by meaning rather than exact wording.",
+  "summary_source": "ai"
+}

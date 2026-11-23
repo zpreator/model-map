@@ -1,0 +1,6 @@
+{
+  "id": "defm",
+  "name": "DeFM",
+  "summary": "Built by leggedrobotics, DeFM extracts semantic and geometric features from depth images for robotic perception. It aims to help robots handle varied sensors and transfer from simulation to real-world tasks.",
+  "summary_source": "ai"
+}

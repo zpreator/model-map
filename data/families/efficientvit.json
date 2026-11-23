@@ -1,0 +1,6 @@
+{
+  "id": "efficientvit",
+  "name": "EfficientViT",
+  "summary": "EfficientViT was built by timm and classifies images. It is also used as a feature backbone, but the text does not say what problem it was designed to solve.",
+  "summary_source": "ai"
+}

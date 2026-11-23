@@ -1,0 +1,6 @@
+{
+  "id": "chatterbox-tts",
+  "name": "Chatterbox TTS",
+  "summary": "ResembleAI built Chatterbox TTS, a text-to-speech model that generates speech from text. Its multilingual version is designed for voice cloning across languages, with more consistent speaker similarity and fewer unwanted repetitions or off-prompt speech.",
+  "summary_source": "ai"
+}

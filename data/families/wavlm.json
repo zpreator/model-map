@@ -1,0 +1,6 @@
+{
+  "id": "wavlm",
+  "name": "WavLM",
+  "summary": "WavLM was built by Microsoft to extract useful features from speech audio. It was created to support a range of speech-processing tasks, including recognition and speaker-related tasks.",
+  "summary_source": "ai"
+}

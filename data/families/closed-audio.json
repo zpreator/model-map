@@ -1,0 +1,6 @@
+{
+  "id": "closed-audio",
+  "name": "Closed audio models",
+  "summary": "Built by Google and OpenAI, this family of hosted audio models generates music or speech, responds to spoken audio, and transcribes audio into text. They exist for tasks including creating songs and enabling low-latency voice interactions.",
+  "summary_source": "ai"
+}
